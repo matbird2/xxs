@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -54,8 +56,13 @@ public class MainActivity extends AppCompatActivity{
 
     @ViewById(R.id.materialViewPager)
     protected MaterialViewPager mViewPager;
-    @ViewById(R.id.logo_white)
-    protected View logo;
+    @ViewById
+    protected ImageView logo_in;
+    @ViewById
+    protected FrameLayout logo;
+
+//    @ViewById(R.id.logo_white)
+//    protected View logo;
     @ViewById
     protected RelativeLayout content;
 
@@ -69,15 +76,31 @@ public class MainActivity extends AppCompatActivity{
     private MiniDrawer miniResult = null;
     private CrossfadeDrawerLayout crossfadeDrawerLayout = null;
 
+    IconicsDrawable signIcon;
+    IconicsDrawable penIcon;
+
     @AfterInject
     void init(){
-
+        initIconRes();
     }
 
     @AfterViews
     void initView(){
         initMaterialViewpager();
         initDrawerView();
+
+//        logo_in.setImageDrawable(iconicsDrawable);
+    }
+
+    void initIconRes(){
+        signIcon = new IconicsDrawable(this)
+                .icon(GoogleMaterial.Icon.gmd_assignment_o)
+                .color(Color.WHITE)
+                .sizeDp(20);
+        penIcon = new IconicsDrawable(this)
+                .icon(GoogleMaterial.Icon.gmd_edit)
+                .color(Color.WHITE)
+                .sizeDp(20);
     }
 
     private void initDrawerView(){
@@ -129,9 +152,10 @@ public class MainActivity extends AppCompatActivity{
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if(drawerItem.getIdentifier() == 2){
-                            View v = drawerItem.getViewHolder(content).itemView;
+//                            View v = drawerItem.getViewHolder(content).itemView;
                             final Intent intent = new Intent(MainActivity.this, CategoryActivity_.class);
-                            ActivityTransitionLauncher.with(MainActivity.this).from(v.findViewById(R.id.material_drawer_icon)).launch(intent);
+//                            ActivityTransitionLauncher.with(MainActivity.this).from(v.findViewById(R.id.material_drawer_icon)).launch(intent);
+                            MainActivity.this.startActivity(intent);
                         }
                         return miniResult.onItemClick(drawerItem);
                     }
@@ -174,9 +198,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void initMaterialViewpager(){
         setTitle("");
-
         toolbar = mViewPager.getToolbar();
-
         if (toolbar != null) {
             setSupportActionBar(toolbar);
 
@@ -194,7 +216,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public Fragment getItem(int position) {
-                switch (position % 4) {
+                switch (position % 3) {
                     //case 0:
                     //    return RecyclerViewFragment.newInstance();
                     //case 1:
@@ -208,20 +230,18 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public int getCount() {
-                return 4;
+                return 3;
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                switch (position % 4) {
+                switch (position % 3) {
                     case 0:
                         return "最新";
                     case 1:
-                        return "推荐";
+                        return "Ta说";
                     case 2:
-                        return "积分";
-                    case 3:
-                        return "其他";
+                        return "推荐";
                 }
                 return "";
             }
@@ -232,25 +252,25 @@ public class MainActivity extends AppCompatActivity{
             public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
                     case 0:
+                        logo.setVisibility(View.VISIBLE);
+                        logo_in.setImageDrawable(signIcon);
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.green,
                                 "http://img.tupianzj.com/uploads/allimg/151116/9-151116131108.jpg");
                     case 1:
+                        logo.setVisibility(View.VISIBLE);
+                        logo_in.setImageDrawable(penIcon);
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.blue,
                                 "http://img.tupianzj.com/uploads/allimg/151114/9-151114161546.jpg");
                     case 2:
+                        logo.setVisibility(View.INVISIBLE);
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.cyan,
                                 "http://img.tupianzj.com/uploads/allimg/151111/9-151111222918.jpg");
-                    case 3:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.red,
-                                "http://img.tupianzj.com/uploads/allimg/151102/9-151102220227.jpg");
                 }
 
                 //execute others actions if needed (ex : modify your header logo)
-
                 return null;
             }
         });
@@ -259,11 +279,10 @@ public class MainActivity extends AppCompatActivity{
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
     }
 
-    @Click(R.id.logo_white)
+    @Click(R.id.logo)
     void onClickLogo(){
         mViewPager.notifyHeaderChanged();
-//        Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
-        final Intent intent = new Intent(MainActivity.this, SecondActivity_.class);
+        final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
         ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);
     }
 

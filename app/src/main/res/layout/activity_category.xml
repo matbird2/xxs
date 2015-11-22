@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="48dip"
-        android:layout_height="48dip"
-        tools:src="@android:drawable/ic_lock_power_off"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="48dp"/>
+    <Button
+        android:id="@+id/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="go" />
+
+    <FrameLayout
+        android:id="@+id/scene_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/category_scene1" />
+
+    </FrameLayout>
+
+
 </RelativeLayout>

@@ -22,6 +22,9 @@
         </activity>
         <activity android:name=".activity.CategoryActivity_" >
         </activity>
+        <activity android:name=".activity.CommentActivity_"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

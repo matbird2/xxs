@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/logo_white"
-    android:layout_width="200dp"
-    android:layout_height="@dimen/materialviewpager_logoHeight"
-    android:src="@drawable/logo_white"
-    android:transitionName="test"
-    tools:targetApi="21" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/circle"
+    android:id="@+id/logo">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:fitsSystemWindows="true"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"
+        android:id="@+id/logo_in"/>
+</FrameLayout>
