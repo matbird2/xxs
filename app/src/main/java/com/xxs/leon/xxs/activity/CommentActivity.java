@@ -1,5 +1,6 @@
 package com.xxs.leon.xxs.activity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import com.kogitune.activity_transition.ActivityTransition;
 import com.kogitune.activity_transition.ExitActivityTransition;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xxs.leon.xxs.R;
 
 import org.androidannotations.annotations.AfterInject;
@@ -27,7 +29,7 @@ public class CommentActivity extends AppCompatActivity{
     @InstanceState
     protected Bundle savedInstanceState;
     @ViewById
-    protected FrameLayout logo;
+    protected ImageView logo;
     @ViewById
     protected ImageView logo_in;
 
@@ -42,7 +44,7 @@ public class CommentActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        logo_in.setImageDrawable(okIcon);
+//        logo_in.setImageDrawable(okIcon);
         exitTransition = ActivityTransition.with(getIntent()).to(logo).start(savedInstanceState);
     }
 
@@ -56,5 +58,10 @@ public class CommentActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         exitTransition.exit(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
     }
 }

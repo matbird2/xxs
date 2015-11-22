@@ -3,37 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="24dp"
     android:background="@drawable/papper">
 
-    <FrameLayout
+    <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle"
         android:layout_marginTop="48dp"
         android:layout_marginRight="16dp"
         android:id="@+id/logo"
-        android:layout_alignParentRight="true">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:fitsSystemWindows="true"
-            android:adjustViewBounds="true"
-            android:layout_gravity="center"
-            android:id="@+id/logo_in"/>
-    </FrameLayout>
+        android:layout_alignParentRight="true"
+        app:ico_color="@android:color/white"
+        app:ico_icon="cmd_check"
+        app:ico_size="20dp"
+        android:padding="15dp"
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:textSize="14sp"
-        android:textColor="@color/primary_dark"
+        android:textColor="@color/navigationBarColor"
         android:maxLines="14"
         android:gravity="top|left"
         android:lineSpacingExtra="7dp"
         android:layout_marginLeft="42dip"
         android:layout_marginRight="85dip"
         android:layout_marginTop="45dip"
-        tools:hint="拉快就发到很快就发的哈卡"/>
+        tools:hint="拉快就发到很很快就发的的哈卡"/>
 </RelativeLayout>

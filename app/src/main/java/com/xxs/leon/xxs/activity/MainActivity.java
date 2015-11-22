@@ -41,6 +41,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.fragment.NewFragment_;
 import com.xxs.leon.xxs.fragment.RecyclerViewFragment;
 import com.xxs.leon.xxs.test.SecondActivity_;
 
@@ -217,8 +218,8 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public Fragment getItem(int position) {
                 switch (position % 3) {
-                    //case 0:
-                    //    return RecyclerViewFragment.newInstance();
+                    case 0:
+                        return new NewFragment_();
                     //case 1:
                     //    return RecyclerViewFragment.newInstance();
                     //case 2:
