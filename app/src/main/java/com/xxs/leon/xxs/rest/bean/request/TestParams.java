@@ -1,0 +1,16 @@
+package com.xxs.leon.xxs.rest.bean.request;
+
+/**
+ * Created by maliang on 15/11/24.
+ */
+public class TestParams {
+    private String test;
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+}
