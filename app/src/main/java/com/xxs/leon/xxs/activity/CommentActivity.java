@@ -15,7 +15,9 @@ import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
+import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.handler.CommenErrorHandler;
@@ -29,6 +31,10 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * Created by leon on 15-11-22.
@@ -89,7 +95,8 @@ public class CommentActivity extends AppCompatActivity{
     void testRest(){
         client.setRestErrorHandler(errorHandler);
         
-        testCloud();
+//        testCloud();
+        testGetNewAlbums();
     }
 
     @Background
@@ -97,7 +104,17 @@ public class CommentActivity extends AppCompatActivity{
         TestParams params = new TestParams();
         params.setTest("能不能成功啊？");
         TestEntity entity = client.testCloudFunction(params);
-        Log.d("TEST","result:"+entity.getResult());
+        Log.d("TEST", "result:" + entity.getResult());
+    }
+
+    @Background
+    void testGetNewAlbums(){
+            String keys = "keys=name,price,status,type,cover";
+            String where = "where={\"status\":1}";
+            String limit = "limit=10";
+            String order = "order=-updatedAt";
+            HomeAlbumEntity results = client.getHomeNewAlbums(keys,where,limit,order);
+            Log.d("TEST", "size:" + results.getResults().size());
     }
 
     @Override
