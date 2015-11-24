@@ -40,6 +40,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
 
 
     compile 'com.mikepenz:crossfadedrawerlayout:0.0.1-SNAPSHOT@aar'
@@ -54,5 +55,5 @@ dependencies {
     }
     compile 'com.kogitune:pre-lollipop-activity-transition:1.1.0'
     compile "com.andkulikov:transitionseverywhere:1.6.1"
-    compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
+//    compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
 }
