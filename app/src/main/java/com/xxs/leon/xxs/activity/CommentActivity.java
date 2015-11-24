@@ -95,6 +95,7 @@ public class CommentActivity extends AppCompatActivity{
     void testRest(){
         client.setRestErrorHandler(errorHandler);
         
+        
 //        testCloud();
         testGetNewAlbums();
     }
@@ -109,12 +110,14 @@ public class CommentActivity extends AppCompatActivity{
 
     @Background
     void testGetNewAlbums(){
-            String keys = "keys=name,price,status,type,cover";
-            String where = "where={\"status\":1}";
-            String limit = "limit=10";
-            String order = "order=-updatedAt";
+            String keys = "name,price,status,type,cover";
+            String where = "{\"status\":1}";
+//            String limit = "10";
+            int status = 1;
+            int limit = 10;
+            String order = "-updatedAt";
             HomeAlbumEntity results = client.getHomeNewAlbums(keys,where,limit,order);
-            Log.d("TEST", "size:" + results.getResults().size());
+            Log.d("TEST", "size:" + results.getResults().get(0).toString());
     }
 
     @Override
