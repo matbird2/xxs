@@ -10,12 +10,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
+import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.adapter.HomeNewAlbumRecyclerViewAdapter;
 import com.xxs.leon.xxs.adapter.TestRecyclerViewAdapter;
+import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -32,9 +40,14 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @ViewById
     protected RecyclerView recyclerView;
     private LinearLayoutManager mLayoutManager;
-    TestRecyclerViewAdapter adapter;
+    RecyclerViewMaterialAdapter adapter;
     private int lastVisibleItem;
-    private List<Object> mContentItems = new ArrayList<>();
+//    private List<Album> mContentItems = new ArrayList<>();
+
+    @Bean
+    CommenEngineImpl engine;
+    @Bean
+    HomeNewAlbumRecyclerViewAdapter mAdapter;
 
     @AfterInject
     void init() {
@@ -51,56 +64,69 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                         .getDisplayMetrics()));
 
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView,
+//                                             int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE
+//                        && lastVisibleItem + 1 == adapter.getItemCount()) {
+//                    swipeRefreshLayout.setRefreshing(true);
+//                    L.i(L.TEST,"last");
+//                    // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
+//                    handler.sendEmptyMessageDelayed(0, 3000);
+//                }
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+//            }
+//
+//        });
 
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView,
-                                             int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastVisibleItem + 1 == adapter.getItemCount()) {
-                    swipeRefreshLayout.setRefreshing(true);
-                    // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
-                    handler.sendEmptyMessageDelayed(0, 3000);
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-            }
-
-        });
-
-        recyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new TestRecyclerViewAdapter(mContentItems);
+        adapter = new RecyclerViewMaterialAdapter(mAdapter);
         recyclerView.setAdapter(adapter);
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, null);
 
         // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
-        handler.sendEmptyMessageDelayed(0, 3000);
+//        handler.sendEmptyMessageDelayed(0, 3000);
+        loadData();
+    }
+
+    @Background
+    void loadData(){
+        List<Album> results = engine.getHomeAlbums();
+        updateView(results);
+    }
+
+    @UiThread
+    void updateView(List<Album> results){
+        mAdapter.appenList(results);
     }
 
     @Override
     public void onRefresh() {
-        mContentItems.add(new Object());
-        adapter.notifyDataSetChanged();
+        mAdapter.clear();
+        loadData();
     }
 
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            for(int i=0;i<ITEM_COUNT;i++)
-                mContentItems.add(new Object());
-            adapter.notifyDataSetChanged();
-        }
-    };
-    private static final int ITEM_COUNT = 100;
+//    private Handler handler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            for(int i=0;i<ITEM_COUNT;i++)
+//                mContentItems.add(new Object());
+//            adapter.notifyDataSetChanged();
+//        }
+//    };
+//    private static final int ITEM_COUNT = 20;
 }

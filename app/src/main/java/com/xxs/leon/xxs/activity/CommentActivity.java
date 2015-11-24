@@ -15,6 +15,7 @@ import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
@@ -94,7 +95,8 @@ public class CommentActivity extends AppCompatActivity{
     @Click(R.id.fab)
     void testRest(){
         client.setRestErrorHandler(errorHandler);
-        
+        client.setHeader("X-Bmob-Application-Id", Constant.X_BMOB_APPLICATION_ID);
+        client.setHeader("X-Bmob-REST-API-Key",Constant.X_BMOB_REST_API_KEY);
         
 //        testCloud();
         testGetNewAlbums();
