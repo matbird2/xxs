@@ -94,7 +94,7 @@ public class CommentActivity extends AppCompatActivity{
     @Click(R.id.fab)
     void testRest(){
         client.setRestErrorHandler(errorHandler);
-        
+
 //        testCloud();
         testGetNewAlbums();
     }
