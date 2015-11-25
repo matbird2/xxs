@@ -9,7 +9,6 @@ import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
-import org.androidannotations.annotations.rest.RestService;
 
 /**
  * Created by leon on 15-11-24.

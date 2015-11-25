@@ -3,6 +3,7 @@ package com.xxs.leon.xxs.rest.engine;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.engine.callback.DataEngineCallback;
 
 import java.util.List;
 
@@ -23,4 +24,15 @@ public interface CommenEngine {
      * @return
      */
     XSUser login(LoginParams loginParams);
+
+    /**
+     * 注销
+     */
+    void logout();
+
+    /**
+     * 获取本地user对象
+     * @return
+     */
+    XSUser getCurrentUser();
 }
