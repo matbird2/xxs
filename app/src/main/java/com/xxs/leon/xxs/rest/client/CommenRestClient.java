@@ -4,6 +4,8 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
+import com.xxs.leon.xxs.rest.interceptor.HttpBasicAuthenticatorInterceptor;
+import com.xxs.leon.xxs.rest.requestfactory.MyRequestFactory;
 
 import org.androidannotations.annotations.rest.Accept;
 import org.androidannotations.annotations.rest.Get;
@@ -22,17 +24,17 @@ import java.util.List;
 /**
  * Created by maliang on 15/11/24.
  */
-@Rest(rootUrl = "https://api.bmob.cn/1",converters = {MappingJackson2HttpMessageConverter.class, StringHttpMessageConverter.class})
-@RequiresHeader({"X-Bmob-Application-Id","X-Bmob-REST-API-Key"})
+@Rest(rootUrl = "https://api.bmob.cn/1", converters = {MappingJackson2HttpMessageConverter.class, StringHttpMessageConverter.class},interceptors = HttpBasicAuthenticatorInterceptor.class)
+@RequiresHeader({"X-Bmob-Application-Id", "X-Bmob-REST-API-Key"})
 @Accept(MediaType.APPLICATION_JSON)
-public interface CommenRestClient extends RestClientHeaders,RestClientErrorHandling,RestClientSupport{
+public interface CommenRestClient extends RestClientHeaders, RestClientErrorHandling, RestClientSupport {
 
     @Post("/functions/test")
     TestEntity testCloudFunction(TestParams data);
 
-    @Get("/classes/Album/?{keys}&{where}&{limit}&{order}")
-    HomeAlbumEntity getHomeNewAlbums(String keys,String where,String limit,String order);
+//    @Get("/classes/Album/?{keys}&{where}&{limit}&{order}")
+//    HomeAlbumEntity getHomeNewAlbums(String keys,String where,String limit,String order);
 
-//    @Get("/classes/Album/?{bql}")
-//    HomeAlbumEntity getHomeNewAlbums(String bql);
+    @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
+    HomeAlbumEntity getHomeNewAlbums(String keys,String where,int limit,String order);
 }

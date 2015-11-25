@@ -87,4 +87,19 @@ public class Album extends BaseBean{
     public void setLength(Long length) {
         this.length = length;
     }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", remark='" + remark + '\'' +
+                ", status=" + status +
+                ", type=" + type +
+                ", descri='" + descri + '\'' +
+                ", imgs=" + imgs +
+                ", cover='" + cover + '\'' +
+                ", length=" + length +
+                '}';
+    }
 }

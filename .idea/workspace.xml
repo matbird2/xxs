@@ -33,9 +33,13 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="TEST" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="79500121-4716-411f-91cf-309d8edfb895" name="Default" comment="" />
+=======
     <list default="true" id="79500121-4716-411f-91cf-309d8edfb895" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" />
     </list>
+>>>>>>> f44f734a771dfb59cfca3089ace176cfe9952f16
     <ignored path="xxs.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -180,8 +184,13 @@
       <file leaf-file-name="TestEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/TestEntity.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state vertical-scroll-proportion="0.6580311">
+              <caret line="101" column="43" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="43" />
+=======
             <state vertical-scroll-proportion="0.0">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+>>>>>>> f44f734a771dfb59cfca3089ace176cfe9952f16
               <folding>
                 <element signature="e#173#174#0" expanded="true" />
                 <element signature="e#202#203#0" expanded="true" />
@@ -3628,8 +3637,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.53079176">
           <caret line="115" column="50" selection-start-line="115" selection-start-column="50" selection-end-line="115" selection-end-column="50" />
+=======
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.6580311">
+          <caret line="101" column="43" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="43" />
+=======
+        <state vertical-scroll-proportion="0.7521994">
+          <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+>>>>>>> f44f734a771dfb59cfca3089ace176cfe9952f16
+>>>>>>> 89b8cab9f112d740f374340ad3e4005736a77f63
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1984#1985#0" expanded="true" />
