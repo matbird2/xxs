@@ -1,11 +1,18 @@
 package com.xxs.leon.xxs.rest.engine.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.engine.BaseEngine;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
+import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.EBean;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -24,5 +31,20 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         String order = "-updatedAt";
         HomeAlbumEntity results = client.getHomeNewAlbums(keys,where,limit,order);
         return results.getResults();
+    }
+
+    @Override
+    public XSUser login(LoginParams loginParams) {
+        CloudRestEntity entity = client.login(loginParams);
+        String jsonString = entity.getResult();
+        L.i(L.TEST,jsonString);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            XSUser user = objectMapper.readValue(jsonString, XSUser.class);
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity{
 
     IconicsDrawable signIcon;
     IconicsDrawable penIcon;
+    IconicsDrawable peopleDrawable;
 
     @AfterInject
     void init(){
@@ -102,26 +103,28 @@ public class MainActivity extends AppCompatActivity{
                 .icon(GoogleMaterial.Icon.gmd_edit)
                 .color(Color.WHITE)
                 .sizeDp(20);
-    }
-
-    private void initDrawerView(){
-        IconicsDrawable iconicsDrawable = new IconicsDrawable(this)
+        peopleDrawable = new IconicsDrawable(this)
                 .icon(GoogleMaterial.Icon.gmd_account_circle)
                 .color(Color.GRAY)
                 .sizeDp(24);
-        final IProfile profile = new ProfileDrawerItem().withName("Tom").withIcon(iconicsDrawable);
+    }
+
+    private void initDrawerView(){
+        final IProfile profile = new ProfileDrawerItem().withName("Tom").withIcon(peopleDrawable).withIdentifier(1);
 
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
-                .addProfiles(profile )
+                .addProfiles(profile)
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean current) {
                         //IMPORTANT! notify the MiniDrawer about the profile click
                         miniResult.onProfileClick();
-
+                        if(profile.getIdentifier() == 1){
+                            startActivity(new Intent(MainActivity.this,LoginGuidActivity_.class));
+                        }
                         //false if you have not consumed the event and it should close the drawer
                         return false;
                     }
@@ -256,7 +259,7 @@ public class MainActivity extends AppCompatActivity{
                         logo.setVisibility(View.VISIBLE);
                         logo_in.setImageDrawable(signIcon);
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.green,
+                                R.color.colorPrimary,
                                 "http://tupian.qqjay.com/u/2013/1127/19_222949_14.jpg");
                     case 1:
                         logo.setVisibility(View.VISIBLE);

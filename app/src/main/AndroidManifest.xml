@@ -25,6 +25,10 @@
         </activity>
         <activity android:name=".activity.CommentActivity_">
         </activity>
+        <activity android:name=".activity.LoginGuidActivity_">
+        </activity>
+        <activity android:name=".activity.LoginActivity_">
+        </activity>
     </application>
 
 </manifest>

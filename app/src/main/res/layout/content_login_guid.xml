@@ -28,6 +28,7 @@
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
+        android:text="登录"
         tools:text="登录" />
 
     <com.gc.materialdesign.views.ButtonRectangle
@@ -37,6 +38,6 @@
         android:layout_below="@id/login"
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
-        tools:text="登录" />
+        android:text="注册" />
 
 </RelativeLayout>

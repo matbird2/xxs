@@ -2,7 +2,6 @@ package com.xxs.leon.xxs.rest.handler;
 
 import android.util.Log;
 
-import org.androidannotations.annotations.EBean;
 import org.androidannotations.api.rest.RestErrorHandler;
 import org.springframework.core.NestedRuntimeException;
 

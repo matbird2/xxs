@@ -1,7 +1,9 @@
 package com.xxs.leon.xxs.rest.client;
 
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
+import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.interceptor.HttpBasicAuthenticatorInterceptor;
@@ -32,9 +34,9 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
     @Post("/functions/test")
     TestEntity testCloudFunction(TestParams data);
 
-//    @Get("/classes/Album/?{keys}&{where}&{limit}&{order}")
-//    HomeAlbumEntity getHomeNewAlbums(String keys,String where,String limit,String order);
-
     @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
     HomeAlbumEntity getHomeNewAlbums(String keys,String where,int limit,String order);
+
+    @Post("/functions/doLogin")
+    CloudRestEntity login(LoginParams data);
 }
