@@ -257,18 +257,18 @@ public class MainActivity extends AppCompatActivity{
                         logo_in.setImageDrawable(signIcon);
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.green,
-                                "http://img.tupianzj.com/uploads/allimg/151116/9-151116131108.jpg");
+                                "http://tupian.qqjay.com/u/2013/1127/19_222949_14.jpg");
                     case 1:
                         logo.setVisibility(View.VISIBLE);
                         logo_in.setImageDrawable(penIcon);
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.blue,
-                                "http://img.tupianzj.com/uploads/allimg/151114/9-151114161546.jpg");
+                                "http://tupian.qqjay.com/u/2013/1127/19_222949_3.jpg");
                     case 2:
                         logo.setVisibility(View.INVISIBLE);
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.cyan,
-                                "http://img.tupianzj.com/uploads/allimg/151111/9-151111222918.jpg");
+                                "http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg");
                 }
 
                 //execute others actions if needed (ex : modify your header logo)

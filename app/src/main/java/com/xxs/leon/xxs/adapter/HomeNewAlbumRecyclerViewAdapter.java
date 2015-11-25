@@ -21,16 +21,19 @@ import java.util.List;
 /**
  * Created by florentchampigny on 24/04/15.
  */
-@EBean
 public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNewAlbumRecyclerViewAdapter.HomeAlbumViewHolder> {
 
-    @RootContext
     Context context;
 
     List<Album> contents = new ArrayList<>();
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
+
+    public HomeNewAlbumRecyclerViewAdapter(Context context,List<Album> contents){
+        this.context = context;
+        this.contents = contents;
+    }
 
     public void appenList(List<Album> contents){
         contents.addAll(contents);
@@ -84,8 +87,8 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
 //            case TYPE_CELL:
 //                break;
 //        }
-        Glide.with(context).load(contents.get(position).getCover()).into(holder.cover);
-        holder.title.setText(contents.get(0).getName());
+        Glide.with(context).load(contents.get(position).getCover()).crossFade(500).centerCrop().into(holder.cover);
+        holder.title.setText(contents.get(position).getName());
     }
 
     class HomeAlbumViewHolder extends RecyclerView.ViewHolder {

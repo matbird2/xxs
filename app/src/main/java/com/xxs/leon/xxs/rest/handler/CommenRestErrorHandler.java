@@ -9,8 +9,7 @@ import org.springframework.core.NestedRuntimeException;
 /**
  * Created by maliang on 15/11/24.
  */
-@EBean
-public class CommenErrorHandler implements RestErrorHandler{
+public class CommenRestErrorHandler implements RestErrorHandler{
 
     @Override
     public void onRestClientExceptionThrown(NestedRuntimeException e) {
