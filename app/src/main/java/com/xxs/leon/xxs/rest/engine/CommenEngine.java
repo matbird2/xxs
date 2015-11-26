@@ -51,4 +51,11 @@ public interface CommenEngine {
      * @return
      */
     XSUser getUserInfo(String objectId);
+
+    /**
+     * 上传文件
+     * @param remoteFileName 远程的文件名，带后缀
+     * @param filePath 本地文件的具体路劲
+     */
+    void uploadFile(String remoteFileName,String filePath);
 }

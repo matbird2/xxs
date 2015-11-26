@@ -8,6 +8,7 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -28,6 +29,12 @@ public class LoginGuidActivity extends AppCompatActivity{
 
     @Click(R.id.register)
     void clickRegister(){
-        startActivity(new Intent(this,RegisterActivity_.class));
+//        startActivity(new Intent(this,RegisterActivity_.class));
+        testUpload();
+    }
+
+    @Background
+    void testUpload(){
+        engine.uploadFile("haha.jpg","/sdcard/test1.jpg");
     }
 }

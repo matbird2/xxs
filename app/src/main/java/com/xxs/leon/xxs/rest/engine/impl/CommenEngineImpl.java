@@ -9,6 +9,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
+import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.BaseEngine;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.utils.AESEncryCypher;
@@ -19,6 +20,11 @@ import com.xxs.leon.xxs.utils.XXSPref_;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -46,7 +52,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         CloudRestEntity entity = client.login(loginParams);
         String jsonString = entity.getResult();
         L.i(L.TEST, jsonString);
-        return processUserJsonString(jsonString,false);
+        return processUserJsonString(jsonString, false);
     }
 
 
@@ -58,7 +64,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     @Override
     public XSUser getCurrentUser() {
         String jsonString = xxsPref.userInfo().get();
-        L.i(L.TEST,"current string:"+jsonString);
+        L.i(L.TEST, "current string:" + jsonString);
         if(TextUtils.isEmpty(jsonString)){
             return null;
         }else{
@@ -72,12 +78,23 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     public XSUser register(LoginParams registerParams) {
         CloudRestEntity entity = client.register(registerParams);
         String jsonString = entity.getResult();
-        return processUserJsonString(jsonString,false);
+        return processUserJsonString(jsonString, false);
     }
 
     @Override
     public XSUser getUserInfo(String objectId) {
         return client.getUserInfo(objectId);
+    }
+
+    @Override
+    public void uploadFile(String remoteFileName, String filePath) {
+        client.setHeader("Content-Type","image/jpeg");
+        File file = new File(filePath);
+        byte[] fileBytes = file2BetyArray(file);
+        if(fileBytes != null){
+            UploadEntity entity = client.uploadFile(fileBytes);
+            L.i(L.TEST,"url:"+entity.getUrl());
+        }
     }
 
     /**
@@ -99,5 +116,57 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static byte[] file2BetyArray(File file)
+    {
+        /*if (!file.exists()) {
+            return null;
+        }
+        FileInputStream stream = null;
+        ByteArrayOutputStream out = null;
+        try {
+            stream = new FileInputStream(file);
+            out = new ByteArrayOutputStream(1000);
+            byte[] b = new byte[1000];
+            int n;
+            while ((n = stream.read(b)) != -1) {
+                out.write(b, 0, n);
+            }
+            return out.toByteArray();// 此方法大文件OutOfMemory
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {
+            try {
+                stream.close();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;*/
+
+        if (!file.exists()) {
+            return null;
+        }
+        byte[] buffer = null;
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream(1000);
+            byte[] b = new byte[1000];
+            int n;
+            while ((n = fis.read(b)) != -1) {
+                bos.write(b, 0, n);
+            }
+            fis.close();
+            bos.close();
+            buffer = bos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer;
     }
 }

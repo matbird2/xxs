@@ -7,6 +7,7 @@ import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
+import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.interceptor.HttpBasicAuthenticatorInterceptor;
 import com.xxs.leon.xxs.rest.requestfactory.MyRequestFactory;
 
@@ -57,4 +58,10 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
      */
     @Get("/users/{objectId}")
     XSUser getUserInfo(String objectId);
+
+    @Post("/files/haha.jpg")
+    UploadEntity uploadFile(byte[] fileBytes);
+
+/*    @Post("/files/{filename}")
+    UploadEntity uploadFile(String filename,byte[] fileBytes);*/
 }
