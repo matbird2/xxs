@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity{
     void afterLogin(XSUser user){
         changeStatus(true);
         // do something
-        SnackBar snackBar = new SnackBar(this,user.getError(),"ok",null);
+        SnackBar snackBar = new SnackBar(this,user.getCode()+"","ok",null);
         snackBar.show();
     }
 

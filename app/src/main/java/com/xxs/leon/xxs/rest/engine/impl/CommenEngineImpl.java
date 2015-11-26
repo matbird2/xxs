@@ -13,6 +13,7 @@ import com.xxs.leon.xxs.rest.engine.BaseEngine;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.utils.AESEncryCypher;
 import com.xxs.leon.xxs.utils.L;
+import com.xxs.leon.xxs.utils.Tools;
 import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.EBean;
@@ -57,10 +58,11 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     @Override
     public XSUser getCurrentUser() {
         String jsonString = xxsPref.userInfo().get();
+        L.i(L.TEST,"current string:"+jsonString);
         if(TextUtils.isEmpty(jsonString)){
             return null;
         }else{
-            jsonString = new String(AESEncryCypher.decrypt(jsonString.getBytes(), Constant.AES_ENCRYPT_PASSWORD));
+            jsonString = Tools.decode_decrypt(jsonString);
             L.i(L.TEST,jsonString);
             return processUserJsonString(jsonString,true);
         }
@@ -71,7 +73,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             ObjectMapper objectMapper = new ObjectMapper();
             XSUser user = objectMapper.readValue(jsonString, XSUser.class);
             if (!isLocal && user.getCode() == 0){
-                jsonString = new String(AESEncryCypher.encrypt(jsonString,Constant.AES_ENCRYPT_PASSWORD));
+                jsonString = Tools.encrypt_encode(jsonString);
                 xxsPref.userInfo().put(jsonString);
             }
             return user;

@@ -3,8 +3,12 @@ package com.xxs.leon.xxs.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
+import com.gc.materialdesign.widgets.SnackBar;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 
@@ -14,9 +18,18 @@ import org.androidannotations.annotations.EActivity;
 @EActivity(R.layout.activity_login_guid)
 public class LoginGuidActivity extends AppCompatActivity{
 
+    @Bean
+    CommenEngineImpl engine;
 
     @Click(R.id.login)
     void clickLogin(){
         startActivity(new Intent(this,LoginActivity_.class));
+    }
+
+    @Click(R.id.register)
+    void test(){
+        XSUser user = engine.getCurrentUser();
+        SnackBar snackBar = new SnackBar(this,user.getSessionToken(),"ok",null);
+        snackBar.show();
     }
 }
