@@ -9,5 +9,6 @@ public interface Constant {
     String X_BMOB_REST_API_KEY = "";
 
     int LOG_LEVEL = 6;
+    String AES_ENCRYPT_PASSWORD = "xxs";
 
 }

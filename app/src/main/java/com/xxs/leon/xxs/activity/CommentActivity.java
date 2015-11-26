@@ -16,12 +16,11 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
-import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.client.CommenRestClient;
-import com.xxs.leon.xxs.rest.handler.CommenErrorHandler;
+import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -32,10 +31,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.List;
 
 /**
  * Created by leon on 15-11-22.
@@ -89,11 +84,10 @@ public class CommentActivity extends AppCompatActivity{
 
     @RestService
     CommenRestClient client;
-    @Bean
-    CommenErrorHandler errorHandler;
 
     @Click(R.id.fab)
     void testRest(){
+        CommenRestErrorHandler errorHandler = new CommenRestErrorHandler();
         client.setRestErrorHandler(errorHandler);
         client.setHeader("X-Bmob-Application-Id", Constant.X_BMOB_APPLICATION_ID);
         client.setHeader("X-Bmob-REST-API-Key",Constant.X_BMOB_REST_API_KEY);

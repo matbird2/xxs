@@ -42,12 +42,10 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private LinearLayoutManager mLayoutManager;
     RecyclerViewMaterialAdapter adapter;
     private int lastVisibleItem;
-//    private List<Album> mContentItems = new ArrayList<>();
+    private List<Album> mContentItems = new ArrayList<>();
 
     @Bean
     CommenEngineImpl engine;
-    @Bean
-    HomeNewAlbumRecyclerViewAdapter mAdapter;
 
     @AfterInject
     void init() {
@@ -60,7 +58,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         swipeRefreshLayout.setOnRefreshListener(this);
 
         // 这句话是为了，第一次进入页面的时候显示加载进度条
-        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
+        swipeRefreshLayout.setProgressViewOffset(true, 0, (int) TypedValue
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                         .getDisplayMetrics()));
 
@@ -92,7 +90,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new RecyclerViewMaterialAdapter(mAdapter);
+        adapter = new RecyclerViewMaterialAdapter(new HomeNewAlbumRecyclerViewAdapter(getActivity(),mContentItems));
         recyclerView.setAdapter(adapter);
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, null);
@@ -110,23 +108,14 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     @UiThread
     void updateView(List<Album> results){
-        mAdapter.appenList(results);
+        swipeRefreshLayout.setRefreshing(false);
+        mContentItems.addAll(results);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onRefresh() {
-        mAdapter.clear();
+        mContentItems.clear();
         loadData();
     }
-
-//    private Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            for(int i=0;i<ITEM_COUNT;i++)
-//                mContentItems.add(new Object());
-//            adapter.notifyDataSetChanged();
-//        }
-//    };
-//    private static final int ITEM_COUNT = 20;
 }

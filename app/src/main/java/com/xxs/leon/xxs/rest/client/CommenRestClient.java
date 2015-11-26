@@ -1,9 +1,13 @@
 package com.xxs.leon.xxs.rest.client;
 
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
+import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
+import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.interceptor.HttpBasicAuthenticatorInterceptor;
 import com.xxs.leon.xxs.rest.requestfactory.MyRequestFactory;
 
@@ -32,9 +36,32 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
     @Post("/functions/test")
     TestEntity testCloudFunction(TestParams data);
 
-//    @Get("/classes/Album/?{keys}&{where}&{limit}&{order}")
-//    HomeAlbumEntity getHomeNewAlbums(String keys,String where,String limit,String order);
-
     @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
     HomeAlbumEntity getHomeNewAlbums(String keys,String where,int limit,String order);
+
+    @Post("/functions/doLogin")
+    CloudRestEntity login(LoginParams data);
+
+    /**
+     *
+     * @param data
+     * @return "result": "{\n  \"createdAt\": \"2015-11-26 14:13:49\",\n  \"objectId\": \"a7cd7105a3\",\n  \"sessionToken\": \"08f0e2ce40a8503e803e968e796f271f\"\n}"
+     * 返回值里只包含了objectId 和sessionToken 两个可用的数据，获取用户信息需要再次请求
+     */
+    @Post("/functions/doSignUp")
+    CloudRestEntity register(LoginParams data);
+
+    /**
+     * 获取用户信息,不包含sessionToken
+     * @param objectId
+     * @return
+     */
+    @Get("/users/{objectId}")
+    XSUser getUserInfo(String objectId);
+
+    @Post("/files/haha.jpg")
+    UploadEntity uploadFile(byte[] fileBytes);
+
+/*    @Post("/files/{filename}")
+    UploadEntity uploadFile(String filename,byte[] fileBytes);*/
 }

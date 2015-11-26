@@ -3,7 +3,7 @@ package com.xxs.leon.xxs.rest.bean;
 /**
  * Created by maliang on 15/11/24.
  */
-public class BaseBean {
+public class BaseBean extends ErrorBean{
     private String objectId;
     private String createdAt;
     private String updatedAt;

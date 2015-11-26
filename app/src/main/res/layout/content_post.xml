@@ -11,17 +11,60 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_comment">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:background="@null"
-        android:gravity="top|left"
-        android:lineSpacingExtra="7dp"
-        android:maxLines="14"
-        android:imeOptions="actionDone"
-        android:textColor="@color/navigationBarColor"
-        android:textSize="14sp"
-        tools:hint="拉快就发到很很快就发的的哈卡" />
+        <com.gc.materialdesign.views.Slider
+            android:id="@+id/slider"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#1E88E5"
+            app:max="50"
+            app:min="0" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:gravity="center_horizontal"
+            tools:text="登录" />
+
+        <!--<com.gc.materialdesign.views.CheckBox.Check-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--app:check="true" />-->
+
+        <com.gc.materialdesign.views.Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:check="true" />
+
+        <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@color/colorPrimary" />
+
+        <com.gc.materialdesign.views.ProgressBarIndeterminate
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary" />
+    </LinearLayout>
+    <!--<EditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@id/toolbar"-->
+    <!--android:background="@null"-->
+    <!--android:gravity="top|left"-->
+    <!--android:lineSpacingExtra="7dp"-->
+    <!--android:maxLines="14"-->
+    <!--android:imeOptions="actionDone"-->
+    <!--android:textColor="@color/navigationBarColor"-->
+    <!--android:textSize="14sp"-->
+    <!--tools:hint="拉快就发到很很快就发的的哈卡" />-->
 </RelativeLayout>
