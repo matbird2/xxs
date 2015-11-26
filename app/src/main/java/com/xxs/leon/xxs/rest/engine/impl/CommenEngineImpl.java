@@ -75,6 +75,11 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         return processUserJsonString(jsonString,false);
     }
 
+    @Override
+    public XSUser getUserInfo(String objectId) {
+        return client.getUserInfo(objectId);
+    }
+
     /**
      * 处理用户数据，以字符串的形式保存本地，返回XSUser
      * @param jsonString

@@ -11,4 +11,5 @@ public interface XXSPref {
 
     @DefaultString("")
     String userInfo();
+
 }

@@ -160,6 +160,9 @@ public class MainActivity extends AppCompatActivity{
                             final Intent intent = new Intent(MainActivity.this, CategoryActivity_.class);
 //                            ActivityTransitionLauncher.with(MainActivity.this).from(v.findViewById(R.id.material_drawer_icon)).launch(intent);
                             MainActivity.this.startActivity(intent);
+                        }else if(drawerItem.getIdentifier() == 3){
+                            final Intent intent = new Intent(MainActivity.this, UserActivity_.class);
+                            MainActivity.this.startActivity(intent);
                         }
                         return miniResult.onItemClick(drawerItem);
                     }

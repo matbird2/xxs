@@ -15,8 +15,12 @@ public class ErrorBean {
         this.code = code;
     }
 
+    /**
+     * 错误码和错误信息可以在这里匹配，屏蔽传递过来的英文信息
+     * @return
+     */
     public String getError() {
-        return error;
+        return error == null ? "-" : error;
     }
 
     public void setError(String error) {

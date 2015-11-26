@@ -44,4 +44,11 @@ public interface CommenEngine {
      * @return
      */
     XSUser register(LoginParams registerParams);
+
+    /**
+     * 从服务端获取用户信息,不包含sessionToken
+     * @param objectId
+     * @return
+     */
+    XSUser getUserInfo(String objectId);
 }
