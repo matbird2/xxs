@@ -27,9 +27,7 @@ public class LoginGuidActivity extends AppCompatActivity{
     }
 
     @Click(R.id.register)
-    void test(){
-        XSUser user = engine.getCurrentUser();
-        SnackBar snackBar = new SnackBar(this,user.getSessionToken(),"ok",null);
-        snackBar.show();
+    void clickRegister(){
+        startActivity(new Intent(this,RegisterActivity_.class));
     }
 }

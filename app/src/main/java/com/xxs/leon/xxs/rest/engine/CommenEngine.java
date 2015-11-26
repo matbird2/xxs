@@ -26,13 +26,22 @@ public interface CommenEngine {
     XSUser login(LoginParams loginParams);
 
     /**
+     * No need background.
      * 注销
      */
     void logout();
 
     /**
+     * No need background.
      * 获取本地user对象
      * @return
      */
     XSUser getCurrentUser();
+
+    /**
+     * 注册
+     * @param registerParams 参数和登陆使用的参数一致
+     * @return
+     */
+    XSUser register(LoginParams registerParams);
 }

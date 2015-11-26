@@ -68,6 +68,19 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         }
     }
 
+    @Override
+    public XSUser register(LoginParams registerParams) {
+        CloudRestEntity entity = client.register(registerParams);
+        String jsonString = entity.getResult();
+        return processUserJsonString(jsonString,false);
+    }
+
+    /**
+     * 处理用户数据，以字符串的形式保存本地，返回XSUser
+     * @param jsonString
+     * @param isLocal 是否是本地数据，如果是，就不需要再次保存到本地
+     * @return
+     */
     private XSUser processUserJsonString(String jsonString,boolean isLocal){
         try {
             ObjectMapper objectMapper = new ObjectMapper();

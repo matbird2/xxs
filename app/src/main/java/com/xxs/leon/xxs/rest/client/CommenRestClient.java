@@ -39,4 +39,13 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doLogin")
     CloudRestEntity login(LoginParams data);
+
+    /**
+     *
+     * @param data
+     * @return "result": "{\n  \"createdAt\": \"2015-11-26 14:13:49\",\n  \"objectId\": \"a7cd7105a3\",\n  \"sessionToken\": \"08f0e2ce40a8503e803e968e796f271f\"\n}"
+     * 返回值里只包含了objectId 和sessionToken 两个可用的数据，获取用户信息需要再次请求
+     */
+    @Post("/functions/doSignUp")
+    CloudRestEntity register(LoginParams data);
 }
