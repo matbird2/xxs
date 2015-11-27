@@ -2,6 +2,7 @@ package com.xxs.leon.xxs.rest.engine;
 
 import android.content.Context;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.client.CommenRestClient_;
@@ -19,6 +20,7 @@ public class BaseEngine {
     @RootContext
     protected Context context;
     protected CommenRestClient client = new CommenRestClient_(context);
+    protected  ObjectMapper objectMapper = new ObjectMapper();
 
     {
         CommenRestErrorHandler errorHandler = new CommenRestErrorHandler();

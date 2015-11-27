@@ -1,8 +1,10 @@
 package com.xxs.leon.xxs.rest.engine;
 
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.callback.DataEngineCallback;
 
 import java.util.List;
@@ -56,6 +58,15 @@ public interface CommenEngine {
      * 上传文件
      * @param remoteFileName 远程的文件名，带后缀
      * @param filePath 本地文件的具体路劲
+     * @return
      */
-    void uploadFile(String remoteFileName,String filePath);
+    UploadEntity uploadFile(String remoteFileName,String filePath);
+
+    /**
+     * 更新用户头像信息
+     * @param imgUrl
+     * @param user  必须是 getLocalUser 的user对象
+     * @return
+     */
+    UpdateBean updateUserPhoto(XSUser user,String imgUrl);
 }

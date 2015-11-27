@@ -1,9 +1,11 @@
 package com.xxs.leon.xxs.rest.bean.response;
 
+import com.xxs.leon.xxs.rest.bean.ErrorBean;
+
 /**
  * Created by maliang on 15/11/26.
  */
-public class UploadEntity {
+public class UploadEntity extends ErrorBean{
     private String filename;
     private String group;
     private String url;

@@ -4,6 +4,7 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
+import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
@@ -20,6 +21,7 @@ import org.androidannotations.api.rest.MediaType;
 import org.androidannotations.api.rest.RestClientErrorHandling;
 import org.androidannotations.api.rest.RestClientHeaders;
 import org.androidannotations.api.rest.RestClientSupport;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
@@ -28,7 +30,7 @@ import java.util.List;
 /**
  * Created by maliang on 15/11/24.
  */
-@Rest(rootUrl = "https://api.bmob.cn/1", converters = {MappingJackson2HttpMessageConverter.class, StringHttpMessageConverter.class},interceptors = HttpBasicAuthenticatorInterceptor.class)
+@Rest(rootUrl = "https://api.bmob.cn/1", converters = {MappingJackson2HttpMessageConverter.class, StringHttpMessageConverter.class, ByteArrayHttpMessageConverter.class},interceptors = HttpBasicAuthenticatorInterceptor.class)
 @RequiresHeader({"X-Bmob-Application-Id", "X-Bmob-REST-API-Key"})
 @Accept(MediaType.APPLICATION_JSON)
 public interface CommenRestClient extends RestClientHeaders, RestClientErrorHandling, RestClientSupport {
@@ -59,9 +61,10 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
     @Get("/users/{objectId}")
     XSUser getUserInfo(String objectId);
 
-    @Post("/files/haha.jpg")
-    UploadEntity uploadFile(byte[] fileBytes);
+    @Post("/files/{remotefilename}")
+    @RequiresHeader({"X-Bmob-Application-Id", "X-Bmob-REST-API-Key","Content-Type"})
+    UploadEntity uploadFile(byte[] fileBytes,String remotefilename);
 
-/*    @Post("/files/{filename}")
-    UploadEntity uploadFile(String filename,byte[] fileBytes);*/
+    @Post("/functions/doUpdateUserPhoto")
+    CloudRestEntity updateUserPhoto(UpdateUserPhotoParams params);
 }
