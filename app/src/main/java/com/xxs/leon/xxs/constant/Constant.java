@@ -14,4 +14,5 @@ public interface Constant {
     int LOG_LEVEL = 6;
     String AES_ENCRYPT_PASSWORD = "xxs";
 
+    String BASE_IMAGE_FILE_URL = "http://file.bmob.cn/";
 }

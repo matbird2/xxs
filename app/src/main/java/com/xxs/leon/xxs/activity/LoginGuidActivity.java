@@ -30,11 +30,21 @@ public class LoginGuidActivity extends AppCompatActivity{
     @Click(R.id.register)
     void clickRegister(){
 //        startActivity(new Intent(this,RegisterActivity_.class));
-        testUpload();
+//        testUpload();
+        testUpdateUserPhoto();
     }
 
     @Background
     void testUpload(){
         engine.uploadFile("haha.jpg","/sdcard/test1.jpg");
+    }
+
+    @Background
+    void testUpdateUserPhoto(){
+        XSUser user = engine.getCurrentUser();
+        if(user == null)
+            return ;
+        String imgUrl = "xixixi";
+        engine.updateUserPhoto(user,imgUrl);
     }
 }

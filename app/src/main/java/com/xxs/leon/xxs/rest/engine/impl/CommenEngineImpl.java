@@ -5,8 +5,10 @@ import android.text.TextUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
@@ -87,14 +89,34 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public void uploadFile(String remoteFileName, String filePath) {
+    public UploadEntity uploadFile(String remoteFileName, String filePath) {
         client.setHeader("Content-Type","image/jpeg");
         File file = new File(filePath);
-        byte[] fileBytes = file2BetyArray(file);
-        if(fileBytes != null){
-            UploadEntity entity = client.uploadFile(fileBytes);
+        byte[] fileBytes = Tools.file2BetyArray(file);
+        L.i(L.TEST,"fileBytes length = "+fileBytes.length+"   file length = "+file.length());
+        if(fileBytes.length > 0 && fileBytes.length == file.length()){
+            UploadEntity entity = client.uploadFile(fileBytes,remoteFileName);
             L.i(L.TEST,"url:"+entity.getUrl());
+            return entity;
         }
+        return null;
+    }
+
+    @Override
+    public UpdateBean updateUserPhoto(XSUser user,String imgUrl) {
+        UpdateUserPhotoParams params = new UpdateUserPhotoParams();
+        params.setSessionToken(user.getSessionToken());
+        params.setObjectId(user.getObjectId());
+        params.setImgUrl(imgUrl);
+        CloudRestEntity entity = client.updateUserPhoto(params);
+        UpdateBean bean = null;
+        try {
+            L.i(L.TEST,"updateUserPhoto:"+entity.getResult());
+            bean = objectMapper.readValue(entity.getResult(),UpdateBean.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bean;
     }
 
     /**
@@ -105,7 +127,6 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
      */
     private XSUser processUserJsonString(String jsonString,boolean isLocal){
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             XSUser user = objectMapper.readValue(jsonString, XSUser.class);
             if (!isLocal && user.getCode() == 0){
                 jsonString = Tools.encrypt_encode(jsonString);
@@ -118,55 +139,4 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         return null;
     }
 
-    public static byte[] file2BetyArray(File file)
-    {
-        /*if (!file.exists()) {
-            return null;
-        }
-        FileInputStream stream = null;
-        ByteArrayOutputStream out = null;
-        try {
-            stream = new FileInputStream(file);
-            out = new ByteArrayOutputStream(1000);
-            byte[] b = new byte[1000];
-            int n;
-            while ((n = stream.read(b)) != -1) {
-                out.write(b, 0, n);
-            }
-            return out.toByteArray();// 此方法大文件OutOfMemory
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        } finally {
-            try {
-                stream.close();
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return null;*/
-
-        if (!file.exists()) {
-            return null;
-        }
-        byte[] buffer = null;
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream(1000);
-            byte[] b = new byte[1000];
-            int n;
-            while ((n = fis.read(b)) != -1) {
-                bos.write(b, 0, n);
-            }
-            fis.close();
-            bos.close();
-            buffer = bos.toByteArray();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return buffer;
-    }
 }
