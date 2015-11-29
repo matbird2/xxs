@@ -1,6 +1,7 @@
 package com.xxs.leon.xxs.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.Album;
 
@@ -29,10 +32,15 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
+    private IconicsDrawable error_icon;
 
     public HomeNewAlbumRecyclerViewAdapter(Context context,List<Album> contents){
         this.context = context;
         this.contents = contents;
+        error_icon = new IconicsDrawable(context)
+                .icon(GoogleMaterial.Icon.gmd_broken_image)
+                .color(Color.GRAY)
+                .sizeDp(60);
     }
 
     public void appenList(List<Album> contents){
@@ -87,7 +95,7 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
 //            case TYPE_CELL:
 //                break;
 //        }
-        Glide.with(context).load(contents.get(position).getCover()).crossFade(500).centerCrop().into(holder.cover);
+        Glide.with(context).load(contents.get(position).getCover()).error(error_icon).crossFade(500).centerCrop().into(holder.cover);
         holder.title.setText(contents.get(position).getName());
     }
 
