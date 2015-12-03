@@ -34,16 +34,296 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79500121-4716-411f-91cf-309d8edfb895" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_button.9.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_button.9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/dialog_background.9.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/dialog_background.9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/float_button1_shadowp.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/float_button1_shadowp.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/float_button_shadow1.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/float_button_shadow1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/header.jpg" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/header.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/ic_reloj_max.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/ic_reloj_max.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_left.9.png" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_left.9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_right.9.png" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_right.9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/assets/fonts/materialdrawerfont.ttf" afterPath="$PROJECT_DIR$/library/src/main/assets/fonts/materialdrawerfont.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-hdpi/sprite_check.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-hdpi/sprite_check.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-ldpi/sprite_check.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-ldpi/sprite_check.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-mdpi/sprite_check.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-mdpi/sprite_check.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/sprite_check.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xhdpi/sprite_check.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xxhdpi/sprite_check.png" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable-xxhdpi/sprite_check.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/-X" afterPath="$PROJECT_DIR$/-X" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/.gitignore" afterPath="$PROJECT_DIR$/MaterialDesign/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/app/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/.gitignore" afterPath="$PROJECT_DIR$/library/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/AESEncryCypher.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/AESEncryCypher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/AbstractDrawerImageLoader.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/AbstractDrawerImageLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/AbstractDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/AbstractDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/AccountHeader.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/AccountHeader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/AccountHeaderBuilder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/AccountHeaderBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/Album.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/Album.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/library/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/anim/AnimationHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/anim/AnimationHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/androidTest/java/com/gc/materialdesign/ApplicationTest.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/androidTest/java/com/gc/materialdesign/ApplicationTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/xxs/leon/xxs/ApplicationTest.java" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/xxs/leon/xxs/ApplicationTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/AutoHideButtonFloat.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/AutoHideButtonFloat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/utils/BadgeDrawableBuilder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/utils/BadgeDrawableBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/BadgeStyle.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/BadgeStyle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Badgeable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Badgeable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/Base64.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/Base64.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/BaseActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/BaseBean.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/BaseBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/adapter/BaseDrawerAdapter.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/adapter/BaseDrawerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/BaseDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/BaseDrawerItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/BaseEngine.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/BaseEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/BasePrimaryDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/BasePrimaryDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/BaseSecondaryDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/BaseSecondaryDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/view/BezelImageView.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/view/BezelImageView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Button.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Button.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonFlat.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonFlat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonFloat.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonFloat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonFloatSmall.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonFloatSmall.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonIcon.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonIcon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonRectangle.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ButtonRectangle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Card.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Card.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CategoryActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CategoryActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/CheckBox.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/CheckBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/ui/ChooseImageDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/ui/ChooseImageDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/CloudRestEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/CloudRestEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/ColorHolder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/ColorHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/ColorSelector.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/ColorSelector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/ColorfulBadgeable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/ColorfulBadgeable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/CommenEngine.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/CommenEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/impl/CommenEngineImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/impl/CommenEngineImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/client/CommenRestClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/client/CommenRestClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/handler/CommenRestErrorHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/handler/CommenRestErrorHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/handler/CommentResponseErrorHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/handler/CommentResponseErrorHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ContainerDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ContainerDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/CustomView.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/CustomView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/callback/DataEngineCallback.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/callback/DataEngineCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/Dialog.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/Dialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/DimenHolder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/DimenHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/DividerDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/DividerDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/Drawer.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/Drawer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/adapter/DrawerAdapter.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/adapter/DrawerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/DrawerBuilder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/DrawerBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/DrawerImageLoader.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/DrawerImageLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/DrawerItemViewHelper.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/DrawerItemViewHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/DrawerUIUtils.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/DrawerUIUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/DrawerUtils.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/DrawerUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/ErrorBean.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/ErrorBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/test/java/com/xxs/leon/xxs/ExampleUnitTest.java" afterPath="$PROJECT_DIR$/app/src/test/java/com/xxs/leon/xxs/ExampleUnitTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/HomeAlbumEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/HomeAlbumEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/HomeNewAlbumRecyclerViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/HomeNewAlbumRecyclerViewAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/interceptor/HttpBasicAuthenticatorInterceptor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/interceptor/HttpBasicAuthenticatorInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/interfaces/ICrossfader.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/interfaces/ICrossfader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/IDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/IDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/IProfile.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/IProfile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Iconable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Iconable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/IdDistributor.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/IdDistributor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Identifyable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Identifyable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/ImageHolder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/ImageHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/KeyboardUtil.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/KeyboardUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/L.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/L.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/LayoutRipple.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/LayoutRipple.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginGuidActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginGuidActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/request/LoginParams.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/request/LoginParams.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" afterPath="$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/icons/MaterialDrawerFont.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/icons/MaterialDrawerFont.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/MiniDrawer.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/MiniDrawer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/MiniDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/MiniDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/MiniProfileDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/MiniProfileDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/requestfactory/MyRequestFactory.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/requestfactory/MyRequestFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Nameable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Nameable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/NewFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/NewFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/interfaces/OnCheckedChangeListener.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/interfaces/OnCheckedChangeListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/OnPostBindViewListener.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/OnPostBindViewListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/PressedEffectStateListDrawable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/PressedEffectStateListDrawable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/PrimaryDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/PrimaryDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ProfileDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ProfileDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ProfileSettingDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ProfileSettingDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarCircularIndeterminate.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarCircularIndeterminate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarDeterminate.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarDeterminate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarIndeterminate.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarIndeterminate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarIndeterminateDeterminate.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ProgressBarIndeterminateDeterminate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/ProgressDialog.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/ProgressDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/RecyclerViewCacheUtil.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/util/RecyclerViewCacheUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/RecyclerViewFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/RecyclerViewFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/RegisterActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ScrollView.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/ScrollView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/test/SecondActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/test/SecondActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SecondaryDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SecondaryDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SecondarySwitchDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SecondarySwitchDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SecondaryToggleDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SecondaryToggleDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SectionDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SectionDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Selectable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Selectable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/callback/SimpleDataEngineCallback.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/callback/SimpleDataEngineCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Slider.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Slider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/SnackBar.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/widgets/SnackBar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/StringHolder.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/holder/StringHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Switch.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/views/Switch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SwitchDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/SwitchDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Tagable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Tagable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/TestEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/TestEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/request/TestParams.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/request/TestParams.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/TestRecyclerViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/TestRecyclerViewAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ToggleDrawerItem.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/ToggleDrawerItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/Tools.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/Tools.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Typefaceable.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/interfaces/Typefaceable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/UpdateBean.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/UpdateBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/request/UpdateUserPhotoParams.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/request/UpdateUserPhotoParams.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/UploadEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/UploadEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/UserActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/UserActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/utils/Utils.java" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/java/com/gc/materialdesign/utils/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/utils/ViewHolderFactory.java" afterPath="$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/model/utils/ViewHolderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/XSUser.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/XSUser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/XXSPref.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/utils/XXSPref.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_category.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_category.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_comment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_comment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_guid.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_guid.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_observablescrollview_1_5_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_observablescrollview_1_5_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/androidannotations_api_3_3_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/androidannotations_api_3_3_2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/values/attributes.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/values/attributes.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/values/attrs.xml" afterPath="$PROJECT_DIR$/library/src/main/res/values/attrs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_button_float.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_button_float.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_button_rectangle.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_button_rectangle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_checkbox.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_checkbox.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_checkbox_check.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_checkbox_check.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_checkbox_uncheck.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_checkbox_uncheck.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_progress.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_progress.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_switch_ball_uncheck.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_switch_ball_uncheck.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_transparent.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/background_transparent.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/build.gradle" afterPath="$PROJECT_DIR$/MaterialDesign/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/build.gradle" afterPath="$PROJECT_DIR$/library/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_22_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_scene1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_scene1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_scene2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_scene2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/circle.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/circle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/color_selector.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/color_selector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/values/colors.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/community_material_typeface_1_2_65_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/community_material_typeface_1_2_65_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_login_guid.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_login_guid.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_post.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_post.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_register.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_register.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_user.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_user.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/crossfadedrawerlayout_0_0_1_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/crossfadedrawerlayout_0_0_1_SNAPSHOT.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/dialog.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/dialog.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_main_hide_amination.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_main_hide_amination.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_main_show_amination.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_main_show_amination.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_root_hide_amin.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_root_hide_amin.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_root_show_amin.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/dialog_root_show_amin.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/values-sw600dp/dimens.xml" afterPath="$PROJECT_DIR$/library/src/main/res/values-sw600dp/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/fontawesome_typeface_4_4_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/fontawesome_typeface_4_4_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recyclerview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recyclerview.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/glide_3_6_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/glide_3_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/glide_transformations_1_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/glide_transformations_1_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/google_material_typeface_2_2_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/google_material_typeface_2_2_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gpuimage_library_1_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gpuimage_library_1_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/gradle-mvn-push.gradle" afterPath="$PROJECT_DIR$/library/gradle-mvn-push.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle.properties" afterPath="$PROJECT_DIR$/gradle.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/gradle.properties" afterPath="$PROJECT_DIR$/MaterialDesign/gradle.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/header_logo.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/header_logo.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/iconics_core_1_7_9.xml" afterPath="$PROJECT_DIR$/.idea/libraries/iconics_core_1_7_9.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/iconics_core_2_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/iconics_core_2_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/values/ids.xml" afterPath="$PROJECT_DIR$/library/src/main/res/values/ids.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/kenburnsview_1_0_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/kenburnsview_1_0_6.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/library.iml" afterPath="$PROJECT_DIR$/library/library.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/library_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/library_1_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/library_2_1_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/library_2_1_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/library_2_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/library_2_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_card_big.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_card_big.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_card_small.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_card_small.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_big.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_big.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_small.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_small.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_badge.xml" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_badge.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_circle_mask.xml" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_circle_mask.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_compact_header.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_compact_header.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_header.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_header.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_secondary_switch.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_secondary_switch.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_secondary_toggle.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_secondary_toggle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_section.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_section.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_switch.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_item_switch.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_recycler_view.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_recycler_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_bottom.xml" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_bottom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_top.xml" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/material_drawer_shadow_top.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_slider.xml" afterPath="$PROJECT_DIR$/library/src/main/res/layout/material_drawer_slider.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/materialize_0_2_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/materialize_0_2_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/materialviewpager_1_1_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/materialviewpager_1_1_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/number_indicator_spinner.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/number_indicator_spinner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/picasso_2_5_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/picasso_2_5_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/pre_lollipop_activity_transition_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/pre_lollipop_activity_transition_1_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/progress_dialog.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/progress_dialog.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/progress_indeterminate_animation.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/progress_indeterminate_animation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/proguard-rules.pro" afterPath="$PROJECT_DIR$/MaterialDesign/proguard-rules.pro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/proguard-rules.pro" afterPath="$PROJECT_DIR$/app/proguard-rules.pro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/proguard-rules.txt" afterPath="$PROJECT_DIR$/library/proguard-rules.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/renderscript_v8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/renderscript_v8.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/shadow_down.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/shadow_down.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/shadow_right.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/drawable/shadow_right.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/snackbar.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/snackbar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/snackbar_hide_animation.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/snackbar_hide_animation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/snackbar_show_animation.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/anim/snackbar_show_animation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/spring_android_core_2_0_0_M3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/spring_android_core_2_0_0_M3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/spring_android_rest_template_2_0_0_M3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/spring_android_rest_template_2_0_0_M3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaterialDesign/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/MaterialDesign/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transitionseverywhere_1_6_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transitionseverywhere_1_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/ui_choose_image_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/ui_choose_image_dialog.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xxs.iml" afterPath="$PROJECT_DIR$/xxs.iml" />
     </list>
     <ignored path="xxs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -174,11 +454,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommenRestClient_.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommenRestClient_.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/com/xxs/leon/xxs/rest/client/CommenRestClient_.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2054176">
+            <state vertical-scroll-proportion="-3.3703704">
               <caret line="221" column="5" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.074074">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommenEngineImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/impl/CommenEngineImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48758465">
+              <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -3242,6 +3542,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/client/CommenRestClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" />
         <option value="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/xxs/leon/xxs/rest/client/CommenRestClient_.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" />
       </list>
     </option>
   </component>
@@ -3474,6 +3775,86 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="bean" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -3517,6 +3898,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="response" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="constant" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3786,7 +4201,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="23" width="1920" height="1057" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943678" sideWeight="0.4976744" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31987247" sideWeight="0.49634552" order="3" side_tool="false" content_ui="tabs" />
@@ -3803,7 +4218,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5036545" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20181043" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="2036" y="81" width="408" height="941" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20181043" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="2036" y="81" width="408" height="941" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956812" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956812" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3845,18 +4260,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kogitune/pre-lollipop-activity-transition/1.1.0/33e0530c41a85251d9fb41e0fe9b3c33e3c1b20f/pre-lollipop-activity-transition-1.1.0-sources.jar!/com/kogitune/activity_transition/ExitActivityTransition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3739612">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/header.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/library/src/main/java/com/mikepenz/materialdrawer/DrawerUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.525">
@@ -4232,8 +4635,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/com/xxs/leon/xxs/rest/client/CommenRestClient_.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2054176">
+        <state vertical-scroll-proportion="-3.3703704">
           <caret line="221" column="5" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.074074">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/impl/CommenEngineImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48758465">
+          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
           <folding />
         </state>
       </provider>
