@@ -2,8 +2,6 @@ package com.xxs.leon.xxs.rest.engine.impl;
 
 import android.text.TextUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
@@ -14,18 +12,12 @@ import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.BaseEngine;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
-import com.xxs.leon.xxs.utils.AESEncryCypher;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.Tools;
-import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.sharedpreferences.Pref;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,9 +26,6 @@ import java.util.List;
  */
 @EBean
 public class CommenEngineImpl extends BaseEngine implements CommenEngine{
-
-    @Pref
-    XXSPref_ xxsPref;
 
     @Override
     public List<Album> getHomeAlbums() {

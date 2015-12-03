@@ -75,39 +75,40 @@ public class UserActivity extends AppCompatActivity{
 
     IconicsDrawable account_icon,right_icon,head_icon;
     ChooseImageDialog dialog;
-    XSUser user;
+    XSUser currentUser;
+    XSUser resultUser;
     String dateTime;
     String targeturl = null;
 
     @AfterInject
     void init(){
         initIconRes();
-        user = engine.getCurrentUser();
+        currentUser = engine.getCurrentUser();
     }
 
     @AfterViews
     void initViews(){
         Glide.with(this).load("http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg").into(backdrop);
-        if(user != null){
-            doGetUserInfo(user.getObjectId());
+        if(currentUser != null){
+            doGetUserInfo(currentUser.getObjectId());
         }
     }
 
     @Background
     void doGetUserInfo(String objectId){
-        user = engine.getUserInfo(objectId);
-        renderView(user);
+        resultUser = engine.getUserInfo(objectId);
+        renderView(resultUser);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderView(XSUser resultUser){
         if(dialog != null)
             dialog.dismiss();
-        name.setText(user.getUsername());
-        point.setText(user.getPoint()+"");
-        money.setText(user.getMoney()+"");
-        sign.setText(user.getSignword());
-        Glide.with(this).load(user.getPhoto()+"").error(account_icon).bitmapTransform(new CropCircleTransformation(this)).into(photo);
+        name.setText(resultUser.getUsername());
+        point.setText(resultUser.getPoint()+"");
+        money.setText(resultUser.getMoney()+"");
+        sign.setText(resultUser.getSignword());
+        Glide.with(this).load(resultUser.getPhoto()+"").error(account_icon).bitmapTransform(new CropCircleTransformation(this)).into(photo);
     }
 
     void initIconRes(){
@@ -184,13 +185,12 @@ public class UserActivity extends AppCompatActivity{
 
     @Background
     void doUploadAndUpdateUserPhoto(){
-        if (targeturl != null && user != null) {
-            UploadEntity uploadEntity = engine.uploadFile("head_photo_" + user.getObjectId() + "_" + dateTime + ".jpg", targeturl);
-            XSUser currentUser = engine.getCurrentUser();
+        if (targeturl != null && currentUser != null) {
+            UploadEntity uploadEntity = engine.uploadFile("head_photo_" + currentUser.getObjectId() + "_" + dateTime + ".jpg", targeturl);
             if (uploadEntity != null && uploadEntity.getCode() == 0 && currentUser != null) {
                 UpdateBean updateBean = engine.updateUserPhoto(currentUser, Constant.BASE_IMAGE_FILE_URL + uploadEntity.getUrl());
                 if(updateBean.getCode() == 0){
-                    doGetUserInfo(user.getObjectId());
+                    doGetUserInfo(currentUser.getObjectId());
                 }else{
                     SnackBar snackBar = new SnackBar(this,updateBean.getError()+"","ok",null);
                     snackBar.show();

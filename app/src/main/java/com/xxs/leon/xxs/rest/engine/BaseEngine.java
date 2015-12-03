@@ -7,6 +7,7 @@ import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.client.CommenRestClient_;
 import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
+import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
@@ -21,6 +22,7 @@ public class BaseEngine {
     protected Context context;
     protected CommenRestClient client = new CommenRestClient_(context);
     protected  ObjectMapper objectMapper = new ObjectMapper();
+    protected XXSPref_ xxsPref = new XXSPref_(context);
 
     {
         CommenRestErrorHandler errorHandler = new CommenRestErrorHandler();

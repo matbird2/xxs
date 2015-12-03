@@ -43,13 +43,18 @@ import com.mikepenz.materialize.util.UIUtils;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.fragment.NewFragment_;
 import com.xxs.leon.xxs.fragment.RecyclerViewFragment;
+import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.test.SecondActivity_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_main)
@@ -61,11 +66,11 @@ public class MainActivity extends AppCompatActivity{
     protected ImageView logo_in;
     @ViewById
     protected FrameLayout logo;
-
-//    @ViewById(R.id.logo_white)
-//    protected View logo;
     @ViewById
     protected RelativeLayout content;
+
+    @Bean
+    CommenEngine engine;
 
     @InstanceState
     Bundle savedInstanceState;
@@ -81,6 +86,9 @@ public class MainActivity extends AppCompatActivity{
     IconicsDrawable penIcon;
     IconicsDrawable peopleDrawable;
 
+//    XSUser currentUser;
+//    XSUser resultUser;
+
     @AfterInject
     void init(){
         initIconRes();
@@ -88,10 +96,11 @@ public class MainActivity extends AppCompatActivity{
 
     @AfterViews
     void initView(){
+//        currentUser = engine.getCurrentUser();
+
         initMaterialViewpager();
         initDrawerView();
-
-//        logo_in.setImageDrawable(iconicsDrawable);
+//        loadUserInfo();
     }
 
     void initIconRes(){
@@ -109,8 +118,24 @@ public class MainActivity extends AppCompatActivity{
                 .sizeDp(24);
     }
 
+    /*@Background
+    void loadUserInfo(){
+        if(currentUser != null){
+            resultUser = engine.getUserInfo(currentUser.getObjectId());
+            renderUserView(resultUser);
+        }
+    }*/
+
+    /*@UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderUserView(XSUser user){
+        if(profile != null){
+            ((ProfileDrawerItem)profile).withName(user.getUsername()).withIcon(user.getPhoto());
+        }
+    }*/
+
+    private IProfile profile;
     private void initDrawerView(){
-        final IProfile profile = new ProfileDrawerItem().withName("Tom").withIcon(peopleDrawable).withIdentifier(1);
+        profile = new ProfileDrawerItem().withName("").withIcon(peopleDrawable).withIdentifier(1);
 
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
