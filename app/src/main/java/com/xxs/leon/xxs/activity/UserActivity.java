@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
 import com.xxs.leon.xxs.utils.MatCacheUtils;
+import com.xxs.leon.xxs.utils.ToolbarUtil;
 import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
@@ -69,6 +72,8 @@ public class UserActivity extends AppCompatActivity{
     protected TextView money;
     @ViewById
     protected TextView sign;
+    @ViewById
+    protected Toolbar toolbar;
 
     @Bean
     CommenEngineImpl engine;
@@ -88,6 +93,10 @@ public class UserActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Glide.with(this).load("http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg").into(backdrop);
         if(currentUser != null){
             doGetUserInfo(currentUser.getObjectId());
@@ -260,5 +269,14 @@ public class UserActivity extends AppCompatActivity{
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

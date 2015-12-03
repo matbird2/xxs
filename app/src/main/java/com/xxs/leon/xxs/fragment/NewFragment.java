@@ -103,7 +103,9 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Background
     void loadData(){
         List<Album> results = engine.getHomeAlbums();
-        updateView(results);
+        if(results != null){
+            updateView(results);
+        }
     }
 
     @UiThread

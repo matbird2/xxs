@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -45,7 +46,9 @@ import com.xxs.leon.xxs.fragment.NewFragment_;
 import com.xxs.leon.xxs.fragment.RecyclerViewFragment;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
+import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.test.SecondActivity_;
+import com.xxs.leon.xxs.utils.ToolbarUtil;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity{
     protected RelativeLayout content;
 
     @Bean
-    CommenEngine engine;
+    CommenEngineImpl engine;
 
     @InstanceState
     Bundle savedInstanceState;
@@ -86,8 +89,8 @@ public class MainActivity extends AppCompatActivity{
     IconicsDrawable penIcon;
     IconicsDrawable peopleDrawable;
 
-//    XSUser currentUser;
-//    XSUser resultUser;
+    XSUser currentUser;
+    XSUser resultUser;
 
     @AfterInject
     void init(){
@@ -96,11 +99,11 @@ public class MainActivity extends AppCompatActivity{
 
     @AfterViews
     void initView(){
-//        currentUser = engine.getCurrentUser();
+        currentUser = engine.getCurrentUser();
 
         initMaterialViewpager();
         initDrawerView();
-//        loadUserInfo();
+        loadUserInfo();
     }
 
     void initIconRes(){
@@ -118,26 +121,24 @@ public class MainActivity extends AppCompatActivity{
                 .sizeDp(24);
     }
 
-    /*@Background
+    @Background
     void loadUserInfo(){
         if(currentUser != null){
             resultUser = engine.getUserInfo(currentUser.getObjectId());
             renderUserView(resultUser);
         }
-    }*/
+    }
 
-    /*@UiThread(propagation = UiThread.Propagation.REUSE)
+    @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderUserView(XSUser user){
-        if(profile != null){
-            ((ProfileDrawerItem)profile).withName(user.getUsername()).withIcon(user.getPhoto());
-        }
-    }*/
+//        if(profile != null ){
+////            ((ProfileDrawerItem)profile)
+//        }
 
-    private IProfile profile;
+    }
+
     private void initDrawerView(){
-        profile = new ProfileDrawerItem().withName("").withIcon(peopleDrawable).withIdentifier(1);
-
-        // Create the AccountHeader
+        final IProfile profile = new ProfileDrawerItem().withName("xxx").withEmail("ooo@111").withIcon("https://avatars3.githubusercontent.com/u/1476232?v=3&s=460").withIdentifier(6);
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity{
                     public boolean onProfileChanged(View view, IProfile profile, boolean current) {
                         //IMPORTANT! notify the MiniDrawer about the profile click
                         miniResult.onProfileClick();
-                        if(profile.getIdentifier() == 1){
+                        if(profile.getIdentifier() == 6){
                             startActivity(new Intent(MainActivity.this,LoginGuidActivity_.class));
                         }
                         //false if you have not consumed the event and it should close the drawer
@@ -231,18 +232,7 @@ public class MainActivity extends AppCompatActivity{
     private void initMaterialViewpager(){
         setTitle("");
         toolbar = mViewPager.getToolbar();
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-
-            final ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setDisplayShowHomeEnabled(true);
-                actionBar.setDisplayShowTitleEnabled(true);
-                actionBar.setDisplayUseLogoEnabled(false);
-                actionBar.setHomeButtonEnabled(true);
-            }
-        }
+        ToolbarUtil.initToolbar(this,toolbar);
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 

@@ -22,7 +22,6 @@ public class BaseEngine {
     protected Context context;
     protected CommenRestClient client = new CommenRestClient_(context);
     protected  ObjectMapper objectMapper = new ObjectMapper();
-    protected XXSPref_ xxsPref = new XXSPref_(context);
 
     {
         CommenRestErrorHandler errorHandler = new CommenRestErrorHandler();

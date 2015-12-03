@@ -14,8 +14,10 @@ import com.xxs.leon.xxs.rest.engine.BaseEngine;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.Tools;
+import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +29,9 @@ import java.util.List;
 @EBean
 public class CommenEngineImpl extends BaseEngine implements CommenEngine{
 
-    @Override
+    @Pref
+    XXSPref_ xxsPref;
+
     public List<Album> getHomeAlbums() {
         String keys = "name,price,status,type,cover";
         String where = "{\"status\":1}";
@@ -35,7 +39,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         int limit = 10;
         String order = "-updatedAt";
         HomeAlbumEntity results = client.getHomeNewAlbums(keys, where, limit, order);
-        return results.getResults();
+        return results != null ? results.getResults() : null;
     }
 
     @Override
