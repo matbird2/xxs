@@ -67,4 +67,8 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doUpdateUserPhoto")
     CloudRestEntity updateUserPhoto(UpdateUserPhotoParams params);
+
+    @Get("/classes/Album/{objectId}")
+    Album getAlbumById(String objectId);
+
 }

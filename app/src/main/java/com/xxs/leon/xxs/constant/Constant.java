@@ -5,6 +5,7 @@ package com.xxs.leon.xxs.constant;
  */
 public interface Constant {
 
+
     String X_BMOB_APPLICATION_ID = "";
     String X_BMOB_REST_API_KEY = "";
 

@@ -94,7 +94,7 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
 
 
     @Override
-    public void onBindViewHolder(final HomeAlbumViewHolder holder, int position) {
+    public void onBindViewHolder(final HomeAlbumViewHolder holder, final int position) {
 //        switch (getItemViewType(position)) {
 //            case TYPE_HEADER:
 //                break;
@@ -107,8 +107,11 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(context, DetailActivity_.class);
-                ActivityTransitionLauncher.with((AppCompatActivity)context).from(holder.cover).launch(intent);
+//                ActivityTransitionLauncher.with((AppCompatActivity)context).from(holder.cover).launch(intent);
+//                final Intent intent = new Intent(context, DetailActivity_.class);
+//                intent.putExtra("albumId",contents.get(position).getObjectId());
+                Album item = contents.get(position);
+                DetailActivity_.intent(context).albumId(item.getObjectId()).albumName(item.getName()).start();
             }
         });
 

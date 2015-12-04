@@ -69,4 +69,11 @@ public interface CommenEngine {
      * @return
      */
     UpdateBean updateUserPhoto(XSUser user,String imgUrl);
+
+    /**
+     * 查询相册详情信息
+     * @param objectId
+     * @return
+     */
+    Album getAlbumById(String objectId);
 }

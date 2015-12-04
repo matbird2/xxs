@@ -112,6 +112,11 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         return bean;
     }
 
+    @Override
+    public Album getAlbumById(String objectId) {
+        return client.getAlbumById(objectId);
+    }
+
     /**
      * 处理用户数据，以字符串的形式保存本地，返回XSUser
      * @param jsonString
