@@ -39,6 +39,9 @@
         <activity android:name=".activity.WatchActivity_"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.WatchActivityBak_"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,95 +1,102 @@
 package com.xxs.leon.xxs.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.WatchViewpagerAdapter;
 import com.xxs.leon.xxs.fragment.WatchFragment;
 import com.xxs.leon.xxs.fragment.WatchFragment_;
 import com.xxs.leon.xxs.utils.L;
+import com.xxs.leon.xxs.wedget.curl.CurlPage;
+import com.xxs.leon.xxs.wedget.curl.CurlView;
+import com.xxs.leon.xxs.wedget.pinch.PinchImageView;
+import com.xxs.leon.xxs.wedget.pinch.PinchImageViewPager;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by maliang on 15/12/4.
  */
-@EActivity(R.layout.activity_watch)
+@EActivity(R.layout.activity_watch_pinch)
 public class WatchActivity extends AppCompatActivity{
 
     @ViewById
-    protected ViewPager mViewPager;
+    protected PinchImageViewPager pager;
 
     private ArrayList<String> albumList;
-    private ArrayList<ImageView> imageViews;
-    private WatchViewpagerAdapter adapter;
     private String baseurl;
+
+    private LinkedList<PinchImageView> viewCache;
 
     @AfterInject
     void init(){
         Bundle bundle = this.getIntent().getBundleExtra("bundle");
         albumList = (ArrayList<String>) bundle.getSerializable("albumList");
         baseurl = bundle.getString("baseurl");
-        imageViews = new ArrayList<ImageView>();
+        viewCache = new LinkedList<PinchImageView>();
     }
 
     @AfterViews
     void initViews(){
-        initViewpager();
-        initFragments();
-    }
-
-    private void initViewpager(){
-        adapter = new WatchViewpagerAdapter(this,albumList,baseurl);
-        mViewPager.setOffscreenPageLimit(3);
-        mViewPager.setAdapter(adapter);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pager.setOffscreenPageLimit(4);
+        pager.setAdapter(new PagerAdapter() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public int getCount() {
+                return albumList.size();
             }
 
             @Override
-            public void onPageSelected(int position) {
-                /*if(imageViews != null && imageViews.size() > 0){
-                    Glide.with(WatchActivity.this).load(baseurl+albumList.get(position)).into(imageViews.get(position));
-                }*/
+            public boolean isViewFromObject(View view, Object object) {
+                return view == object;
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public Object instantiateItem(ViewGroup container, int position) {
+                PinchImageView piv;
+                if(viewCache.size() > 0){
+                    piv = viewCache.remove();
+                    piv.reset();
+                }else{
+                    piv = new PinchImageView(WatchActivity.this);
+                }
+                Glide.with(WatchActivity.this).load(baseurl+albumList.get(position)).fitCenter().into(piv);
+                container.addView(piv);
+                return piv;
+            }
 
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                PinchImageView piv = (PinchImageView) object;
+                container.removeView(piv);
+                viewCache.add(piv);
+            }
+
+            @Override
+            public void setPrimaryItem(ViewGroup container, int position, Object object) {
+                pager.setMainPinchImageView((PinchImageView) object);
             }
         });
     }
 
-    private void initFragments(){
-        if(albumList == null)
-            return ;
-        imageViews.clear();
-        for(int i=0;i<albumList.size();i++){
-//            WatchFragment f = new WatchFragment_();
-//            Bundle bundle = new Bundle();
-//            bundle.putString("url",baseurl+albumList.get(i));
-//            f.setArguments(bundle);
-//            fragments.add(f);
-            ImageView imageView = new ImageView(this);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            imageViews.add(imageView);
-//            Glide.with(WatchActivity.this).load(baseurl+albumList.get(i)).into(imageView);
-        }
-        adapter.appendList(imageViews);
-    }
 }
