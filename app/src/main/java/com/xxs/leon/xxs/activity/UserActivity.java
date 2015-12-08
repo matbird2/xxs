@@ -93,6 +93,7 @@ public class UserActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -138,8 +139,8 @@ public class UserActivity extends AppCompatActivity{
 
     @Click(R.id.ll_nick)
     void click1(){
-        SnackBar snackBar = new SnackBar(this,"click","ok",null);
-        snackBar.show();
+//        SnackBar snackBar = new SnackBar(this,"click","ok",null);
+//        snackBar.show();
     }
 
     @Click(R.id.photo)
@@ -215,6 +216,27 @@ public class UserActivity extends AppCompatActivity{
     void clickMoney(){
         Dialog dialog = new Dialog(this,"关于银两","银两可用于应用内消费");
         dialog.show();
+        dialog.getButtonAccept().setText("知道了");
+    }
+
+    @Click(R.id.ll_loginout)
+    void clickLoginout(){
+        final Dialog dialog = new Dialog(this,"注销账号","确定要退出当前账号吗？");
+        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                engine.logout();
+                UserActivity.this.finish();
+            }
+        });
+        dialog.setOnCancelButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getButtonAccept().setText("注销");
     }
 
     @OnActivityResult(REQUEST_CODE_ALBUM)

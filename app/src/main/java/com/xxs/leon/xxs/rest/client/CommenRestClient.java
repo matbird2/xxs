@@ -5,6 +5,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
+import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
@@ -71,4 +72,6 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
     @Get("/classes/Album/{objectId}")
     Album getAlbumById(String objectId);
 
+    @Post("/functions/doSendSignPost")
+    CloudRestEntity sendSignPost(UserSessionParams data);
 }

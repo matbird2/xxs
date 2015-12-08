@@ -78,8 +78,14 @@ public class LoginActivity extends AppCompatActivity{
     void afterLogin(XSUser user){
         changeStatus(true);
         // do something
-        SnackBar snackBar = new SnackBar(this,user.getCode()+"","ok",null);
-        snackBar.show();
+//        SnackBar snackBar = new SnackBar(this,user.getCode()+"","ok",null);
+//        snackBar.show();
+        if(user.getCode() == 0){
+            finish();
+        }else{
+            SnackBar snackBar = new SnackBar(this,user.getError()+"","ok",null);
+            snackBar.show();
+        }
     }
 
     void changeStatus(boolean isEnable){

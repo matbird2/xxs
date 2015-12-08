@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.gc.materialdesign.widgets.Dialog;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
@@ -48,6 +49,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.test.SecondActivity_;
+import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.ToolbarUtil;
 
 import org.androidannotations.annotations.AfterInject;
@@ -89,7 +91,6 @@ public class MainActivity extends AppCompatActivity{
     IconicsDrawable penIcon;
     IconicsDrawable peopleDrawable;
 
-    XSUser currentUser;
     XSUser resultUser;
 
     @AfterInject
@@ -99,8 +100,6 @@ public class MainActivity extends AppCompatActivity{
 
     @AfterViews
     void initView(){
-        currentUser = engine.getCurrentUser();
-
         initMaterialViewpager();
         initDrawerView();
         loadUserInfo();
@@ -123,8 +122,8 @@ public class MainActivity extends AppCompatActivity{
 
     @Background
     void loadUserInfo(){
-        if(currentUser != null){
-            resultUser = engine.getUserInfo(currentUser.getObjectId());
+        if(engine.getCurrentUser() != null){
+            resultUser = engine.getUserInfo(engine.getCurrentUser().getObjectId());
             renderUserView(resultUser);
         }
     }
@@ -187,8 +186,12 @@ public class MainActivity extends AppCompatActivity{
 //                            ActivityTransitionLauncher.with(MainActivity.this).from(v.findViewById(R.id.material_drawer_icon)).launch(intent);
                             MainActivity.this.startActivity(intent);
                         }else if(drawerItem.getIdentifier() == 3){
-                            final Intent intent = new Intent(MainActivity.this, UserActivity_.class);
-                            MainActivity.this.startActivity(intent);
+                            if(engine.getCurrentUser() != null){
+                                final Intent intent = new Intent(MainActivity.this, UserActivity_.class);
+                                MainActivity.this.startActivity(intent);
+                            }else{
+                                LoginActivity_.intent(MainActivity.this).start();
+                            }
                         }
                         return miniResult.onItemClick(drawerItem);
                     }
@@ -304,8 +307,34 @@ public class MainActivity extends AppCompatActivity{
     @Click(R.id.logo)
     void onClickLogo(){
         mViewPager.notifyHeaderChanged();
-        final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
-        ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);
+        /*final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
+        ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);*/
+        if(engine.getCurrentUser() == null){
+            LoginActivity_.intent(this).start();
+        }else{
+            int currentItem = mViewPager.getViewPager().getCurrentItem();
+            if(currentItem == 0){
+                logo.setEnabled(false);
+                doSendSignPost();
+            }else if(currentItem == 1){
+                final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
+                ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);
+            }
+        }
+    }
+
+    @Background
+    void doSendSignPost(){
+        String result = engine.sendSignPost(engine.getCurrentUser());
+        renderAfterSendSign(result);
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderAfterSendSign(String result){
+        logo.setEnabled(true);
+        Dialog dialog = new Dialog(this,"签到",result);
+        dialog.show();
+        dialog.getButtonAccept().setText("确定");
     }
 
     @Override
