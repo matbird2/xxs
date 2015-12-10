@@ -84,4 +84,13 @@ public interface CommenEngine {
      * @return
      */
     String sendSignPost(XSUser user);
+
+    /**
+     * 根据类别获取相册列表
+     * @param type
+     * @param pageIndex
+     * @param skip
+     * @return
+     */
+    List<Album> getCategoryAlbum(int type,int skip);
 }

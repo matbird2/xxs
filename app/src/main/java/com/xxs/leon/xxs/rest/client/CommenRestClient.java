@@ -6,8 +6,8 @@ import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
+import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
-import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.interceptor.HttpBasicAuthenticatorInterceptor;
@@ -40,7 +40,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
     TestEntity testCloudFunction(TestParams data);
 
     @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
-    HomeAlbumEntity getHomeNewAlbums(String keys,String where,int limit,String order);
+    AlbumListEntity getHomeNewAlbums(String keys,String where,int limit,String order);
 
     @Post("/functions/doLogin")
     CloudRestEntity login(LoginParams data);
@@ -74,4 +74,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doSendSignPost")
     CloudRestEntity sendSignPost(UserSessionParams data);
+
+    @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&skip={skip}&order={order}")
+    AlbumListEntity getAlbumsByType(String keys,String where,int limit,int skip,String order);
 }

@@ -56,6 +56,7 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
 
     public void clear(){
         contents.clear();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -95,26 +96,21 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
 
     @Override
     public void onBindViewHolder(final HomeAlbumViewHolder holder, final int position) {
-//        switch (getItemViewType(position)) {
-//            case TYPE_HEADER:
-//                break;
-//            case TYPE_CELL:
-//                break;
-//        }
-        Glide.with(context).load(contents.get(position).getCover()).error(error_icon).crossFade(500).centerCrop().into(holder.cover);
-        holder.title.setText(contents.get(position).getName());
-
-        holder.card_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                ActivityTransitionLauncher.with((AppCompatActivity)context).from(holder.cover).launch(intent);
-//                final Intent intent = new Intent(context, DetailActivity_.class);
-//                intent.putExtra("albumId",contents.get(position).getObjectId());
-                Album item = contents.get(position);
-                DetailActivity_.intent(context).albumId(item.getObjectId()).albumName(item.getName()).start();
-            }
-        });
-
+        switch (getItemViewType(position)) {
+            case TYPE_HEADER:
+                break;
+            case TYPE_CELL:
+                final Album album = contents.get(position-1);
+                Glide.with(context).load(album.getCover()).error(error_icon).crossFade(500).centerCrop().into(holder.cover);
+                holder.title.setText(album.getName());
+                holder.card_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DetailActivity_.intent(context).albumId(album.getObjectId()).albumName(album.getName()).start();
+                    }
+                });
+                break;
+        }
     }
 
     class HomeAlbumViewHolder extends RecyclerView.ViewHolder {

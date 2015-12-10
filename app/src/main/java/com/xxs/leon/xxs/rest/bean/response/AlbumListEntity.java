@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by maliang on 15/11/24.
  */
-public class HomeAlbumEntity {
+public class AlbumListEntity {
     private List<Album> results;
 
     public List<Album> getResults() {
