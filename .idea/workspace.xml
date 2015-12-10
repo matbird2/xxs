@@ -41,25 +41,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79500121-4716-411f-91cf-309d8edfb895" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/HomeAlbumEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/response/AlbumListEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CategoryActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CategoryActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/CommenEngine.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/CommenEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/impl/CommenEngineImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/engine/impl/CommenEngineImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/client/CommenRestClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/client/CommenRestClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/CommentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/HomeNewAlbumRecyclerViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/HomeNewAlbumRecyclerViewAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginGuidActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginGuidActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/NewFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/NewFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_category.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_category.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_scene1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_scene1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_scene2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_scene2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_small.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_small.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="xxs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -160,11 +142,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AlbumListActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AlbumType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/AlbumType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.10514786">
+              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="7" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlbumListActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/AlbumListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4731654">
-              <caret line="94" column="67" selection-start-line="94" selection-start-column="67" selection-end-line="94" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2676#2903#0" expanded="true" />
@@ -258,16 +260,6 @@
                 <element signature="e#1953#1954#0" expanded="true" />
                 <element signature="e#2005#2006#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/NewFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -2669,7 +2661,6 @@
         <option value="$PROJECT_DIR$/MaterialDesign/src/main/res/layout/dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/Pointer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/Post.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_item_home_album_small.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/fragment/NewFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/LoginActivity.java" />
@@ -2695,6 +2686,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_list_recyclerview.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/adapter/AlbumListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/AlbumListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java" />
       </list>
     </option>
   </component>
@@ -2885,6 +2877,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="constant" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3311,14 +3367,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/AlbumType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57831323">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/rest/bean/Album.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22782037">
@@ -3391,14 +3439,6 @@
             <element signature="e#1680#1681#0" expanded="false" />
             <element signature="e#1716#1717#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3736,13 +3776,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/activity/AlbumListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4731654">
-          <caret line="94" column="67" selection-start-line="94" selection-start-column="67" selection-end-line="94" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2676#2903#0" expanded="true" />
             <element signature="e#2902#2903#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/AlbumType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xxs/leon/xxs/constant/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10514786">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="7" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
