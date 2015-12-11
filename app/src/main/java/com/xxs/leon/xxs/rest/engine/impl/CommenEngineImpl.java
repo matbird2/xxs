@@ -7,8 +7,9 @@ import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
+import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
+import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
-import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.BaseEngine;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
@@ -38,7 +39,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         int status = 1;
         int limit = 10;
         String order = "-updatedAt";
-        HomeAlbumEntity results = client.getHomeNewAlbums(keys, where, limit, order);
+        AlbumListEntity results = client.getHomeNewAlbums(keys, where, limit, order);
         return results != null ? results.getResults() : null;
     }
 
@@ -115,6 +116,30 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     @Override
     public Album getAlbumById(String objectId) {
         return client.getAlbumById(objectId);
+    }
+
+    @Override
+    public String sendSignPost(XSUser user) {
+        UserSessionParams params = new UserSessionParams();
+        params.setObjectId(user.getObjectId());
+        params.setSessionToken(user.getSessionToken());
+        CloudRestEntity entity = client.sendSignPost(params);
+        if(entity != null){
+            return entity.getResult();
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public List<Album> getCategoryAlbum(int type, int skip) {
+        String keys = "name,price,status,type,cover";
+        int status = 1;
+        String where = "{\"status\":"+status+",\"type\":"+type+"}";
+        String order = "-updatedAt";
+        int limit = 10;
+        AlbumListEntity entity = client.getAlbumsByType(keys, where, limit, skip, order);
+        return entity != null ? entity.getResults() : null;
     }
 
     /**

@@ -2,7 +2,9 @@ package com.xxs.leon.xxs.activity;
 
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -39,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity{
     protected ButtonRectangle login;
     @ViewById
     protected ProgressBarCircularIndeterminate pb;
+    @ViewById
+    protected Toolbar toolbar;
     @Bean
     CommenEngineImpl engine;
 
@@ -49,6 +53,10 @@ public class RegisterActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
+        toolbar.setTitle("注册");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         changeStatus(true);
     }
 
@@ -107,6 +115,15 @@ public class RegisterActivity extends AppCompatActivity{
         else
             pb.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

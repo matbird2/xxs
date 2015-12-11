@@ -95,8 +95,6 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, null);
 
-        // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
-//        handler.sendEmptyMessageDelayed(0, 3000);
         loadData();
     }
 

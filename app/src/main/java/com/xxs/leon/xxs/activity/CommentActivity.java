@@ -17,7 +17,7 @@ import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
-import com.xxs.leon.xxs.rest.bean.response.HomeAlbumEntity;
+import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
@@ -112,7 +112,7 @@ public class CommentActivity extends AppCompatActivity{
             int status = 1;
             int limit = 10;
             String order = "-updatedAt";
-            HomeAlbumEntity results = client.getHomeNewAlbums(keys,where,limit,order);
+           AlbumListEntity results = client.getHomeNewAlbums(keys,where,limit,order);
             Log.d("TEST", "size:" + results.getResults().get(0).toString());
     }
 
