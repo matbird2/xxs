@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- color begin -->
+    <color name="text_color_54_black">#89000000</color>
+    <color name="text_color_87_black">#DE000000</color>
+    <color name="text_color_54_white">#89FFFFFF</color>
+    <color name="text_color_87_white">#DEFFFFFF</color>
+    <!-- color end -->
+
+    <!-- dimen begin -->
+    <dimen name="text_size_display_4">112sp</dimen>
+    <dimen name="text_size_display_3">56sp</dimen>
+    <dimen name="text_size_display_2">45sp</dimen>
+    <dimen name="text_size_display_1">34sp</dimen>
+    <dimen name="text_size_headline">24sp</dimen>
+    <dimen name="text_size_title">20sp</dimen>
+    <dimen name="text_size_subheading">16sp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+
+    <!-- dimen end -->
+
+    <!--<style name="XXSTextAppearance">
+        <item name="textColor">?textColorPrimary</item>
+        <item name="textColorHighlight">?textColorHighlight</item>
+        <item name="textColorHint">?textColorHint</item>
+        <item name="textColorLink">?textColorLink</item>
+        <item name="textSize">16sp</item>
+        <item name="textStyle">normal</item>
+    </style>-->
+
+    <style name="XXS.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColorHint">?android:textColorHint</item>
+        <item name="android:textColorHighlight">?android:textColorHighlight</item>
+        <item name="android:textColorLink">?android:textColorLink</item>
+        <item name="android:textSize">@dimen/abc_text_size_body_1_material</item>
+    </style>
+
+    <style name="XXS.TextAppearance.Common">
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <!--去掉文字上下的留白-->
+        <item name="android:includeFontPadding">false</item>
+        <!--设置行间距-->
+        <item name="android:lineSpacingExtra">10dp</item>
+        <!--设置行间距的倍数-->
+        <item name="android:lineSpacingMultiplier">1.5</item>
+
+    </style>
+
+</resources>
