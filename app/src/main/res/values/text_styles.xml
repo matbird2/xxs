@@ -16,9 +16,15 @@
     <dimen name="text_size_headline">24sp</dimen>
     <dimen name="text_size_title">20sp</dimen>
     <dimen name="text_size_subheading">16sp</dimen>
-    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_body">14sp</dimen> 如
     <dimen name="text_size_caption">12sp</dimen>
 
+    <dimen name="text_line_space_48pt">48pt</dimen>
+    <dimen name="text_line_space_40pt">40pt</dimen>
+    <dimen name="text_line_space_32pt">32pt</dimen>
+    <dimen name="text_line_space_28pt">28pt</dimen>
+    <dimen name="text_line_space_24pt">24pt</dimen>
+    <dimen name="text_line_space_20pt">20pt</dimen>
     <!-- dimen end -->
 
     <!--<style name="XXSTextAppearance">
@@ -38,16 +44,149 @@
         <item name="android:textSize">@dimen/abc_text_size_body_1_material</item>
     </style>
 
-    <style name="XXS.TextAppearance.Common">
+    <style name="XXS.TextAppearance.All">
         <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
-        <!--去掉文字上下的留白-->
+        <!--设置是否当文本为URL链接/email/电话号码/map时，文本显示为可点击的链接。可选值(none/web/email/phone/map/all) -->
+        <item name="android:autoLink">web</item>
+        <!--如果设置，将自动执行输入值的拼写纠正。此处无效果，在显示输入法并输入的时候起作用。可选值 true/false-->
+        <item name="android:autoText">true</item>
+        <!--指定getText()方式取得的文本类别。选项editable 类似于StringBuilder可追加字符-->
+        <!--也就是说getText后可调用append方法设置文本内容。spannable 则可在给定的字符区域使用样式，可选值(normal/editable/spannable)-->
+        <item name="android:bufferType">normal</item>
+        <!--设置英文字母大写类型。此处无效果，需要弹出输入法才能看得到，参见EditView此属性说明。可选值(none/sentences/words/characters)-->
+        <item name="android:capitalize">sentences</item>
+        <!--设定光标为显示/隐藏，默认显示-->
+        <item name="android:cursorVisible">true</item>
+        <!--设置允许输入哪些字符。如“1234567890.+-*/% ()” -->
+        <item name="android:digits">123</item>
+        <!--在text的下方输出一个drawable，如图片。如果指定一个颜色的话会把text的背景设为该颜色，并且同时和background使用时覆盖后者。-->
+        <item name="android:drawableBottom">@color/text_color_54_black</item>
+        <item name="android:drawableLeft">@color/text_color_54_black</item>
+        <item name="android:drawableRight">@color/text_color_54_black</item>
+        <item name="android:drawableTop">@color/text_color_54_black</item>
+        <!--设置text与drawable(图片)的间隔，与drawableLeft、drawableRight、drawableTop、drawableBottom一起使用，可设置为负数，单独使用没有效果。-->
+        <item name="android:drawablePadding">10dp</item>
+        <!--设置是否可编辑。-->
+        <!-- If set, specifies that this TextView has an input method.
+             It will be a textual one unless it has otherwise been specified.
+             For TextView, this is false by default.  For EditText, it is
+             true by default.
+             {@deprecated Use inputType instead.} -->
+        <item name="android:editable">true</item>
+        <!--设置文本的额外的输入数据。-->
+        <!-- Reference to an
+             {@link android.R.styleable#InputExtras &lt;input-extras&gt;}
+             XML resource containing additional data to
+             supply to an input method, which is private to the implementation
+             of the input method.  This simply fills in
+             the {@link android.view.inputmethod.EditorInfo#extras
+             EditorInfo.extras} field when the input
+             method is connected. -->
+        <item name="android:editorExtras">@color/md_black_1000</item>
+        <!--设置当文字过长时,该控件该如何显示。有如下值设置：”start”—省略号显示在开头;”end”——省略号显示在结尾;”middle”—-省略号显示在中间;
+        ”marquee” ——以跑马灯的方式显示(动画横向移动) -->
+        <item name="android:ellipsize">marquee</item>
+        <!--设置保存文本的内容以及光标的位置。-->
+        <!-- If set, the text view will include its current complete text
+             inside of its frozen icicle in addition to meta-data such as
+             the current cursor position.  By default this is disabled;
+             it can be useful when the contents of a text view is not stored
+             in a persistent place such as a content provider. -->
+        <item name="android:freezesText">false</item>
+        <!--设置文本位置，如设置成“center”，文本将居中显示。 -->
+        <item name="android:gravity">center</item>
+        <!--为空时显示的文字提示信息，可通过textColorHint设置提示信息的颜色。此属性在EditView中使用，但是这里也可以用。 -->
+        <item name="hint">xxs</item>
+        <!--附加功能，设置右下角IME动作与编辑框相关的动作，如actionDone右下角将显示一个“完成”，而不设置默认是一个回车符号。这个在EditView中再详细
+        说明，此处无用。 -->
+        <item name="android:imeOptions">actionDone</item>
+        <!--设置IME动作ID。integer-->
+        <item name="android:imeActionId">1</item>
+        <!--设置IME动作标签。 -->
+        <item name="android:imeActionLabel">xxs</item>
+        <!--设置文本是否包含顶部和底部额外空白，默认为true。 -->
         <item name="android:includeFontPadding">false</item>
+        <!-- If provided and <code>true</code>, this searchable activity will be
+             included in any global lists of search targets.
+             The default value is <code>false</code>. <i>Optional attribute.</i>. -->
+        <item name="android:includeInGlobalSearch">false</item>
+        <!--文本指定输入法，需要完全限定名(完整的包名)。例如：com.google.android.inputmethod.pinyin，但是这里报错找不到。 -->
+        <item name="android:inputMethod">xxs</item>
+        <!--设置文本的类型，用于帮助输入法显示合适的键盘类型。在EditView中再详细说明，这里无效果。 -->
+        <item name="android:inputType">textPassword</item>
+        <!--设置链接是否点击连接，即使设置了autoLink。 -->
+        <!-- If set to false, keeps the movement method from being set
+             to the link movement method even if autoLink causes links
+             to be found. -->
+        <item name="android:linksClickable">true</item>
+        <!--在ellipsize指定marquee的情况下，设置重复滚动的次数，当设置为marquee_forever时表示无限次。 -->
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <!--设置TextView的宽度为N个字符的宽度,超出的部分不显示。这里测试为一个汉字字符宽度 -->
+        <item name="android:ems">2</item>
+        <!--设置TextView的宽度为最长为N个字符的宽度。与ems同时使用时覆盖ems选项。 -->
+        <item name="android:maxEms">4</item>
+        <!--设置TextView的宽度为最短为N个字符的宽度。与ems同时使用时覆盖ems选项。 -->
+        <item name="android:minEms">4</item>
+        <!--限制显示的文本长度，超出部分不显示。 -->
+        <item name="android:maxLength">4</item>
+        <!--设置文本的行数，设置两行就显示两行，即使第二行没有数据。 -->
+        <item name="android:lines">2</item>
+        <!--设置文本的最大显示行数，与width或者layout_width结合使用，超出部分自动换行，超出行数将不显示。 -->
+        <item name="android:maxLines">4</item>
+        <!--设置文本的最小行数，与lines类似。 -->
+        <!-- Makes the TextView be at least this many lines tall.
+        When used on an editable text, the <code>inputType</code> attribute's value must be
+        combined with the <code>textMultiLine</code> flag for the minLines attribute to apply. -->
+        <item name="android:minLines">2</item>
         <!--设置行间距-->
-        <item name="android:lineSpacingExtra">10dp</item>
-        <!--设置行间距的倍数-->
-        <item name="android:lineSpacingMultiplier">1.5</item>
-
+        <item name="android:lineSpacingExtra">10pt</item>
+        <!--设置行间距的倍数。如”1.2” -->
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <!--如果被设置，该TextView有一个数字输入法。此处无用，设置后唯一效果是TextView有点击效果，此属性在EdtiView将详细说明。 -->
+        <item name="android:numeric">decimal</item>
+        <!--以小点”.”显示文本 -->
+        <!-- Whether the characters of the field are displayed as
+             password dots instead of themselves.
+             {@deprecated Use inputType instead.} -->
+        <item name="android:password">true</item>
+        <!--设置为电话号码的输入方式。 -->
+        <item name="android:phoneNumber">true</item>
+        <!--设置输入法选项，此处无用，在EditText将进一步讨论。 -->
+        <item name="android:privateImeOptions">xxs</item>
+        <!--设置文本超出TextView的宽度的情况下，是否出现横拉条。 -->
+        <item name="android:scrollHorizontally">true</item>
+        <!--如果文本是可选择的，让他获取焦点而不是将光标移动为文本的开始位置或者末尾位置。TextView中设置后无效果。 -->
+        <item name="android:selectAllOnFocus">true</item>
+        <!--指定文本阴影的颜色，需要与shadowRadius一起使用。 -->
+        <item name="android:shadowColor">@color/text_color_54_white</item>
+        <!--设置阴影横向坐标开始位置。 -->
+        <!-- Horizontal offset of the text shadow. -->
+        <item name="android:shadowDx">1.2</item>
+        <!--设置阴影纵向坐标开始位置。 -->
+        <item name="android:shadowDy">1.2</item>
+        <!--设置阴影的半径。设置为0.1就变成字体的颜色了，一般设置为3.0的效果比较好。 -->
+        <!-- Blur radius of the text shadow. -->
+        <item name="android:shadowRadius">3.0</item>
+        <!--设置单行显示。如果和layout_width一起使用，当文本不能全部显示时，后面用“…”来表示。-->
+        <item name="android:singleLine">true</item>
+        <!--设置文字外观。如“?android:attr/textAppearanceLargeInverse”这里引用的是系统自带的一个外观，?表示系统是否有这种外观，否则使用默认的
+        外观。可设置的值如下：
+        textAppearanceButton/textAppearanceInverse/textAppearanceLarge/textAppearanceLargeInverse/textAppearanceMedium/
+        textAppearanceMediumInverse/textAppearanceSmall/textAppearanceSmallInverse -->
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <!--被选中文字的底色，默认为蓝色 -->
+        <item name="android:textColorHighlight">@color/md_white_1000</item>
+        <!--设置提示信息文字的颜色，默认为灰色。与hint一起使用。 -->
+        <item name="android:textColorHint">@color/text_color_54_white</item>
+        <!--文字链接的颜色. -->
+        <item name="android:textColorLink">@color/md_black_1000</item>
+        <!--设置文字之间间隔，默认为1.0f。 -->
+        <item name="android:textScaleX">1.1f</item>
+        <!--设置字形[bold(粗体) 0, italic(斜体) 1, bolditalic(又粗又斜) 2] 可以设置一个或多个，用“|”隔开 -->
+        <item name="android:textStyle">bold</item>
+        <!--设置文本字体，必须是以下常量值之一：normal 0, sans 1, serif 2, monospace(等宽字体) 3] -->
+        <item name="android:typeface">sans</item>
     </style>
 
 </resources>
