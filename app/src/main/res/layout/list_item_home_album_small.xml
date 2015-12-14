@@ -32,7 +32,7 @@
                 android:gravity="center"
                 android:padding="8dip"
                 android:layout_marginTop="20dip"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/XXS.TextAppearance.Body"
                 tools:text="name"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
