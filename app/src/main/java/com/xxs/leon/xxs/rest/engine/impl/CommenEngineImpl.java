@@ -34,7 +34,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     XXSPref_ xxsPref;
 
     public List<Album> getHomeAlbums() {
-        String keys = "name,price,status,type,cover";
+        String keys = "name,price,status,type,cover,descri";
         String where = "{\"status\":1}";
         int status = 1;
         int limit = 10;

@@ -74,18 +74,19 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
 
         adapter = new AlbumListAdapter(this);
         gridLayoutManager = new GridLayoutManager(this,2);
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return adapter.isFooter(position) ? gridLayoutManager.getSpanCount() : 1;
-            }
-        });
 
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(adapter);
+
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return adapter.isFooter(position) ? gridLayoutManager.getSpanCount() : 1;
+            }
+        });
 
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -121,6 +122,7 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderViewAfterLoadData(List<Album> result){
         swipeRefreshLayout.setRefreshing(false);
+        adapter.clear();
         adapter.appenList(result);
     }
 
@@ -128,7 +130,7 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
     public void onRefresh() {
         pageIndex = 0;
 //        mContentItems.clear();
-        adapter.clear();
+//        adapter.clear();
         loadAlbumList(pageIndex);
     }
 }

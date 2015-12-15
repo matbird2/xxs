@@ -67,7 +67,7 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public boolean isFooter(int position){
-        return position == contents.size()+1;
+        return position == getItemCount();
     }
 
     @Override

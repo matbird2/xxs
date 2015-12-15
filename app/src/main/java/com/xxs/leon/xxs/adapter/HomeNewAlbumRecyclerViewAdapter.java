@@ -19,6 +19,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.activity.CommentActivity_;
 import com.xxs.leon.xxs.activity.DetailActivity_;
+import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 
 import org.androidannotations.annotations.EBean;
@@ -103,6 +104,8 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
                 final Album album = contents.get(position-1);
                 Glide.with(context).load(album.getCover()).error(error_icon).crossFade(500).centerCrop().into(holder.cover);
                 holder.title.setText(album.getName());
+                holder.desc.setText(album.getDescri());
+                holder.type.setText(AlbumType.getType(album.getType()));
                 holder.card_view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -118,10 +121,14 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
         CardView card_view;
         ImageView cover;
         TextView title;
+        TextView type;
+        TextView desc;
         public HomeAlbumViewHolder(View view){
             super(view);
             cover = (ImageView) view.findViewById(R.id.cover);
             title = (TextView) view.findViewById(R.id.title);
+            type = (TextView) view.findViewById(R.id.type);
+            desc = (TextView) view.findViewById(R.id.desc);
             card_view = (CardView) view.findViewById(R.id.card_view);
         }
     }
