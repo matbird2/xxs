@@ -1,19 +1,16 @@
 package com.xxs.leon.xxs.fragment;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 
+import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.HomePostListAdapter;
-import com.xxs.leon.xxs.constant.AlbumType;
-import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 
@@ -38,7 +35,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @ViewById
     protected RecyclerView recyclerView;
 
-    private LinearLayoutManager gridLayoutManager;
+    private LinearLayoutManager linearLayoutManager;
     private HomePostListAdapter adapter;
     private int lastVisibleItem = 0;
     private int pageIndex = 0;
@@ -56,6 +53,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @AfterViews
     void initViews(){
         initListView();
+        loadPostList(pageIndex);
     }
 
     // 初始化跟listview相关的控件
@@ -70,8 +68,8 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         adapter = new HomePostListAdapter(getActivity());
 
-        gridLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(gridLayoutManager);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -95,10 +93,12 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                lastVisibleItem = gridLayoutManager.findLastVisibleItemPosition();
+                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
             }
 
         });
+
+        MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, null);
     }
 
     @Background
