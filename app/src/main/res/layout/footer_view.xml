@@ -7,12 +7,14 @@
     android:orientation="vertical">
 
     <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        android:id="@+id/pb"
         android:layout_width="16dp"
         android:layout_height="16dp" />
 
     <TextView
+        android:id="@+id/showword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="正在加载..."
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/XXS.TextAppearance.Caption" />
 </LinearLayout>

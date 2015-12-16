@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textAppearance="@style/XXS.TextAppearance.Body.White"
+                    android:textAppearance="@style/XXS.TextAppearance.Caption.White"
                     tools:text="qita"
                     android:padding="1dp"
                     android:background="@color/md_red_400"/>

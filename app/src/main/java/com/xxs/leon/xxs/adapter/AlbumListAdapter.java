@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
@@ -26,9 +27,15 @@ import java.util.List;
  */
 public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int CELL_TYPE = 0;
-    private static final int EMPTY_TYPE = 1;
-    private static final int FOOTER_TYPE = 2;
+    public static final int CELL_TYPE = 0;
+//    public static final int EMPTY_TYPE = 1;
+    public static final int FOOTER_TYPE = 2;
+
+    public static final int LOADING = 3;
+    public static final int NO_MORE_DATA = 4;
+    public static final int LOAD_FAILED = 5;
+
+    FooterViewHolder footerViewHolder;
 
     Context context;
     List<Album> contents = new ArrayList<>();
@@ -52,14 +59,12 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void clear() {
         contents.clear();
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (contents.size() == 0) {
-            return EMPTY_TYPE;
-        } else if (position + 1 == getItemCount()) {
+        if (position + 1 == getItemCount()) {
             return FOOTER_TYPE;
         } else {
             return CELL_TYPE;
@@ -79,10 +84,10 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else if (viewType == FOOTER_TYPE) {
             view = LayoutInflater.from(context).inflate(R.layout.footer_view, parent, false);
             return new FooterViewHolder(view);
-        } else if (viewType == EMPTY_TYPE) {
+        }/* else if (viewType == EMPTY_TYPE) {
             view = LayoutInflater.from(context).inflate(R.layout.empty_view, parent, false);
             return new EmptyViewHolder(view);
-        }
+        }*/
         return null;
     }
 
@@ -100,9 +105,33 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }
             });
         } else if (holder instanceof FooterViewHolder) {
-            FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
-        }else if(holder instanceof EmptyViewHolder){
+            footerViewHolder = (FooterViewHolder) holder;
+//            setFooterViewState(LOADING);
+        }/*else if(holder instanceof EmptyViewHolder){
             EmptyViewHolder emptyViewHolder = (EmptyViewHolder) holder;
+        }*/
+    }
+
+    public void setFooterViewState(int state){
+        if(footerViewHolder == null)
+            return ;
+        switch (state){
+            case LOADING:
+                footerViewHolder.pb.setVisibility(View.VISIBLE);
+                footerViewHolder.showword.setText("正在加载...");
+                break;
+            case NO_MORE_DATA:
+                footerViewHolder.pb.setVisibility(View.GONE);
+                footerViewHolder.showword.setText("没有更多数据");
+                break;
+            case LOAD_FAILED:
+                footerViewHolder.pb.setVisibility(View.GONE);
+                footerViewHolder.showword.setText("加载失败");
+                break;
+            default:
+                footerViewHolder.pb.setVisibility(View.VISIBLE);
+                footerViewHolder.showword.setText("正在加载...");
+                break;
         }
     }
 
@@ -127,10 +156,14 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class FooterViewHolder extends RecyclerView.ViewHolder {
         LinearLayout pullview;
+        ProgressBarCircularIndeterminate pb;
+        TextView showword;
 
         public FooterViewHolder(View view) {
             super(view);
             pullview = (LinearLayout) view.findViewById(R.id.pullview);
+            pb = (ProgressBarCircularIndeterminate) view.findViewById(R.id.pb);
+            showword = (TextView) view.findViewById(R.id.showword);
         }
     }
 
@@ -138,5 +171,9 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public EmptyViewHolder(View view) {
             super(view);
         }
+    }
+
+    interface OnLoadMoreListener{
+
     }
 }

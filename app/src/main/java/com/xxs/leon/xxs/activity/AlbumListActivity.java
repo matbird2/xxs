@@ -7,12 +7,15 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.MenuItem;
 
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.HomeNewAlbumRecyclerViewAdapter;
+import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.L;
@@ -38,6 +41,9 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
     protected SwipeRefreshLayout swipeRefreshLayout;
     @ViewById
     protected RecyclerView recyclerView;
+    @ViewById
+    protected Toolbar toolbar;
+
     private GridLayoutManager gridLayoutManager;
     private AlbumListAdapter adapter;
 //    private List<Album> mContentItems = new ArrayList<>();
@@ -45,6 +51,7 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
     private int pageIndex = 0;
     private static int PAGE_SIZE = 10;
     private int type = -1;
+    private boolean hasMore = true;
 
     @Bean
     CommenEngineImpl engine;
@@ -57,6 +64,10 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
 
     @AfterViews
     void initViews(){
+        toolbar.setTitle(AlbumType.getType(type)+"");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initListView();
 
         loadAlbumList(pageIndex);
@@ -84,7 +95,15 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                return adapter.isFooter(position) ? gridLayoutManager.getSpanCount() : 1;
+//                return adapter.isFooter(position) ? gridLayoutManager.getSpanCount() : 1;
+                switch (adapter.getItemViewType(position)) {
+                    case AlbumListAdapter.CELL_TYPE:
+                        return 1;
+                    case AlbumListAdapter.FOOTER_TYPE:
+                        return 2;
+                    default:
+                        return -1;
+                }
             }
         });
 
@@ -98,7 +117,10 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
                         && lastVisibleItem + 1 == adapter.getItemCount()) {
 //                    swipeRefreshLayout.setRefreshing(true);
                     // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
-
+                    if (hasMore) {
+                        pageIndex += 1;
+                        loadAlbumList(pageIndex);
+                    }
                 }
             }
 
@@ -114,23 +136,39 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
     @Background
     void loadAlbumList(int page){
         List<Album> result = engine.getCategoryAlbum(type, page * PAGE_SIZE);
-        if(result != null){
-            renderViewAfterLoadData(result);
-        }
+        renderViewAfterLoadData(result);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderViewAfterLoadData(List<Album> result){
-        swipeRefreshLayout.setRefreshing(false);
-        adapter.clear();
-        adapter.appenList(result);
+        if(result != null ){
+            swipeRefreshLayout.setRefreshing(false);
+            adapter.appenList(result);
+            if(result.size() < PAGE_SIZE){
+                hasMore = false;
+                adapter.setFooterViewState(AlbumListAdapter.NO_MORE_DATA);
+            }else{
+                adapter.setFooterViewState(AlbumListAdapter.LOADING);
+            }
+        }else{
+            adapter.setFooterViewState(AlbumListAdapter.LOAD_FAILED);
+        }
     }
 
     @Override
     public void onRefresh() {
+        hasMore = true;
         pageIndex = 0;
-//        mContentItems.clear();
-//        adapter.clear();
+        adapter.clear();
         loadAlbumList(pageIndex);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

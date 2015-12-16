@@ -86,18 +86,90 @@ public class CategoryActivity extends AppCompatActivity{
         mScene2 = Scene.getSceneForLayout(scene_root,R.layout.category_scene2,this);
 
         doAnim();
+        rote();
+    }
 
+    private void rote(){
+        mScene2.getSceneRoot().findViewById(R.id.tv1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(0);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(1);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(2);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(3);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(4);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(5);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(6);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(7);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(8);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(9);
+            }
+        });
+        mScene2.getSceneRoot().findViewById(R.id.tv11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAlbumListActivity(10);
+            }
+        });
         mScene2.getSceneRoot().findViewById(R.id.tv12).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                L.i(L.TEST,"click");
-                Bundle bundle = new Bundle();
-                bundle.putInt("type",11);
-                Intent intent = new Intent(CategoryActivity.this,AlbumListActivity_.class);
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+                goToAlbumListActivity(11);
             }
         });
+    }
+
+    private void goToAlbumListActivity(int type){
+        Bundle bundle = new Bundle();
+        bundle.putInt("type",type);
+        Intent intent = new Intent(CategoryActivity.this,AlbumListActivity_.class);
+        intent.putExtra("bundle",bundle);
+        startActivity(intent);
     }
 
     private void doAnim(){
