@@ -6,8 +6,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
+import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.HomePostListAdapter;
@@ -22,6 +25,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +40,9 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     protected RecyclerView recyclerView;
 
     private LinearLayoutManager linearLayoutManager;
+    private List<Post> mContents = new ArrayList<>();
     private HomePostListAdapter adapter;
+    private RecyclerViewMaterialAdapter rAdapter;
     private int lastVisibleItem = 0;
     private int pageIndex = 0;
     private static int PAGE_SIZE = 10;
@@ -66,14 +72,15 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                         .getDisplayMetrics()));
 
-        adapter = new HomePostListAdapter(getActivity());
+        adapter = new HomePostListAdapter(getActivity(),mContents);
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerView.setAdapter(adapter);
+        rAdapter = new RecyclerViewMaterialAdapter(adapter);
+        recyclerView.setAdapter(rAdapter);
 
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -82,7 +89,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                                              int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastVisibleItem + 1 == adapter.getItemCount()) {
+                        && lastVisibleItem + 1 == rAdapter.getItemCount()) {
                     if (hasMore) {
                         pageIndex += 1;
                         loadPostList(pageIndex);
@@ -98,7 +105,25 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         });
 
+        adapter.setOnGetThumbnailAndDisplayImageViewListener(new HomePostListAdapter.OnGetThumbnailAndDisplayImageViewListener() {
+            @Override
+            public void getAndDisplay(String image, ImageView iv) {
+                getPhotoThumbnail(image,iv);
+            }
+        });
+
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, null);
+    }
+
+    @Background
+    void getPhotoThumbnail(String image,ImageView iv){
+        String thumbnailUrl = engine.getThumbnail(image,100);
+        renderPhoto(thumbnailUrl,iv);
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderPhoto(String thumbnailUrl,ImageView iv){
+        Glide.with(getActivity()).load(thumbnailUrl).crossFade(500).centerCrop().into(iv);
     }
 
     @Background
@@ -111,7 +136,8 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     void renderViewAfterLoadData(List<Post> result){
         if(result != null ){
             swipeRefreshLayout.setRefreshing(false);
-            adapter.appenList(result);
+            mContents.addAll(result);
+            rAdapter.mvp_notifyDataSetChanged();
             if(result.size() < PAGE_SIZE){
                 hasMore = false;
                 adapter.setFooterViewState(AlbumListAdapter.NO_MORE_DATA);
@@ -127,7 +153,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public void onRefresh() {
         hasMore = true;
         pageIndex = 0;
-        adapter.clear();
+        mContents.clear();
         loadPostList(pageIndex);
     }
 }

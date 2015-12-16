@@ -24,6 +24,7 @@ public class TimeUtil {
             int delYear = now.get(Calendar.YEAR) - save.get(Calendar.YEAR);
             int delMonth = now.get(Calendar.MONTH) - save.get(Calendar.MONTH);
             int delDay = now.get(Calendar.DAY_OF_MONTH) - save.get(Calendar.DAY_OF_MONTH);
+            int delHour = now.get(Calendar.HOUR_OF_DAY) - save.get(Calendar.HOUR_OF_DAY);
             int delMinu = now.get(Calendar.MINUTE) - save.get(Calendar.MINUTE);
             int delSecond = now.get(Calendar.SECOND) - save.get(Calendar.SECOND);
             if(delYear > 0){
@@ -32,6 +33,8 @@ public class TimeUtil {
                 return delMonth+"个月以前";
             }else if(delDay > 0){
                 return delDay+"天以前";
+            }else if(delHour > 0){
+                return delHour+"小时以前";
             }else if(delMinu > 0){
                 return delMinu+"分钟以前";
             }else if(delSecond > 0){

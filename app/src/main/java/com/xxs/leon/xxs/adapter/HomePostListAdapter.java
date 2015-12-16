@@ -35,21 +35,23 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static final int LOAD_FAILED = 5;
 
     FooterViewHolder footerViewHolder;
+    private OnGetThumbnailAndDisplayImageViewListener listener;
 
     Context context;
-    List<Post> contents = new ArrayList<>();
+    List<Post> contents;
 
     private IconicsDrawable error_icon;
 
-    public HomePostListAdapter(Context context) {
+    public HomePostListAdapter(Context context,List<Post> contents) {
         this.context = context;
+        this.contents = contents;
         error_icon = new IconicsDrawable(context)
                 .icon(GoogleMaterial.Icon.gmd_broken_image)
                 .color(Color.GRAY)
                 .sizeDp(60);
     }
 
-    public void appenList(List<Post> list) {
+    /*public void appenList(List<Post> list) {
         if (!contents.containsAll(list) && list != null && list.size() > 0) {
             contents.addAll(list);
         }
@@ -58,8 +60,7 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void clear() {
         contents.clear();
-//        notifyDataSetChanged();
-    }
+    }*/
 
     @Override
     public int getItemViewType(int position) {
@@ -92,19 +93,14 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             final Post post = contents.get(position);
-            /*Glide.with(context).load(album.getCover()).error(error_icon).crossFade(500).centerCrop().into(itemViewHolder.cover);
-            itemViewHolder.title.setText(album.getName());
-            itemViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DetailActivity_.intent(context).albumId(album.getObjectId()).albumName(album.getName()).start();
-                }
-            });*/
+
             itemViewHolder.username.setText(post.getUser().getUsername());
             itemViewHolder.timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
             itemViewHolder.title.setText(post.getTitle());
             itemViewHolder.content.setText(post.getExcerpt());
-
+            if(post.getUser().getPhoto() != null){
+                listener.getAndDisplay(post.getUser().getPhoto(),itemViewHolder.photo);
+            }
 
         } else if (holder instanceof FooterViewHolder) {
             footerViewHolder = (FooterViewHolder) holder;
@@ -170,5 +166,13 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             pb = (ProgressBarCircularIndeterminate) view.findViewById(R.id.pb);
             showword = (TextView) view.findViewById(R.id.showword);
         }
+    }
+
+    public void setOnGetThumbnailAndDisplayImageViewListener(OnGetThumbnailAndDisplayImageViewListener listener){
+        this.listener = listener;
+    }
+
+    public interface OnGetThumbnailAndDisplayImageViewListener{
+        void getAndDisplay(String image,ImageView iv);
     }
 }

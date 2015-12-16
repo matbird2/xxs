@@ -64,6 +64,10 @@ import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity{
 
