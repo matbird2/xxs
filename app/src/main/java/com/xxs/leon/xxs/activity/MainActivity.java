@@ -44,12 +44,14 @@ import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.fragment.NewFragment_;
+import com.xxs.leon.xxs.fragment.PostFragment_;
 import com.xxs.leon.xxs.fragment.RecyclerViewFragment;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.test.SecondActivity_;
 import com.xxs.leon.xxs.utils.L;
+import com.xxs.leon.xxs.utils.TimeUtil;
 import com.xxs.leon.xxs.utils.ToolbarUtil;
 
 import org.androidannotations.annotations.AfterInject;
@@ -244,8 +246,8 @@ public class MainActivity extends AppCompatActivity{
                 switch (position % 3) {
                     case 0:
                         return new NewFragment_();
-                    //case 1:
-                    //    return RecyclerViewFragment.newInstance();
+                    case 1:
+                        return new PostFragment_();
                     //case 2:
                     //    return WebViewFragment.newInstance();
                     default:
@@ -307,8 +309,6 @@ public class MainActivity extends AppCompatActivity{
     @Click(R.id.logo)
     void onClickLogo(){
         mViewPager.notifyHeaderChanged();
-        /*final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
-        ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);*/
         if(engine.getCurrentUser() == null){
             LoginActivity_.intent(this).start();
         }else{
@@ -321,6 +321,8 @@ public class MainActivity extends AppCompatActivity{
                 ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);
             }
         }
+
+//        L.i(L.TEST,"生成时间标签:"+ TimeUtil.generTimeShowWord("2015-12-16 15:23:03"));
     }
 
     @Background

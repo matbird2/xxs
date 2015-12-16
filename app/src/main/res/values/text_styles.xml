@@ -6,6 +6,8 @@
     <color name="text_color_87_black">#DE000000</color>
     <color name="text_color_54_white">#89FFFFFF</color>
     <color name="text_color_87_white">#DEFFFFFF</color>
+    <color name="text_color_54_primary">#8900bcd4</color>
+    <color name="text_color_87_primary">#DE00bcd4</color>
     <!-- color end -->
 
     <!-- dimen begin -->
@@ -34,7 +36,6 @@
         <item name="android:textColorLink">?android:textColorLink</item>
         <item name="android:textSize">@dimen/text_size_body</item>
     </style>
-
     <style name="XXS.TextAppearance.Body" parent="XXS.TextAppearance">
         <item name="android:textSize">@dimen/text_size_body</item>
         <item name="android:textColor">@color/text_color_87_black</item>
@@ -44,6 +45,13 @@
     </style>
     <style name="XXS.TextAppearance.Body.Light" parent="XXS.TextAppearance.Body">
         <item name="android:textColor">@color/text_color_54_black</item>
+    </style>
+    <style name="XXS.TextAppearance.Body.Primary" parent="XXS.TextAppearance">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/text_color_87_primary</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+        <item name="android:typeface">serif</item>
     </style>
     <style name="XXS.TextAppearance.Body.White" parent="XXS.TextAppearance">
         <item name="android:textSize">@dimen/text_size_body</item>

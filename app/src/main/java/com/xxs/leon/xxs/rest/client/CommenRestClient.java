@@ -4,11 +4,14 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
+import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
+import com.xxs.leon.xxs.rest.bean.response.HomePostListEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
+import com.xxs.leon.xxs.rest.bean.response.ThumbnailEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.interceptor.HttpBasicAuthenticatorInterceptor;
 import com.xxs.leon.xxs.rest.requestfactory.MyRequestFactory;
@@ -77,4 +80,10 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&skip={skip}&order={order}")
     AlbumListEntity getAlbumsByType(String keys,String where,int limit,int skip,String order);
+
+    @Get("/classes/Post/?keys={keys}&where={where}&limit={limit}&skip={skip}&order={order}&include={include}")
+    HomePostListEntity getHomePostList(String keys,String where,int limit,int skip,String order,String include);
+
+    @Post("/images/thumbnail")
+    ThumbnailEntity getThumbnail(ThumbnailParams params);
 }

@@ -14,7 +14,7 @@ public class Post extends BaseBean{
     private String linked_url;
     private List<String> imgs;
     private String excerpt;
-    private Pointer user;
+    private XSUser user;
 
     public String getContent() {
         return content;
@@ -32,11 +32,11 @@ public class Post extends BaseBean{
         this.title = title;
     }
 
-    public Pointer getUser() {
+    public XSUser getUser() {
         return user;
     }
 
-    public void setUser(Pointer user) {
+    public void setUser(XSUser user) {
         this.user = user;
     }
 

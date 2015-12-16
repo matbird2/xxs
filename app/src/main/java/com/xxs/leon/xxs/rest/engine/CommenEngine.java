@@ -1,9 +1,11 @@
 package com.xxs.leon.xxs.rest.engine;
 
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.callback.DataEngineCallback;
@@ -88,9 +90,21 @@ public interface CommenEngine {
     /**
      * 根据类别获取相册列表
      * @param type
-     * @param pageIndex
      * @param skip
      * @return
      */
     List<Album> getCategoryAlbum(int type,int skip);
+
+    /**
+     * 获取首页Post列表
+     * @param skip
+     * @return
+     */
+    List<Post> getHomePostList(int skip);
+
+    /**
+     * 获取某个图片的缩略图，节省流量
+     * @return 返回缩略图地址
+     */
+    String getThumbnail(String image,int width);
 }

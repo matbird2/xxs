@@ -1,51 +1,45 @@
-package com.xxs.leon.xxs.activity;
+package com.xxs.leon.xxs.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
-import android.view.MenuItem;
 
-import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.AlbumListAdapter;
-import com.xxs.leon.xxs.adapter.HomeNewAlbumRecyclerViewAdapter;
+import com.xxs.leon.xxs.adapter.HomePostListAdapter;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
-import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by maliang on 15/12/10.
+ * Created by maliang on 15/12/16.
  */
-@EActivity(R.layout.activity_album_list)
-public class AlbumListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+@EFragment(R.layout.fragment_recyclerview)
+public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     @ViewById
     protected SwipeRefreshLayout swipeRefreshLayout;
     @ViewById
     protected RecyclerView recyclerView;
-    @ViewById
-    protected Toolbar toolbar;
 
-    private GridLayoutManager gridLayoutManager;
-    private AlbumListAdapter adapter;
+    private LinearLayoutManager gridLayoutManager;
+    private HomePostListAdapter adapter;
     private int lastVisibleItem = 0;
     private int pageIndex = 0;
     private static int PAGE_SIZE = 10;
@@ -57,19 +51,11 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
 
     @AfterInject
     void init(){
-        Bundle bundle = this.getIntent().getBundleExtra("bundle");
-        type = bundle.getInt("type",-1);
     }
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle(AlbumType.getType(type)+"");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         initListView();
-
-        loadAlbumList(pageIndex);
     }
 
     // 初始化跟listview相关的控件
@@ -82,29 +68,14 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                         .getDisplayMetrics()));
 
-        adapter = new AlbumListAdapter(this);
-        gridLayoutManager = new GridLayoutManager(this,2);
+        adapter = new HomePostListAdapter(getActivity());
 
+        gridLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(adapter);
-
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-//                return adapter.isFooter(position) ? gridLayoutManager.getSpanCount() : 1;
-                switch (adapter.getItemViewType(position)) {
-                    case AlbumListAdapter.CELL_TYPE:
-                        return 1;
-                    case AlbumListAdapter.FOOTER_TYPE:
-                        return 2;
-                    default:
-                        return -1;
-                }
-            }
-        });
 
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -114,11 +85,9 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && lastVisibleItem + 1 == adapter.getItemCount()) {
-//                    swipeRefreshLayout.setRefreshing(true);
-                    // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
                     if (hasMore) {
                         pageIndex += 1;
-                        loadAlbumList(pageIndex);
+                        loadPostList(pageIndex);
                     }
                 }
             }
@@ -133,13 +102,13 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
     }
 
     @Background
-    void loadAlbumList(int page){
-        List<Album> result = engine.getCategoryAlbum(type, page * PAGE_SIZE);
+    void loadPostList(int page){
+        List<Post> result = engine.getHomePostList(page * PAGE_SIZE);
         renderViewAfterLoadData(result);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
-    void renderViewAfterLoadData(List<Album> result){
+    void renderViewAfterLoadData(List<Post> result){
         if(result != null ){
             swipeRefreshLayout.setRefreshing(false);
             adapter.appenList(result);
@@ -159,15 +128,6 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
         hasMore = true;
         pageIndex = 0;
         adapter.clear();
-        loadAlbumList(pageIndex);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        loadPostList(pageIndex);
     }
 }
