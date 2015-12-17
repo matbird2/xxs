@@ -42,9 +42,9 @@ public class LoginGuidActivity extends AppCompatActivity{
 
     @Click(R.id.register)
     void clickRegister(){
-//        startActivity(new Intent(this,RegisterActivity_.class));
+        startActivity(new Intent(this,RegisterActivity_.class));
 //        testUpload();
-        testUpdateUserPhoto();
+//        testUpdateUserPhoto();
     }
 
     @Background

@@ -100,9 +100,14 @@ public class RegisterActivity extends AppCompatActivity{
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void afterRegister(XSUser user){
         changeStatus(true);
-        // do something
-        SnackBar snackBar = new SnackBar(this,user.getCode()+"","ok",null);
-        snackBar.show();
+        if(user.getCode() == 0){
+            SnackBar snackBar = new SnackBar(this,"恭喜你注册成功~","ok",null);
+            snackBar.show();
+            finish();
+        }else{
+            SnackBar snackBar = new SnackBar(this,user.getError()+"","ok",null);
+            snackBar.show();
+        }
     }
 
     void changeStatus(boolean isEnable){

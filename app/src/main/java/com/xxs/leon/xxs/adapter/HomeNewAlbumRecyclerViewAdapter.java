@@ -3,6 +3,7 @@ package com.xxs.leon.xxs.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +18,11 @@ import com.kogitune.activity_transition.ActivityTransitionLauncher;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.activity.AlbumListActivity_;
 import com.xxs.leon.xxs.activity.CommentActivity_;
 import com.xxs.leon.xxs.activity.DetailActivity_;
+import com.xxs.leon.xxs.activity.WebViewActivity;
+import com.xxs.leon.xxs.activity.WebViewActivity_;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 
@@ -99,6 +103,18 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
     public void onBindViewHolder(final HomeAlbumViewHolder holder, final int position) {
         switch (getItemViewType(position)) {
             case TYPE_HEADER:
+                holder.card_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url", "#");
+                        bundle.putString("html", "#");
+                        bundle.putInt("type",0);
+                        Intent intent = new Intent(context,WebViewActivity_.class);
+                        intent.putExtra("bundle",bundle);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
             case TYPE_CELL:
                 final Album album = contents.get(position-1);

@@ -38,6 +38,9 @@
         </activity>
         <activity android:name=".activity.AlbumListActivity_">
         </activity>
+        <activity android:name=".activity.WebViewActivity_"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity android:name=".activity.WatchActivity_"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"></activity>
