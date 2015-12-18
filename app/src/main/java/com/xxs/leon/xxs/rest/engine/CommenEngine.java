@@ -107,4 +107,12 @@ public interface CommenEngine {
      * @return 返回缩略图地址
      */
     String getThumbnail(String image,int width);
+
+    /**
+     * 发布文章
+     * @param user
+     * @param post
+     * @return
+     */
+    String sendPost(XSUser user,Post post);
 }

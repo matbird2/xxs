@@ -3,6 +3,7 @@ package com.xxs.leon.xxs.rest.client;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
@@ -86,4 +87,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/images/thumbnail")
     ThumbnailEntity getThumbnail(ThumbnailParams params);
+
+    @Post("/functions/doSendPost")
+    CloudRestEntity sendPost(SendPostParams data);
 }

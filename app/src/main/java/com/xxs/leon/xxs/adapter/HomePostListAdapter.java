@@ -16,6 +16,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.Post;
+import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
 
 import java.util.ArrayList;
@@ -99,6 +100,7 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             itemViewHolder.title.setText(post.getTitle());
             itemViewHolder.content.setText(post.getExcerpt());
             if(post.getUser().getPhoto() != null){
+//                L.i(L.TEST,"photo:"+post.getUser().getPhoto());
                 listener.getAndDisplay(post.getUser().getPhoto(),itemViewHolder.photo);
             }
 

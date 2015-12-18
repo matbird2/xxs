@@ -8,6 +8,7 @@ import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
@@ -132,7 +133,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         if(entity != null){
             return entity.getResult();
         }else{
-            return null;
+            return "";
         }
     }
 
@@ -162,12 +163,28 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     @Override
     public String getThumbnail(String image,int width) {
         ThumbnailParams params = new ThumbnailParams();
-        params.setImage(Constant.BASE_IMAGE_FILE_URL + image);
-        params.setQuality(100);
+        params.setImage(image);
+        params.setQuality(75);
         params.setWidth(width);
         params.setMode(0);
         ThumbnailEntity entity = client.getThumbnail(params);
         return entity != null ? Constant.BASE_IMAGE_FILE_URL+entity.getUrl() : "";
+    }
+
+    @Override
+    public String sendPost(XSUser user, Post post) {
+        SendPostParams params = new SendPostParams();
+        params.setObjectId(user.getObjectId());
+        params.setSessionToken(user.getSessionToken());
+        params.setContent(post.getContent());
+        params.setTitle(post.getTitle());
+        params.setExcerpt(post.getExcerpt());
+        CloudRestEntity entity = client.sendPost(params);
+        if(entity != null){
+            return entity.getResult();
+        }else{
+            return "";
+        }
     }
 
     /**

@@ -16,6 +16,7 @@ import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.HomePostListAdapter;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -108,6 +109,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         adapter.setOnGetThumbnailAndDisplayImageViewListener(new HomePostListAdapter.OnGetThumbnailAndDisplayImageViewListener() {
             @Override
             public void getAndDisplay(String image, ImageView iv) {
+//                L.i(L.TEST,"1111");
                 getPhotoThumbnail(image,iv);
             }
         });
@@ -118,7 +120,8 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Background
     void getPhotoThumbnail(String image,ImageView iv){
         String thumbnailUrl = engine.getThumbnail(image,100);
-        renderPhoto(thumbnailUrl,iv);
+//        L.i(L.TEST,"thumbnailUrl:"+thumbnailUrl);
+        renderPhoto(thumbnailUrl, iv);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
