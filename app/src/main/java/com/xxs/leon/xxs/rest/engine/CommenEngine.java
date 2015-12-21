@@ -5,6 +5,7 @@ import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
@@ -106,7 +107,7 @@ public interface CommenEngine {
      * 获取某个图片的缩略图，节省流量
      * @return 返回缩略图地址
      */
-    String getThumbnail(String image,int width);
+    String getThumbnail(String image,int width,int quality);
 
     /**
      * 发布文章
@@ -115,4 +116,18 @@ public interface CommenEngine {
      * @return
      */
     String sendPost(XSUser user,Post post);
+
+    /**
+     * 获取文章详情
+     * @param objectId
+     * @return
+     */
+    Post getPostDetial(String objectId);
+
+    /**
+     * 支付
+     * @param params
+     * @return
+     */
+    String pay(PayParams params);
 }

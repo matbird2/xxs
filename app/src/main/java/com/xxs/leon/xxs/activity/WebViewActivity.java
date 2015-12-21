@@ -37,7 +37,7 @@ public class WebViewActivity extends AppCompatActivity{
     private boolean isLoadComplete = false;
     private String url;
     private String html;
-    private int type;
+    private int type; // 0 ：加载url  1：加载html格式的源数据
 
     @AfterInject
     void init(){

@@ -119,7 +119,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Background
     void getPhotoThumbnail(String image,ImageView iv){
-        String thumbnailUrl = engine.getThumbnail(image,100);
+        String thumbnailUrl = engine.getThumbnail(image,100,75);
 //        L.i(L.TEST,"thumbnailUrl:"+thumbnailUrl);
         renderPhoto(thumbnailUrl, iv);
     }

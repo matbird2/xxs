@@ -8,6 +8,7 @@ import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
@@ -15,6 +16,7 @@ import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomePostListEntity;
+import com.xxs.leon.xxs.rest.bean.response.PayEntity;
 import com.xxs.leon.xxs.rest.bean.response.ThumbnailEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.BaseEngine;
@@ -161,10 +163,10 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String getThumbnail(String image,int width) {
+    public String getThumbnail(String image,int width,int quality) {
         ThumbnailParams params = new ThumbnailParams();
         params.setImage(image);
-        params.setQuality(75);
+        params.setQuality(quality);
         params.setWidth(width);
         params.setMode(0);
         ThumbnailEntity entity = client.getThumbnail(params);
@@ -184,6 +186,25 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             return entity.getResult();
         }else{
             return "";
+        }
+    }
+
+    @Override
+    public Post getPostDetial(String objectId) {
+        String keys = "excerpt,title,imgs,linked_url,content,status,classic,user";
+        String include = "user[username|photo]";
+        Post post = client.getPostDetailById(objectId, keys, include);
+        return post != null ? post : null;
+    }
+
+    @Override
+    public String pay(PayParams params) {
+        PayEntity entity = client.webPay(params);
+        String result = null;
+        if(entity != null && entity.getCode() == 0){
+            return entity.getHtml();
+        }else{
+            return "#";
         }
     }
 

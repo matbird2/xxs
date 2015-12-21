@@ -13,12 +13,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.gc.materialdesign.widgets.Dialog;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.kogitune.activity_transition.ActivityTransition;
 import com.kogitune.activity_transition.ExitActivityTransition;
@@ -27,6 +30,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
+import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
@@ -37,6 +41,7 @@ import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
+import com.xxs.leon.xxs.ui.CommonDialog;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.MatCacheUtils;
 import com.xxs.leon.xxs.utils.Tools;
@@ -76,13 +81,16 @@ public class CommentActivity extends AppCompatActivity{
     protected Toolbar toolbar;
     @ViewById
     protected RichEditor editor;
+    @ViewById
+    protected EditText et_title;
 
-    protected ExitActivityTransition exitTransition;
+//    protected ExitActivityTransition exitTransition;
 
-    ChooseImageDialog dialog;
+    ChooseImageDialog chooseImageDialog;
     String dateTime;
     String targeturl = null;
     XSUser currentUser;
+    Dialog sendingDialog;
 
     @Bean
     CommenEngineImpl engine;
@@ -95,7 +103,7 @@ public class CommentActivity extends AppCompatActivity{
     @AfterViews
     void initViews(){
         initToolbar();
-        exitTransition = ActivityTransition.with(getIntent()).to(fab).start(savedInstanceState);
+//        exitTransition = ActivityTransition.with(getIntent()).to(fab).start(savedInstanceState);
     }
 
     private void initToolbar(){
@@ -112,6 +120,59 @@ public class CommentActivity extends AppCompatActivity{
         editor.setEditorFontColor(getResources().getColor(R.color.text_color_87_black));
         editor.setPadding(10, 10, 10, 10);
         editor.setPlaceholder("请输入正文内容...");
+    }
+
+    @Click(R.id.fab)
+    void clickSend(){
+        String title = et_title.getText().toString();
+        if(TextUtils.isEmpty(title.trim())){
+            Dialog dialog = new Dialog(this,"提示","标题不能为空");
+            dialog.show();
+            dialog.getButtonAccept().setText("好的");
+            return ;
+        }
+
+        String content = editor.getHtml()+"";
+        String excerpt = title;
+        if(!TextUtils.isEmpty(content) && content.contains("img")){
+            excerpt = excerpt+"\n[有图]";
+        }
+
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setExcerpt(excerpt);
+
+        sendingDialog = new Dialog(this,"","发表中，请稍后...");
+        sendingDialog.show();
+        sendingDialog.getButtonAccept().setText("好的");
+
+        doSendPost(post);
+    }
+
+    @Background
+    void doSendPost(Post post){
+        if(currentUser == null){
+            return ;
+        }
+        String result = engine.sendPost(currentUser, post);
+        afterSendPost(result);
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void afterSendPost(String result){
+        if(sendingDialog != null && sendingDialog.isShowing()){
+            sendingDialog.dismiss();
+        }
+        Dialog dialog = new Dialog(this,"",result);
+        dialog.show();
+        dialog.getButtonAccept().setText("好的");
+        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommentActivity.this.finish();
+            }
+        });
     }
 
     @Click(R.id.action_undo)
@@ -218,20 +279,20 @@ public class CommentActivity extends AppCompatActivity{
 
     @Click(R.id.action_insert_image)
     void clickInsertImage(View v){
-        dialog = new ChooseImageDialog(this,"插入图片");
-        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+        chooseImageDialog = new ChooseImageDialog(this,"插入图片");
+        chooseImageDialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 doUploadImage();
             }
         });
-        dialog.setOnCancelButtonClickListener(new View.OnClickListener() {
+        chooseImageDialog.setOnCancelButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
-        dialog.setOnCameraButtonClickListener(new View.OnClickListener() {
+        chooseImageDialog.setOnCameraButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Date date = new Date(System.currentTimeMillis());
@@ -252,7 +313,7 @@ public class CommentActivity extends AppCompatActivity{
                 startActivityForResult(camera, REQUEST_CODE_CAMERA);
             }
         });
-        dialog.setOnAlbumButtonClickListener(new View.OnClickListener() {
+        chooseImageDialog.setOnAlbumButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Date date = new Date(System.currentTimeMillis());
@@ -263,7 +324,7 @@ public class CommentActivity extends AppCompatActivity{
                 startActivityForResult(intent, REQUEST_CODE_ALBUM);
             }
         });
-        dialog.show();
+        chooseImageDialog.show();
     }
 
     @Background
@@ -271,9 +332,9 @@ public class CommentActivity extends AppCompatActivity{
         if (targeturl != null && currentUser != null) {
             UploadEntity uploadEntity = engine.uploadFile("post_photo_" + currentUser.getObjectId() + "_" + dateTime + ".jpg", targeturl);
             if (uploadEntity != null && uploadEntity.getCode() == 0 && currentUser != null) {
-                String imageUrl = engine.getThumbnail(Constant.BASE_IMAGE_FILE_URL+uploadEntity.getUrl(),200);
-                L.i(L.TEST,"imageUrl :"+imageUrl);
-                afterUploadImage(imageUrl);
+//                String imageUrl = engine.getThumbnail(Constant.BASE_IMAGE_FILE_URL+uploadEntity.getUrl(),300,100);
+//                L.i(L.TEST,"imageUrl :"+imageUrl);
+                afterUploadImage(Constant.BASE_IMAGE_FILE_URL+uploadEntity.getUrl());
             }else {
                 SnackBar snackBar = new SnackBar(this,uploadEntity.getError()+"","ok",null);
                 snackBar.show();
@@ -283,8 +344,8 @@ public class CommentActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void afterUploadImage(String imageUrl){
-        if(dialog != null)
-            dialog.dismiss();
+        if(chooseImageDialog != null)
+            chooseImageDialog.dismiss();
         editor.insertImage(imageUrl,"xxs");
     }
 
@@ -324,9 +385,9 @@ public class CommentActivity extends AppCompatActivity{
     }
 
     private void renderDialog(String targeturl){
-        if(targeturl != null && dialog!= null){
-            dialog.changeSecondView(true);
-            ImageView preview = dialog.getPreview();
+        if(chooseImageDialog != null && chooseImageDialog!= null){
+            chooseImageDialog.changeSecondView(true);
+            ImageView preview = chooseImageDialog.getPreview();
             Glide.with(this).load(targeturl).into(preview);
         }
     }
@@ -337,10 +398,10 @@ public class CommentActivity extends AppCompatActivity{
         return filePath;
     }
 
-    @Override
-    public void onBackPressed() {
-        exitTransition.exit(this);
-    }
+//    @Override
+//    public void onBackPressed() {
+////        exitTransition.exit(this);
+//    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

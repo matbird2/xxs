@@ -12,7 +12,7 @@
         android:id="@+id/pb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/accent" />
+        android:background="@color/colorPrimaryDark" />
 
     <WebView
         android:id="@+id/webview"

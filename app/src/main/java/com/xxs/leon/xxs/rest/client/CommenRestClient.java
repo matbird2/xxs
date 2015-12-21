@@ -3,6 +3,7 @@ package com.xxs.leon.xxs.rest.client;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
+import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
@@ -11,6 +12,7 @@ import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomePostListEntity;
+import com.xxs.leon.xxs.rest.bean.response.PayEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.bean.response.ThumbnailEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
@@ -90,4 +92,10 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doSendPost")
     CloudRestEntity sendPost(SendPostParams data);
+
+    @Get("/classes/Post/{objectId}/?keys={keys}&include={include}")
+    com.xxs.leon.xxs.rest.bean.Post getPostDetailById(String objectId,String keys,String include);
+
+    @Post("/webpay")
+    PayEntity webPay(PayParams params);
 }

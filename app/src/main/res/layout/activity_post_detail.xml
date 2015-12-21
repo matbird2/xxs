@@ -20,22 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_post" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"
-        android:gravity="bottom|end">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:ico_color="@android:color/white"
-            app:ico_icon="faw_send"
-            app:ico_size="20dp" />
-    </RelativeLayout>
+    <include layout="@layout/content_post_detail" />
 
 </android.support.design.widget.CoordinatorLayout>

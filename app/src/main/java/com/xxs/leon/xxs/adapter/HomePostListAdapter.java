@@ -15,6 +15,8 @@ import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.activity.DetailActivity_;
+import com.xxs.leon.xxs.activity.PostDetailActivity_;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
@@ -103,6 +105,13 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //                L.i(L.TEST,"photo:"+post.getUser().getPhoto());
                 listener.getAndDisplay(post.getUser().getPhoto(),itemViewHolder.photo);
             }
+
+            itemViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PostDetailActivity_.intent(context).postId(post.getObjectId()).postTitle(post.getTitle()).start();
+                }
+            });
 
         } else if (holder instanceof FooterViewHolder) {
             footerViewHolder = (FooterViewHolder) holder;
