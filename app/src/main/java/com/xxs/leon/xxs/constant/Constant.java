@@ -11,4 +11,5 @@ public interface Constant {
     String AES_ENCRYPT_PASSWORD = "xxs";
 
     String BASE_IMAGE_FILE_URL = "http://file.bmob.cn/";
+    String PAY_SUCCESS_CALLBACK = "http://www.bmob.cn/return_url.php";
 }

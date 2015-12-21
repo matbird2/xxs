@@ -1,5 +1,7 @@
 package com.xxs.leon.xxs.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,7 @@ import android.webkit.WebViewClient;
 import com.gc.materialdesign.views.ProgressBarIndeterminateDeterminate;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -81,9 +84,15 @@ public class WebViewActivity extends AppCompatActivity{
 
         webview.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view,
-                                                    final String url) {
-                view.loadUrl(url);
+            public boolean shouldOverrideUrlLoading(WebView view,final String url) {
+//                L.i(L.TEST,"url ==> "+url);
+                if( url.startsWith("http:") || url.startsWith("https:") ) {
+                    return false;
+                }
+
+                // Otherwise allow the OS to handle things like tel, mailto, etc.
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
                 return true;
             }
 

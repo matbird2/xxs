@@ -70,6 +70,8 @@ public class PostDetailActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editor.setPadding(10, 10, 10, 10);
+        editor.setEnabled(false);
+        editor.setFocusable(false);
 
         doGetPostDetail();
     }

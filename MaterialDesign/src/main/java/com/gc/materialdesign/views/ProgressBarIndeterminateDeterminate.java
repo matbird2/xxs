@@ -71,7 +71,8 @@ public class ProgressBarIndeterminateDeterminate extends ProgressBarDeterminate 
 	 * Stop indeterminate animation to convert view in determinate progress bar
 	 */
 	private void stopIndeterminate(){
-		animation.cancel();
+		if(animation != null)
+			animation.cancel();
 		ViewHelper.setX(progressView,0);
 		runAnimation = false;
 	}
