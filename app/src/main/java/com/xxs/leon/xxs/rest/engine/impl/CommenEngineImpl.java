@@ -7,6 +7,7 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
@@ -206,6 +207,12 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         }else{
             return "#";
         }
+    }
+
+    @Override
+    public String handlePaySuccess(AddRechargeLogParams params) {
+        CloudRestEntity entity = client.addRechargeLog(params);
+        return entity != null ? entity.getResult() : "充值出现问题，请提交问题反馈";
     }
 
     /**

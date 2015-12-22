@@ -40,6 +40,7 @@ import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
+import com.xxs.leon.xxs.richeditor.RichEditor;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
 import com.xxs.leon.xxs.ui.CommonDialog;
 import com.xxs.leon.xxs.utils.L;
@@ -63,7 +64,6 @@ import java.io.IOException;
 import java.util.Date;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
-import jp.wasabeef.richeditor.RichEditor;
 
 /**
  * Created by leon on 15-11-22.
@@ -346,7 +346,7 @@ public class CommentActivity extends AppCompatActivity{
     void afterUploadImage(String imageUrl){
         if(chooseImageDialog != null)
             chooseImageDialog.dismiss();
-        editor.insertImage(imageUrl,"xxs");
+        editor.insertImage(imageUrl,"小小书");
     }
 
     @OnActivityResult(REQUEST_CODE_ALBUM)

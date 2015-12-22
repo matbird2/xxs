@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.richeditor.RichEditor;
 import com.xxs.leon.xxs.utils.TimeUtil;
 
 import org.androidannotations.annotations.AfterInject;
@@ -24,8 +25,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-
-import jp.wasabeef.richeditor.RichEditor;
 
 /**
  * Created by maliang on 15/12/21.
@@ -70,6 +69,8 @@ public class PostDetailActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editor.setPadding(10, 10, 10, 10);
+        editor.setEnabled(false);
+        editor.setFocusable(false);
 
         doGetPostDetail();
     }

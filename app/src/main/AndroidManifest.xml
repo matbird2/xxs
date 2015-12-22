@@ -42,6 +42,9 @@
         <activity android:name=".activity.WebViewActivity_"
             android:windowSoftInputMode="adjustResize">
         </activity>
+        <activity android:name=".activity.PayWebViewActivity_"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity android:name=".activity.WatchActivity_"
             android:screenOrientation="landscape"
         android:theme="@style/AppTheme.NoActionBar"></activity>
@@ -49,6 +52,8 @@
             android:screenOrientation="landscape"
         android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.PostDetailActivity_">
+        </activity>
+        <activity android:name=".activity.RechargeActivity_">
         </activity>
     </application>
 

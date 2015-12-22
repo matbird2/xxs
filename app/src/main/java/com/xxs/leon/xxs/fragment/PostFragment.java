@@ -126,7 +126,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderPhoto(String thumbnailUrl,ImageView iv){
-        Glide.with(getActivity()).load(thumbnailUrl).crossFade(500).centerCrop().into(iv);
+        Glide.with(getActivity()).load(thumbnailUrl).crossFade(500).placeholder(R.drawable.glide_placeholder_bg).centerCrop().into(iv);
     }
 
     @Background

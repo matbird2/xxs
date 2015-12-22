@@ -84,7 +84,7 @@ public class Tools {
         File file = new File(filePath);
         try {
             FileOutputStream out = new FileOutputStream(file);
-            if (bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out)) {
+            if (bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)) {
                 out.flush();
                 out.close();
             }

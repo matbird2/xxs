@@ -99,6 +99,12 @@ public class UserActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Glide.with(this).load("http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg").into(backdrop);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if(currentUser != null){
             doGetUserInfo(currentUser.getObjectId());
         }
@@ -214,9 +220,16 @@ public class UserActivity extends AppCompatActivity{
 
     @Click(R.id.ll_money)
     void clickMoney(){
-        Dialog dialog = new Dialog(this,"关于银两","银两可用于应用内消费");
+        final Dialog dialog = new Dialog(this,"关于银两","银两可用于应用内消费");
         dialog.show();
-        dialog.getButtonAccept().setText("知道了");
+        dialog.getButtonAccept().setText("充值");
+        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RechargeActivity_.intent(UserActivity.this).start();
+            }
+        });
+        dialog.addCancelButton("知道了");
     }
 
     @Click(R.id.ll_loginout)

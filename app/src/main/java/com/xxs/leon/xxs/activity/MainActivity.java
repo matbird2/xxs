@@ -323,35 +323,12 @@ public class MainActivity extends AppCompatActivity{
                 doSendSignPost();
             }else if(currentItem == 1){
 //                ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);
-//                final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
-//                startActivity(intent);
-                testPay();
+                final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
+                startActivity(intent);
             }
         }
 
 //        L.i(L.TEST,"生成时间标签:"+ TimeUtil.generTimeShowWord("2015-12-16 15:23:03"));
-    }
-
-    @Background
-    void testPay(){
-        PayParams params = new PayParams();
-        params.setBody("测试充值0.02元");
-        params.setOrder_price(0.02);
-        params.setProduct_name("充值");
-        String result = engine.pay(params);
-
-        gotoWebActivity(result);
-    }
-
-    @UiThread(propagation = UiThread.Propagation.REUSE)
-    void gotoWebActivity(String result){
-        Bundle bundle = new Bundle();
-        bundle.putString("url", "#");
-        bundle.putString("html", result);
-        bundle.putInt("type",1);
-        Intent intent = new Intent(this,WebViewActivity_.class);
-        intent.putExtra("bundle",bundle);
-        startActivity(intent);
     }
 
     @Background

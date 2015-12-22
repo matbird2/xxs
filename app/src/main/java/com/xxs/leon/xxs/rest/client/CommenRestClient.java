@@ -2,6 +2,7 @@ package com.xxs.leon.xxs.rest.client;
 
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
@@ -98,4 +99,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/webpay")
     PayEntity webPay(PayParams params);
+
+    @Post("/functions/doAddMoneyLog")
+    CloudRestEntity addRechargeLog(AddRechargeLogParams params);
 }

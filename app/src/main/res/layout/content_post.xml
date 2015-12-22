@@ -245,7 +245,7 @@
         android:textAppearance="@style/XXS.TextAppearance.Body"
         android:padding="8dp"/>
 
-    <jp.wasabeef.richeditor.RichEditor
+    <com.xxs.leon.xxs.richeditor.RichEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
