@@ -128,6 +128,11 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
                         DetailActivity_.intent(context).albumId(album.getObjectId()).albumName(album.getName()).start();
                     }
                 });
+                if(album.getPrice() == 0){
+                    holder.free.setVisibility(View.VISIBLE);
+                }else{
+                    holder.free.setVisibility(View.GONE);
+                }
                 break;
         }
     }
@@ -139,12 +144,14 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<HomeNe
         TextView title;
         TextView type;
         TextView desc;
+        TextView free;
         public HomeAlbumViewHolder(View view){
             super(view);
             cover = (ImageView) view.findViewById(R.id.cover);
             title = (TextView) view.findViewById(R.id.title);
             type = (TextView) view.findViewById(R.id.type);
             desc = (TextView) view.findViewById(R.id.desc);
+            free = (TextView) view.findViewById(R.id.free);
             card_view = (CardView) view.findViewById(R.id.card_view);
         }
     }

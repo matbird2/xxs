@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.L;
 
@@ -63,13 +64,13 @@ public class DetailActivity extends AppCompatActivity{
     @Bean
     CommenEngineImpl engine;
 
-//    protected ExitActivityTransition exitTransition;
+    XSUser currentUser;
 
     private  Album album;
 
     @AfterInject
     void init(){
-
+        currentUser = engine.getCurrentUser();
     }
 
     @AfterViews
@@ -99,7 +100,7 @@ public class DetailActivity extends AppCompatActivity{
         pagenum.setText("页数：" + album.getImgs().size()+"页");
         size.setText("大小："+album.getLength()+"M");
         type.setText("类型："+ AlbumType.getType(album.getType()));
-        price.setText(album.getPrice() == 0 ? "免费观看" : "花费："+album.getPrice()+"银两");
+        price.setText(album.getPrice() == 0 ? "免费阅读" : "花费："+album.getPrice()+"银两");
         Glide.with(this).load(album.getCover()).into(backdrop);
     }
 
@@ -107,10 +108,22 @@ public class DetailActivity extends AppCompatActivity{
     void clickRead(){
         if(album == null)
             return ;
+        if(album.getPrice() == 0){
+            gotoWatch();
+        }else{
+            currentUser = engine.getCurrentUser();
+            if(currentUser == null){
+                LoginActivity_.intent(this).start();
+            }else{
+
+            }
+        }
+    }
+
+    private void gotoWatch(){
         Bundle bundle = new Bundle();
         bundle.putSerializable("albumList", album.getImgs());
         bundle.putString("baseurl", album.getFrom());
-//        WatchActivity_.intent(this).withOptions(bundle).start();
         Intent intent = new Intent(this,WatchActivity_.class);
         intent.putExtra("bundle",bundle);
         startActivity(intent);
