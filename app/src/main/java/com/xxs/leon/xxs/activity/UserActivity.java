@@ -221,6 +221,7 @@ public class UserActivity extends AppCompatActivity{
     @Click(R.id.ll_money)
     void clickMoney(){
         final Dialog dialog = new Dialog(this,"关于银两","银两可用于应用内消费");
+        dialog.addCancelButton("知道了");
         dialog.show();
         dialog.getButtonAccept().setText("充值");
         dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
@@ -229,7 +230,6 @@ public class UserActivity extends AppCompatActivity{
                 RechargeActivity_.intent(UserActivity.this).start();
             }
         });
-        dialog.addCancelButton("知道了");
     }
 
     @Click(R.id.ll_loginout)

@@ -6,10 +6,12 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gc.materialdesign.widgets.Dialog;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
@@ -115,9 +117,63 @@ public class DetailActivity extends AppCompatActivity{
             if(currentUser == null){
                 LoginActivity_.intent(this).start();
             }else{
-
+                checkHasRead(currentUser.getObjectId(),album.getObjectId());
             }
         }
+    }
+
+    @Background
+    void checkHasRead(String userId, String albumId){
+        boolean hasUserRead = engine.hasUserReadAlbumById(userId,albumId);
+        afterCheckHasRead(hasUserRead);
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void afterCheckHasRead(boolean hasUserRead){
+        if(hasUserRead){
+            gotoWatch();
+        }else{
+            getUserInfoAndCheckEnoughMoney();
+        }
+    }
+
+    @Background
+    void getUserInfoAndCheckEnoughMoney(){
+        if(currentUser == null || album == null)
+            return ;
+        XSUser userInfo = engine.getUserInfo(currentUser.getObjectId());
+        if(userInfo.getMoney() > album.getPrice()){
+            showCostMoneyDialog();
+        }else{
+            showNoEnoughMoneyDialog();
+        }
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void showCostMoneyDialog(){
+        final Dialog dialog = new Dialog(this,"花费银两","阅读该连环画需要花费 "+album.getPrice()+" 银两");
+        dialog.show();
+        dialog.getButtonAccept().setText("去阅读");
+        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO costmoney and goto watch
+            }
+        });
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void showNoEnoughMoneyDialog(){
+        final Dialog dialog = new Dialog(this,"银两不足","当前银两不足哦.");
+        dialog.addCancelButton("知道了");
+        dialog.show();
+        dialog.getButtonAccept().setText("充值");
+        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RechargeActivity_.intent(DetailActivity.this).start();
+            }
+        });
     }
 
     private void gotoWatch(){

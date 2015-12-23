@@ -138,4 +138,10 @@ public interface CommenEngine {
      * @return
      */
     String handlePaySuccess(AddRechargeLogParams params);
+
+    /**
+     * 判断用户是否阅读过该相册
+     * @return
+     */
+    boolean hasUserReadAlbumById(String userId,String albumId);
 }

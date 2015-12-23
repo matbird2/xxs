@@ -10,6 +10,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
+import com.xxs.leon.xxs.rest.bean.request.ReadCountEntity;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
@@ -213,6 +214,17 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     public String handlePaySuccess(AddRechargeLogParams params) {
         CloudRestEntity entity = client.addRechargeLog(params);
         return entity != null ? entity.getResult() : "充值出现问题，请提交问题反馈";
+    }
+
+    @Override
+    public boolean hasUserReadAlbumById(String userId, String albumId) {
+        String where = "where={\"user\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+userId+"\"},\"albumId\":\""+albumId+"\"}";
+        int count = 1;
+        int limit = 0;
+        ReadCountEntity entity = client.getReadLogCount(where, limit, count);
+        if(entity == null)
+            return false;
+        return entity.getCount() > 0 ? true : false;
     }
 
     /**

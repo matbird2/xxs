@@ -5,6 +5,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
+import com.xxs.leon.xxs.rest.bean.request.ReadCountEntity;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
@@ -102,4 +103,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doAddMoneyLog")
     CloudRestEntity addRechargeLog(AddRechargeLogParams params);
+
+    @Get("/classes/Read_Log/?where={where}&limit={limit}&count={count}")
+    ReadCountEntity getReadLogCount(String where,int limit,int count);
 }
