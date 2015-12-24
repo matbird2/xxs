@@ -69,6 +69,7 @@ public class DetailActivity extends AppCompatActivity{
     XSUser currentUser;
 
     private  Album album;
+    private boolean hasUserRead = false;
 
     @AfterInject
     void init(){
@@ -124,7 +125,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @Background
     void checkHasRead(String userId, String albumId){
-        boolean hasUserRead = engine.hasUserReadAlbumById(userId,albumId);
+        hasUserRead = engine.hasUserReadAlbumById(userId,albumId);
         afterCheckHasRead(hasUserRead);
     }
 
@@ -142,10 +143,12 @@ public class DetailActivity extends AppCompatActivity{
         if(currentUser == null || album == null)
             return ;
         XSUser userInfo = engine.getUserInfo(currentUser.getObjectId());
+        if(userInfo == null)
+            return ;
         if(userInfo.getMoney() > album.getPrice()){
             showCostMoneyDialog();
         }else{
-            showNoEnoughMoneyDialog();
+            showNoEnoughMoneyDialog(userInfo);
         }
     }
 
@@ -157,14 +160,37 @@ public class DetailActivity extends AppCompatActivity{
         dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO costmoney and goto watch
+                dialog.dismiss();
+                doCostMoney();
             }
         });
     }
 
+    @Background
+    void doCostMoney(){
+        if(album == null || currentUser == null)
+            return ;
+        String result = engine.costMoney(currentUser,album.getPrice());
+        if (result == null)
+            return ;
+        if("success".equals(result)){
+            gotoWatch();
+        }else{
+            showCostBackDialog(result);
+        }
+    }
+
     @UiThread(propagation = UiThread.Propagation.REUSE)
-    void showNoEnoughMoneyDialog(){
-        final Dialog dialog = new Dialog(this,"银两不足","当前银两不足哦.");
+    void showCostBackDialog(String result){
+        final Dialog dialog = new Dialog(this,"",result);
+        dialog.addCancelButton("知道了");
+        dialog.show();
+        dialog.getButtonAccept().setText("充值");
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void showNoEnoughMoneyDialog(XSUser userInfo){
+        final Dialog dialog = new Dialog(this,"银两不足","您目前只有"+userInfo.getMoney()+"银两，还不能阅读该连环画哦.");
         dialog.addCancelButton("知道了");
         dialog.show();
         dialog.getButtonAccept().setText("充值");
@@ -177,12 +203,21 @@ public class DetailActivity extends AppCompatActivity{
     }
 
     private void gotoWatch(){
+        validateAndAddReadLog();
+
         Bundle bundle = new Bundle();
         bundle.putSerializable("albumList", album.getImgs());
         bundle.putString("baseurl", album.getFrom());
         Intent intent = new Intent(this,WatchActivity_.class);
         intent.putExtra("bundle",bundle);
         startActivity(intent);
+    }
+
+    @Background
+    void validateAndAddReadLog(){
+        if(!hasUserRead && currentUser != null && album != null){
+            String result = engine.addReadLog(currentUser,album.getObjectId());
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.xxs.leon.xxs.rest.bean.request;
 
+import com.xxs.leon.xxs.rest.bean.ReadLog;
+
 import java.util.List;
 
 /**
@@ -7,7 +9,8 @@ import java.util.List;
  */
 public class ReadCountEntity {
     private int count;
-    private List results;
+
+    private List<ReadLog> results;
 
     public int getCount() {
         return count;
@@ -17,11 +20,11 @@ public class ReadCountEntity {
         this.count = count;
     }
 
-    public List getResults() {
+    public List<ReadLog> getResults() {
         return results;
     }
 
-    public void setResults(List results) {
+    public void setResults(List<ReadLog> results) {
         this.results = results;
     }
 }

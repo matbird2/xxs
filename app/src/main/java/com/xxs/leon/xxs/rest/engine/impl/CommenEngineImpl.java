@@ -7,7 +7,9 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
+import com.xxs.leon.xxs.rest.bean.request.CostMoneyParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.ReadCountEntity;
@@ -50,6 +52,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         int limit = 10;
         String order = "-updatedAt";
         AlbumListEntity results = client.getHomeNewAlbums(keys, where, limit, order);
+        L.w(L.TEST,"getHomeAlbums :"+(results == null));
         return results != null ? results.getResults() : null;
     }
 
@@ -97,10 +100,11 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         client.setHeader("Content-Type","image/jpeg");
         File file = new File(filePath);
         byte[] fileBytes = Tools.file2BetyArray(file);
-        L.i(L.TEST,"fileBytes length = "+fileBytes.length+"   file length = "+file.length());
+//        L.i(L.TEST,"fileBytes length = "+fileBytes.length+"   file length = "+file.length());
         if(fileBytes.length > 0 && fileBytes.length == file.length()){
             UploadEntity entity = client.uploadFile(fileBytes,remoteFileName);
-            L.i(L.TEST,"url:"+entity.getUrl());
+//            L.i(L.TEST,"url:"+entity.getUrl());
+            L.w(L.TEST, "uploadFile :" + (entity == null));
             return entity;
         }
         return null;
@@ -113,9 +117,10 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         params.setObjectId(user.getObjectId());
         params.setImgUrl(imgUrl);
         CloudRestEntity entity = client.updateUserPhoto(params);
+        L.w(L.TEST, "updateUserPhoto :" + (entity == null));
         UpdateBean bean = null;
         try {
-            L.i(L.TEST,"updateUserPhoto:"+entity.getResult());
+            L.i(L.TEST, "updateUserPhoto:" + entity.getResult());
             bean = objectMapper.readValue(entity.getResult(),UpdateBean.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -134,6 +139,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         params.setObjectId(user.getObjectId());
         params.setSessionToken(user.getSessionToken());
         CloudRestEntity entity = client.sendSignPost(params);
+        L.w(L.TEST, "sendSignPost :" + (entity == null));
         if(entity != null){
             return entity.getResult();
         }else{
@@ -149,6 +155,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         String order = "-updatedAt";
         int limit = 10;
         AlbumListEntity entity = client.getAlbumsByType(keys, where, limit, skip, order);
+        L.w(L.TEST, "getCategoryAlbum :" + (entity == null));
         return entity != null ? entity.getResults() : null;
     }
 
@@ -161,6 +168,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         int limit = 10;
         String include = "user[username|photo]";
         HomePostListEntity entity = client.getHomePostList(keys,where,limit,skip,order,include);
+        L.w(L.TEST, "getHomePostList :" + (entity == null));
         return entity != null ? entity.getResults() : null;
     }
 
@@ -172,6 +180,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         params.setWidth(width);
         params.setMode(0);
         ThumbnailEntity entity = client.getThumbnail(params);
+        L.w(L.TEST, "getThumbnail :" + (entity == null));
         return entity != null ? Constant.BASE_IMAGE_FILE_URL+entity.getUrl() : "";
     }
 
@@ -184,6 +193,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         params.setTitle(post.getTitle());
         params.setExcerpt(post.getExcerpt());
         CloudRestEntity entity = client.sendPost(params);
+        L.w(L.TEST, "sendPost :" + (entity == null));
         if(entity != null){
             return entity.getResult();
         }else{
@@ -196,12 +206,14 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         String keys = "excerpt,title,imgs,linked_url,content,status,classic,user";
         String include = "user[username|photo]";
         Post post = client.getPostDetailById(objectId, keys, include);
+        L.w(L.TEST, "getPostDetial :" + (post == null));
         return post != null ? post : null;
     }
 
     @Override
     public String pay(PayParams params) {
         PayEntity entity = client.webPay(params);
+        L.w(L.TEST, "pay :" + (entity == null));
         String result = null;
         if(entity != null && entity.getCode() == 0){
             return entity.getHtml();
@@ -213,6 +225,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     @Override
     public String handlePaySuccess(AddRechargeLogParams params) {
         CloudRestEntity entity = client.addRechargeLog(params);
+        L.w(L.TEST, "pay :" + (entity == null));
         return entity != null ? entity.getResult() : "充值出现问题，请提交问题反馈";
     }
 
@@ -221,10 +234,32 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         String where = "where={\"user\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+userId+"\"},\"albumId\":\""+albumId+"\"}";
         int count = 1;
         int limit = 0;
-        ReadCountEntity entity = client.getReadLogCount(where, limit, count);
+        ReadCountEntity entity = client.getReadLogCount(where,limit,count);
+        L.w(L.TEST,"hasUserReadAlbumById :"+(entity == null));
         if(entity == null)
             return false;
         return entity.getCount() > 0 ? true : false;
+    }
+
+    @Override
+    public String costMoney(XSUser user, int cost) {
+        CostMoneyParams params = new CostMoneyParams();
+        params.setObjectId(user.getObjectId());
+        params.setSessionToken(user.getSessionToken());
+        params.setCost(cost);
+        CloudRestEntity entity = client.costMoney(params);
+        L.w(L.TEST, "costMoney :" + (entity == null));
+        return entity != null ? entity.getResult() : null;
+    }
+
+    @Override
+    public String addReadLog(XSUser user, String albumId) {
+        AddReadLogParams params = new AddReadLogParams();
+        params.setObjectId(user.getObjectId());
+        params.setAlbumId(albumId);
+        CloudRestEntity entity = client.addReadLog(params);
+        L.w(L.TEST, "addReadLog :" + (entity == null));
+        return entity != null ? entity.getResult() : null;
     }
 
     /**

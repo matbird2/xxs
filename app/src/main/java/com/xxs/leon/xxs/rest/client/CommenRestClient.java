@@ -2,7 +2,9 @@ package com.xxs.leon.xxs.rest.client;
 
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
+import com.xxs.leon.xxs.rest.bean.request.CostMoneyParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.ReadCountEntity;
@@ -106,4 +108,10 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Get("/classes/Read_Log/?where={where}&limit={limit}&count={count}")
     ReadCountEntity getReadLogCount(String where,int limit,int count);
+
+    @Post("/functions/doCostMoney")
+    CloudRestEntity costMoney(CostMoneyParams params);
+
+    @Post("/functions/doAddReadLog")
+    CloudRestEntity addReadLog(AddReadLogParams params);
 }

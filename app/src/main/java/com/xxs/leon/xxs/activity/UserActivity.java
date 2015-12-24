@@ -31,6 +31,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
+import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.MatCacheUtils;
 import com.xxs.leon.xxs.utils.ToolbarUtil;
 import com.xxs.leon.xxs.utils.Tools;
@@ -267,7 +268,7 @@ public class UserActivity extends AppCompatActivity{
                     } while (cursor.moveToNext());
                 }
                 Bitmap bitmap = Tools.compressImageFromFile(fileName);
-                targeturl = Tools.saveToSdCard(bitmap,genPhotoName());
+                targeturl = Tools.saveToSdCard(bitmap,genPhotoName(fileName));
                 renderDialog(targeturl);
             }
         }
@@ -281,7 +282,7 @@ public class UserActivity extends AppCompatActivity{
             File file = new File(filePath);
             if (file.exists()) {
                 Bitmap bitmap = Tools.compressImageFromFile(filePath);
-                targeturl = Tools.saveToSdCard(bitmap, genPhotoName());
+                targeturl = Tools.saveToSdCard(bitmap, genPhotoName(filePath));
                 renderDialog(targeturl);
             }
         }
@@ -291,13 +292,15 @@ public class UserActivity extends AppCompatActivity{
         if(targeturl != null && dialog!= null){
             dialog.changeSecondView(true);
             ImageView preview = dialog.getPreview();
+            L.e(L.TEST,"targeturl : "+targeturl);
             Glide.with(this).load(targeturl).error(account_icon).bitmapTransform(new CropCircleTransformation(this)).into(preview);
         }
     }
 
-    private String genPhotoName(){
+    private String genPhotoName(String fileName){
+        String suffix = fileName.substring(fileName.lastIndexOf(".")+1);
         String filePath = MatCacheUtils.getCacheDirectory(this, true, "pic")
-                + dateTime + "_photo.jpg";
+                + dateTime + "_photo."+suffix;
         return filePath;
     }
 

@@ -144,4 +144,20 @@ public interface CommenEngine {
      * @return
      */
     boolean hasUserReadAlbumById(String userId,String albumId);
+
+    /**
+     * 扣除银两
+     * @param user
+     * @param cost
+     * @return
+     */
+    String costMoney(XSUser user,int cost);
+
+    /**
+     * 添加阅读记录
+     * @param user
+     * @param albumId
+     * @return
+     */
+    String addReadLog(XSUser user,String albumId);
 }

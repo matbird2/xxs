@@ -18,6 +18,10 @@ import java.security.MessageDigest;
  */
 public class Tools {
 
+    private static final long COMPRESS_SIZE_LEVEL1 = 400 * 1024;
+    private static final long COMPRESS_SIZE_LEVEL2 = 800 * 1024;
+    private static final long COMPRESS_SIZE_LEVEL3 = 1000 * 1024;
+
     /**
      * 1.通过AES加密字符串
      * 2.使用Base64对byte数组编码
@@ -82,15 +86,38 @@ public class Tools {
      */
     public static String saveToSdCard(Bitmap bitmap,String filePath) {
         File file = new File(filePath);
+        int quality ;
+        long bitmapSize = bitmap.getByteCount();
+        if(bitmapSize > COMPRESS_SIZE_LEVEL3 ){
+            quality = 85;
+        }else if(bitmapSize > COMPRESS_SIZE_LEVEL2){
+            quality = 90;
+        }else if(bitmapSize > COMPRESS_SIZE_LEVEL1){
+            quality = 95;
+        }else{
+            quality = 100;
+        }
+
+        Bitmap.CompressFormat format = null;
+        String suffix = filePath.substring(filePath.lastIndexOf(".")+1);
+        if("png".equals(suffix)){
+            format = Bitmap.CompressFormat.PNG;
+        }else if("webp".equals(suffix)){
+            format = Bitmap.CompressFormat.WEBP;
+        }else{
+            format = Bitmap.CompressFormat.JPEG;
+        }
+
         try {
             FileOutputStream out = new FileOutputStream(file);
-            if (bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)) {
+            if (bitmap.compress(format, quality, out)) {
                 out.flush();
                 out.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        L.e(L.TEST,"file length :"+file.length()+" filePath:"+filePath+" quality:"+quality+" format:"+format+" bitmapSize:"+bitmapSize+" suffix:"+suffix);
         return file.getAbsolutePath();
     }
 
