@@ -231,7 +231,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
 
     @Override
     public boolean hasUserReadAlbumById(String userId, String albumId) {
-        String where = "where={\"user\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+userId+"\"},\"albumId\":\""+albumId+"\"}";
+        String where = "{\"user\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+userId+"\"},\"albumId\":\""+albumId+"\"}";
         int count = 1;
         int limit = 0;
         ReadCountEntity entity = client.getReadLogCount(where,limit,count);
@@ -260,6 +260,19 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         CloudRestEntity entity = client.addReadLog(params);
         L.w(L.TEST, "addReadLog :" + (entity == null));
         return entity != null ? entity.getResult() : null;
+    }
+
+    @Override
+    public Post getTopPost() {
+        String keys = "excerpt,title,linked_url,user";
+        String where = "{\"status\":0,\"classic\":2}";
+        String order = "-createdAt";
+        int limit = 1;
+        int skip = 0;
+        String include = "user[username|photo]";
+        HomePostListEntity entity = client.getHomePostList(keys,where,limit,skip,order,include);
+        L.w(L.TEST, "getTopPost :" + (entity == null));
+        return entity != null && entity.getResults().size()>0 ? entity.getResults().get(0) : null;
     }
 
     /**

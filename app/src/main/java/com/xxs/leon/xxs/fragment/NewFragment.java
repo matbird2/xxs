@@ -15,6 +15,7 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.HomeNewAlbumRecyclerViewAdapter;
 import com.xxs.leon.xxs.adapter.TestRecyclerViewAdapter;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.L;
 
@@ -42,7 +43,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private LinearLayoutManager mLayoutManager;
     RecyclerViewMaterialAdapter adapter;
     private int lastVisibleItem;
-    private List<Album> mContentItems = new ArrayList<>();
+    private List<Object> mContentItems = new ArrayList<>();
 
     @Bean
     CommenEngineImpl engine;
@@ -62,29 +63,6 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                         .getDisplayMetrics()));
 
-//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-//
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView,
-//                                             int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                if (newState == RecyclerView.SCROLL_STATE_IDLE
-//                        && lastVisibleItem + 1 == adapter.getItemCount()) {
-//                    swipeRefreshLayout.setRefreshing(true);
-//                    L.i(L.TEST,"last");
-//                    // 此处在现实项目中，请换成网络请求数据代码，sendRequest .....
-//                    handler.sendEmptyMessageDelayed(0, 3000);
-//                }
-//            }
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-//            }
-//
-//        });
-
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -98,19 +76,39 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         loadData();
     }
 
+    private void loadData(){
+        loadAlbumData();
+        loadTopPostData();
+    }
+
     @Background
-    void loadData(){
+    void loadAlbumData(){
         List<Album> results = engine.getHomeAlbums();
         if(results != null){
-            updateView(results);
+            updateAlbumView(results);
+        }
+    }
+
+    @Background
+    void loadTopPostData(){
+        Post topPost = engine.getTopPost();
+        L.e(L.TEST, "post is null? " + (topPost == null));
+        if(topPost != null){
+            updateTopPostView(topPost);
         }
     }
 
     @UiThread
-    void updateView(List<Album> results){
+    void updateAlbumView(List<Album> results){
         swipeRefreshLayout.setRefreshing(false);
         mContentItems.addAll(results);
-        adapter.notifyDataSetChanged();
+        adapter.mvp_notifyDataSetChanged();
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void updateTopPostView(Post post){
+        mContentItems.add(0,post);
+        adapter.mvp_notifyDataSetChanged();
     }
 
     @Override

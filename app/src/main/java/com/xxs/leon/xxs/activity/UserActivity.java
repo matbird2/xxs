@@ -99,16 +99,12 @@ public class UserActivity extends AppCompatActivity{
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Glide.with(this).load("http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg").into(backdrop);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         if(currentUser != null){
             doGetUserInfo(currentUser.getObjectId());
         }
+
+        Glide.with(this).load("http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg").into(backdrop);
+
     }
 
     @Background

@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity{
     IconicsDrawable peopleDrawable;
 
     XSUser resultUser;
+    private IProfile profile;
 
     @AfterInject
     void init(){
@@ -137,14 +138,16 @@ public class MainActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderUserView(XSUser user){
-//        if(profile != null ){
-////            ((ProfileDrawerItem)profile)
-//        }
+        if(profile != null ){
+            ((ProfileDrawerItem)profile).withIcon(user.getPhoto());
+            ((ProfileDrawerItem)profile).withName(user.getUsername());
+        }
 
     }
 
+
     private void initDrawerView(){
-        final IProfile profile = new ProfileDrawerItem().withName("xxx").withEmail("ooo@111").withIcon("https://avatars3.githubusercontent.com/u/1476232?v=3&s=460").withIdentifier(6);
+        profile = new ProfileDrawerItem().withName("").withIcon("#").withIdentifier(6);
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)

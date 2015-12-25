@@ -160,4 +160,10 @@ public interface CommenEngine {
      * @return
      */
     String addReadLog(XSUser user,String albumId);
+
+    /**
+     * 获取首页头条公告
+     * @return
+     */
+    Post getTopPost();
 }

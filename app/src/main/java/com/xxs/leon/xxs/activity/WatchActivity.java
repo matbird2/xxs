@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -43,6 +44,8 @@ public class WatchActivity extends AppCompatActivity{
 
     @ViewById
     protected PinchImageViewPager pager;
+    @ViewById
+    protected TextView tv_index;
 
     private ArrayList<String> albumList;
     private String baseurl;
@@ -74,13 +77,13 @@ public class WatchActivity extends AppCompatActivity{
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
                 PinchImageView piv;
-                if(viewCache.size() > 0){
+                if (viewCache.size() > 0) {
                     piv = viewCache.remove();
                     piv.reset();
-                }else{
+                } else {
                     piv = new PinchImageView(WatchActivity.this);
                 }
-                Glide.with(WatchActivity.this).load(baseurl+albumList.get(position)).fitCenter().into(piv);
+                Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).fitCenter().into(piv);
                 container.addView(piv);
                 return piv;
             }
@@ -95,6 +98,23 @@ public class WatchActivity extends AppCompatActivity{
             @Override
             public void setPrimaryItem(ViewGroup container, int position, Object object) {
                 pager.setMainPinchImageView((PinchImageView) object);
+            }
+        });
+
+        pager.setOnPageChangeListener(new PinchImageViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tv_index.setText((position+1)+"/"+albumList.size());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
     }
