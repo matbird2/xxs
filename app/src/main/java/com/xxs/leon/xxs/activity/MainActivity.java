@@ -99,18 +99,18 @@ public class MainActivity extends AppCompatActivity{
     IconicsDrawable peopleDrawable;
 
     XSUser resultUser;
-    private IProfile profile;
+//    private IProfile profile;
 
     @AfterInject
     void init(){
         initIconRes();
+        loadUserInfo();
     }
 
     @AfterViews
     void initView(){
         initMaterialViewpager();
         initDrawerView();
-        loadUserInfo();
     }
 
     void initIconRes(){
@@ -138,27 +138,31 @@ public class MainActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderUserView(XSUser user){
-        if(profile != null ){
-            ((ProfileDrawerItem)profile).withIcon(user.getPhoto());
-            ((ProfileDrawerItem)profile).withName(user.getUsername());
-        }
+        if(defualtProfile != null)
+            headerResult.removeProfile(defualtProfile);
+        IProfile userProfile = new ProfileDrawerItem().withName(resultUser.getUsername()).withIcon(resultUser.getPhoto()).withIdentifier(6);
+        headerResult.addProfile(userProfile,0);
 
     }
 
-
+    IProfile defualtProfile = null;
     private void initDrawerView(){
-        profile = new ProfileDrawerItem().withName("").withIcon("#").withIdentifier(6);
+        defualtProfile = new ProfileDrawerItem().withName("").withIcon("http://avatar.l99.com/200x222/22/MjAxMzA4MjcxMDM3NDhfMTQuMTA3LjIwLjEzN181Mjg1MjA=.jpg").withIdentifier(6);
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
-                .addProfiles(profile)
+                .addProfiles(defualtProfile)
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean current) {
                         //IMPORTANT! notify the MiniDrawer about the profile click
                         miniResult.onProfileClick();
-                        if(profile.getIdentifier() == 6){
-                            startActivity(new Intent(MainActivity.this,LoginGuidActivity_.class));
+                        if (profile.getIdentifier() == 6) {
+                            if(engine.getCurrentUser() == null){
+                                LoginActivity_.intent(MainActivity.this).start();
+                            }else{
+                                UserActivity_.intent(MainActivity.this).start();
+                            }
                         }
                         //false if you have not consumed the event and it should close the drawer
                         return false;
@@ -251,7 +255,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public Fragment getItem(int position) {
-                switch (position % 3) {
+                switch (position % 2) {
                     case 0:
                         return new NewFragment_();
                     case 1:
@@ -259,24 +263,24 @@ public class MainActivity extends AppCompatActivity{
                     //case 2:
                     //    return WebViewFragment.newInstance();
                     default:
-                        return RecyclerViewFragment.newInstance();
+                        return new NewFragment_();
                 }
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return 2;
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                switch (position % 3) {
+                switch (position % 2) {
                     case 0:
                         return "最新";
                     case 1:
                         return "Ta说";
-                    case 2:
-                        return "推荐";
+//                    case 2:
+//                        return "推荐";
                 }
                 return "";
             }
@@ -298,11 +302,11 @@ public class MainActivity extends AppCompatActivity{
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.blue,
                                 "http://tupian.qqjay.com/u/2013/1127/19_222949_3.jpg");
-                    case 2:
-                        logo.setVisibility(View.INVISIBLE);
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.cyan,
-                                "http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg");
+//                    case 2:
+//                        logo.setVisibility(View.INVISIBLE);
+//                        return HeaderDesign.fromColorResAndUrl(
+//                                R.color.cyan,
+//                                "http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg");
                 }
 
                 //execute others actions if needed (ex : modify your header logo)

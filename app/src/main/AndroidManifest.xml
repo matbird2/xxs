@@ -13,13 +13,16 @@
         android:theme="@style/AppTheme"
         android:name=".XXSApplication_">
         <activity
-            android:name=".activity.MainActivity_"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".activity.SplashActivity_"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity_"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".test.SecondActivity_" >
         </activity>
@@ -57,6 +60,9 @@
         <activity android:name=".activity.RechargeActivity_">
         </activity>
         <activity android:name=".activity.ShowWebImageActivity_">
+        </activity>
+        <activity android:name=".activity.GuideActivity_"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
     </application>
 

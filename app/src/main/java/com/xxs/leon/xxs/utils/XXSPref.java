@@ -1,5 +1,6 @@
 package com.xxs.leon.xxs.utils;
 
+import org.androidannotations.annotations.sharedpreferences.DefaultBoolean;
 import org.androidannotations.annotations.sharedpreferences.DefaultString;
 import org.androidannotations.annotations.sharedpreferences.SharedPref;
 
@@ -11,5 +12,8 @@ public interface XXSPref {
 
     @DefaultString("")
     String userInfo();
+
+    @DefaultBoolean(true)
+    boolean isFirstOpen();
 
 }
