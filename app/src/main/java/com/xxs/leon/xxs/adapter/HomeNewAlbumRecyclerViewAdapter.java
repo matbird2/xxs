@@ -27,6 +27,7 @@ import com.xxs.leon.xxs.activity.WebViewActivity_;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Post;
+import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
 
 import org.androidannotations.annotations.EBean;

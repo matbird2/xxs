@@ -1,6 +1,7 @@
 package com.xxs.leon.xxs.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gc.materialdesign.widgets.Dialog;
+import com.squareup.picasso.Picasso;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
@@ -32,6 +34,7 @@ import org.androidannotations.annotations.ViewById;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,14 +100,17 @@ public class DetailActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderViewAfterRequest(Album album){
-        L.i(L.TEST,"cover:"+album.getCover());
+        L.i(L.TEST, "cover:" + album.getCover());
         toolbar.setTitle(album.getName());
         descriview.setText(album.getDescri());
         pagenum.setText("页数：" + album.getImgs().size()+"页");
         size.setText("大小："+album.getLength()+"M");
         type.setText("类型："+ AlbumType.getType(album.getType()));
-        price.setText(album.getPrice() == 0 ? "免费阅读" : "花费："+album.getPrice()+"银两");
-        Glide.with(this).load(album.getCover()).into(backdrop);
+        price.setText(album.getPrice() == 0 ? "免费阅读" : "花费：" + album.getPrice() + "银两");
+//        Glide.with(this).load(Uri.decode("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")).error(R.drawable.glide_placeholder_bg).into(backdrop);
+//        Glide.with(this).load(album.getCover()).into(backdrop);
+        Picasso.with(this).load("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")
+                .centerCrop().fit().into(backdrop);
     }
 
     @Click(R.id.read)

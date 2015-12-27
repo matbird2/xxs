@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity{
 
     IProfile defualtProfile = null;
     private void initDrawerView(){
+//        defualtProfile = new ProfileDrawerItem().withName("").withIcon("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg").withIdentifier(6);
         defualtProfile = new ProfileDrawerItem().withName("").withIcon("http://avatar.l99.com/200x222/22/MjAxMzA4MjcxMDM3NDhfMTQuMTA3LjIwLjEzN181Mjg1MjA=.jpg").withIdentifier(6);
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
