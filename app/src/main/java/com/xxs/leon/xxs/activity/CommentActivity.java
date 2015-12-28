@@ -28,6 +28,7 @@ import com.kogitune.activity_transition.ExitActivityTransition;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Post;
@@ -416,5 +417,17 @@ public class CommentActivity extends AppCompatActivity{
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

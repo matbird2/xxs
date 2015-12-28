@@ -3,6 +3,7 @@ package com.xxs.leon.xxs.activity;
 import android.app.Activity;
 import android.support.v4.view.ViewPager;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.GuideViewPagerAdapter;
 
@@ -33,5 +34,17 @@ public class GuideActivity extends Activity{
         viewpager.setAdapter(adapter);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
 }

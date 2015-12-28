@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.gc.materialdesign.widgets.SnackBar;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
@@ -42,7 +43,7 @@ public class LoginGuidActivity extends AppCompatActivity{
 
     @Click(R.id.register)
     void clickRegister(){
-        startActivity(new Intent(this,RegisterActivity_.class));
+        startActivity(new Intent(this, RegisterActivity_.class));
 //        testUpload();
 //        testUpdateUserPhoto();
     }
@@ -69,4 +70,17 @@ public class LoginGuidActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
 }

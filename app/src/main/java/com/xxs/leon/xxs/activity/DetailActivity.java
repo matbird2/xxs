@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gc.materialdesign.widgets.Dialog;
 import com.squareup.picasso.Picasso;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
@@ -103,14 +104,14 @@ public class DetailActivity extends AppCompatActivity{
         L.i(L.TEST, "cover:" + album.getCover());
         toolbar.setTitle(album.getName());
         descriview.setText(album.getDescri());
-        pagenum.setText("页数：" + album.getImgs().size()+"页");
+        pagenum.setText("页数：" + album.getImgs().size() + "页");
         size.setText("大小："+album.getLength()+"M");
         type.setText("类型："+ AlbumType.getType(album.getType()));
         price.setText(album.getPrice() == 0 ? "免费阅读" : "花费：" + album.getPrice() + "银两");
 //        Glide.with(this).load(Uri.decode("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")).error(R.drawable.glide_placeholder_bg).into(backdrop);
-//        Glide.with(this).load(album.getCover()).into(backdrop);
-        Picasso.with(this).load("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")
-                .centerCrop().fit().into(backdrop);
+        Glide.with(this).load(album.getCover()).into(backdrop);
+//        Picasso.with(this).load("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")
+//                .centerCrop().fit().into(backdrop);
     }
 
     @Click(R.id.read)
@@ -124,7 +125,7 @@ public class DetailActivity extends AppCompatActivity{
             if(currentUser == null){
                 LoginActivity_.intent(this).start();
             }else{
-                checkHasRead(currentUser.getObjectId(),album.getObjectId());
+                checkHasRead(currentUser.getObjectId(), album.getObjectId());
             }
         }
     }
@@ -176,7 +177,7 @@ public class DetailActivity extends AppCompatActivity{
     void doCostMoney(){
         if(album == null || currentUser == null)
             return ;
-        String result = engine.costMoney(currentUser,album.getPrice());
+        String result = engine.costMoney(currentUser, album.getPrice());
         if (result == null)
             return ;
         if("success".equals(result)){
@@ -215,7 +216,7 @@ public class DetailActivity extends AppCompatActivity{
         bundle.putSerializable("albumList", album.getImgs());
         bundle.putString("baseurl", album.getFrom());
         Intent intent = new Intent(this,WatchActivity_.class);
-        intent.putExtra("bundle",bundle);
+        intent.putExtra("bundle", bundle);
         startActivity(intent);
     }
 
@@ -233,5 +234,17 @@ public class DetailActivity extends AppCompatActivity{
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

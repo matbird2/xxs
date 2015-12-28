@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.gc.materialdesign.widgets.Dialog;
 import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -42,6 +43,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.fragment.NewFragment_;
 import com.xxs.leon.xxs.fragment.PostFragment_;
@@ -68,6 +70,11 @@ import org.androidannotations.annotations.ViewById;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import cn.bmob.v3.listener.BmobUpdateListener;
+import cn.bmob.v3.update.BmobUpdateAgent;
+import cn.bmob.v3.update.UpdateResponse;
+import cn.bmob.v3.update.UpdateStatus;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity{
@@ -109,6 +116,27 @@ public class MainActivity extends AppCompatActivity{
 
     @AfterViews
     void initView(){
+        BmobUpdateAgent.setUpdateOnlyWifi(false);
+        BmobUpdateAgent.update(MainActivity.this);
+        BmobUpdateAgent.setUpdateListener(new BmobUpdateListener() {
+            @Override
+            public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
+                if (updateStatus == UpdateStatus.Yes) {//版本有更新
+
+                } else if (updateStatus == UpdateStatus.No) {
+                    Toast.makeText(MainActivity.this, "版本无更新", Toast.LENGTH_SHORT).show();
+                } else if (updateStatus == UpdateStatus.EmptyField) {//此提示只是提醒开发者关注那些必填项，测试成功后，无需对用户提示
+                    Toast.makeText(MainActivity.this, "请检查你AppVersion表的必填项，1、target_size（文件大小）是否填写；2、path或者android_url两者必填其中一项。", Toast.LENGTH_SHORT).show();
+                } else if (updateStatus == UpdateStatus.IGNORED) {
+                    Toast.makeText(MainActivity.this, "该版本已被忽略更新", Toast.LENGTH_SHORT).show();
+                } else if (updateStatus == UpdateStatus.ErrorSizeFormat) {
+                    Toast.makeText(MainActivity.this, "请检查target_size填写的格式，请使用file.length()方法获取apk大小。", Toast.LENGTH_SHORT).show();
+                } else if (updateStatus == UpdateStatus.TimeOut) {
+                    Toast.makeText(MainActivity.this, "查询出错或查询超时", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         initMaterialViewpager();
         initDrawerView();
     }
@@ -189,7 +217,7 @@ public class MainActivity extends AppCompatActivity{
                         new PrimaryDrawerItem().withName("我的").withIcon(GoogleMaterial.Icon.gmd_account_circle).withIdentifier(3),
 
                         new SectionDrawerItem().withName("其他"),
-                        new SecondaryDrawerItem().withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings),
+                        new SecondaryDrawerItem().withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(4),
                         new SecondaryDrawerItem().withName("联系").withIcon(GoogleMaterial.Icon.gmd_format_color_fill).withTag("Bullhorn")
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -207,6 +235,8 @@ public class MainActivity extends AppCompatActivity{
                             }else{
                                 LoginActivity_.intent(MainActivity.this).start();
                             }
+                        }else if(drawerItem.getIdentifier() == 4){
+//                            BmobUpdateAgent.initAppVersion(MainActivity.this);
                         }
                         return miniResult.onItemClick(drawerItem);
                     }
@@ -376,4 +406,17 @@ public class MainActivity extends AppCompatActivity{
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
 }

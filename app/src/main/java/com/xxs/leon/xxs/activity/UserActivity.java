@@ -24,6 +24,7 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
@@ -118,8 +119,8 @@ public class UserActivity extends AppCompatActivity{
         if(dialog != null)
             dialog.dismiss();
         name.setText(resultUser.getUsername());
-        point.setText(resultUser.getPoint()+"");
-        money.setText(resultUser.getMoney()+"");
+        point.setText(resultUser.getPoint() + "");
+        money.setText(resultUser.getMoney() + "");
         sign.setText(resultUser.getSignword());
         Glide.with(this).load(resultUser.getPhoto()+"").error(account_icon).bitmapTransform(new CropCircleTransformation(this)).into(photo);
     }
@@ -313,4 +314,17 @@ public class UserActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
 }

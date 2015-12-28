@@ -22,6 +22,7 @@ import com.transitionseverywhere.Scene;
 import com.transitionseverywhere.Slide;
 import com.transitionseverywhere.TransitionManager;
 import com.transitionseverywhere.TransitionSet;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.utils.L;
 
@@ -168,7 +169,7 @@ public class CategoryActivity extends AppCompatActivity{
         Bundle bundle = new Bundle();
         bundle.putInt("type",type);
         Intent intent = new Intent(CategoryActivity.this,AlbumListActivity_.class);
-        intent.putExtra("bundle",bundle);
+        intent.putExtra("bundle", bundle);
         startActivity(intent);
     }
 
@@ -200,5 +201,17 @@ public class CategoryActivity extends AppCompatActivity{
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

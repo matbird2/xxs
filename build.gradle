@@ -23,7 +23,9 @@ ext {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
     }
 }
 

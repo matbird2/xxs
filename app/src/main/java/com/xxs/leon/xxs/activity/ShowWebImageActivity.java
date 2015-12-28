@@ -3,6 +3,7 @@ package com.xxs.leon.xxs.activity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.wedget.pinch.PinchImageView;
 
@@ -36,5 +37,17 @@ public class ShowWebImageActivity extends AppCompatActivity{
     @Click(R.id.web_image)
     void clickImage(){
         this.finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

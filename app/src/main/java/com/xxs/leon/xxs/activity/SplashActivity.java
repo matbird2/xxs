@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.os.SystemClock;
 import android.view.KeyEvent;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import cn.bmob.v3.Bmob;
 
 /**
  * Created by leon on 15-12-26.
@@ -24,17 +28,13 @@ public class SplashActivity extends Activity{
 
     @AfterInject
     void init(){
+        Bmob.initialize(this, Constant.X_BMOB_APPLICATION_ID);
     }
 
     @AfterViews
     void initViews(){
         startTime = System.currentTimeMillis();
         switchOpenView();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 
 
@@ -74,5 +74,17 @@ public class SplashActivity extends Activity{
             return false;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

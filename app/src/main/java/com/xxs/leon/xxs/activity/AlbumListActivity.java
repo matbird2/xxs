@@ -12,6 +12,7 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.HomeNewAlbumRecyclerViewAdapter;
@@ -169,5 +170,17 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

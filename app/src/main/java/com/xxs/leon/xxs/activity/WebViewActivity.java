@@ -16,6 +16,7 @@ import android.webkit.WebViewClient;
 
 import com.gc.materialdesign.views.ProgressBarIndeterminateDeterminate;
 import com.gc.materialdesign.widgets.SnackBar;
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.utils.L;
 
@@ -140,5 +141,17 @@ public class WebViewActivity extends AppCompatActivity{
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

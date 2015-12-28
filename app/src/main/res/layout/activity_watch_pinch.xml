@@ -16,4 +16,14 @@
         android:layout_alignParentRight="true"
         android:padding="10dp"
         android:textAppearance="@style/XXS.TextAppearance.Body.Primary" />
+
+    <TextView
+        android:id="@+id/tv_fittype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全屏"
+        android:textAppearance="@style/XXS.TextAppearance.Body.Primary"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:layout_toLeftOf="@id/tv_index"/>
 </RelativeLayout>

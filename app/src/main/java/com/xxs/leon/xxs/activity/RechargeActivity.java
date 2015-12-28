@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -52,7 +54,7 @@ public class RechargeActivity extends AppCompatActivity{
     }
     @Click(R.id.ch5)
     void recharge5(){
-        pay(5,55);
+        pay(5, 55);
     }
     @Click(R.id.ch10)
     void recharge10(){
@@ -81,11 +83,12 @@ public class RechargeActivity extends AppCompatActivity{
         params.setProduct_name("小小书应用充值");
         String result = engine.pay(params);
 
-        gotoPayWebActivity(result,income);
+        gotoPayWebActivity(result, income);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void gotoPayWebActivity(String result,int income){
+        L.i(L.TEST,"pay result ==> "+result);
         Bundle bundle = new Bundle();
         bundle.putString("url", "#");
         bundle.putString("html", result);
@@ -104,4 +107,17 @@ public class RechargeActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
 }

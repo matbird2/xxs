@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xxs.leon.xxs" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
@@ -64,6 +67,18 @@
         <activity android:name=".activity.GuideActivity_"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
+
+        <!-- 友盟 -->
+        <meta-data android:value="5680e2dbe0f55a49f50002a2" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="xxs" android:name="UMENG_CHANNEL"/>
+
+        <!-- bmob -->
+        <meta-data android:value="xxs" android:name="BMOB_CHANNEL"/>
+        <activity
+            android:name="cn.bmob.v3.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
     </application>
 
 </manifest>

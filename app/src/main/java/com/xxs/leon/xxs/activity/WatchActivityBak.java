@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.WatchViewpagerAdapter;
 
@@ -84,5 +85,17 @@ public class WatchActivityBak extends AppCompatActivity{
 //            Glide.with(WatchActivity.this).load(baseurl+albumList.get(i)).into(imageView);
         }
         adapter.appendList(imageViews);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }
