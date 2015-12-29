@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xxs.leon.xxs" >
+    package="com.xxs.leon.xxs">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -66,6 +66,8 @@
         </activity>
         <activity android:name=".activity.GuideActivity_"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+        </activity>
+        <activity android:name=".activity.SettingsActivity_">
         </activity>
 
         <!-- 友盟 -->

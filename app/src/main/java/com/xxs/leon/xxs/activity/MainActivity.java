@@ -237,6 +237,7 @@ public class MainActivity extends AppCompatActivity{
                             }
                         }else if(drawerItem.getIdentifier() == 4){
 //                            BmobUpdateAgent.initAppVersion(MainActivity.this);
+                            SettingsActivity_.intent(MainActivity.this).start();
                         }
                         return miniResult.onItemClick(drawerItem);
                     }
