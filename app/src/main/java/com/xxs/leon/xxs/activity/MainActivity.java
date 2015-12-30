@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity{
     void initView(){
         BmobUpdateAgent.setUpdateOnlyWifi(false);
         BmobUpdateAgent.update(MainActivity.this);
-        BmobUpdateAgent.setUpdateListener(new BmobUpdateListener() {
+        /*BmobUpdateAgent.setUpdateListener(new BmobUpdateListener() {
             @Override
             public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
                 if (updateStatus == UpdateStatus.Yes) {//版本有更新
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
                     Toast.makeText(MainActivity.this, "查询出错或查询超时", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         initMaterialViewpager();
         initDrawerView();
