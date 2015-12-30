@@ -4,6 +4,7 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
+import com.xxs.leon.xxs.rest.bean.request.CollectInstallationParams;
 import com.xxs.leon.xxs.rest.bean.request.CostMoneyParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
@@ -11,7 +12,9 @@ import com.xxs.leon.xxs.rest.bean.request.ReadCountEntity;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.TestParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
+import com.xxs.leon.xxs.rest.bean.request.UpdateUserNameParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
+import com.xxs.leon.xxs.rest.bean.request.UpdateUserSignWordParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
@@ -114,4 +117,13 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doAddReadLog")
     CloudRestEntity addReadLog(AddReadLogParams params);
+
+    @Post("/functions/doUpdateUserName")
+    CloudRestEntity updateUserName(UpdateUserNameParams params);
+
+    @Post("/functions/doUpdateUserSignword")
+    CloudRestEntity updateUserSignWord(UpdateUserSignWordParams params);
+
+    @Post("/functions/doCollectInstallation")
+    CloudRestEntity collectInstallation(CollectInstallationParams params);
 }

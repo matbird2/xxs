@@ -55,6 +55,14 @@
         android:background="@color/colorAccent"
         android:text="注册" />
 
+    <com.gc.materialdesign.views.ButtonFlat
+        android:id="@+id/gohome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:layout_centerHorizontal="true"
+        android:text="直接进入首页" />
+
     <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
         android:id="@+id/pb"
         android:layout_width="32dp"

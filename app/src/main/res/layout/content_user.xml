@@ -1,227 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
     android:layout_width="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_user">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-        <LinearLayout
-            android:id="@+id/ll_nick"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:showIn="@layout/activity_user">
 
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="290"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="cmd_cat"
-                app:ico_size="20dp" />
 
             <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1000"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:id="@+id/ll_nick"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:text="昵称"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="18sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="290"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="cmd_cat"
+                    app:ico_size="20dp" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1000"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="昵称"
+                        android:textAppearance="@style/XXS.TextAppearance.Subheading.Bold.Light" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="140"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="faw_angle_right"
+                    app:ico_size="20dp" />
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="140"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="faw_angle_right"
-                app:ico_size="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_point"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/ll_nick"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="290"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="cmd_numeric_0_box"
-                app:ico_size="20dp" />
 
             <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1000"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:id="@+id/ll_point"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/ll_nick"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:text="积分"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="18sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="290"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="cmd_numeric_0_box"
+                    app:ico_size="20dp" />
 
-                <TextView
-                    android:id="@+id/point"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1000"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="积分"
+                        android:textAppearance="@style/XXS.TextAppearance.Subheading.Bold.Light" />
+
+                    <TextView
+                        android:id="@+id/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="140"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="faw_angle_right"
+                    app:ico_size="20dp" />
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="140"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="faw_angle_right"
-                app:ico_size="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_money"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/ll_point"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="290"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="gmd_money_box"
-                app:ico_size="20dp" />
 
             <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1140"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:id="@+id/ll_money"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/ll_point"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:text="银两"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="18sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="290"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="gmd_money_box"
+                    app:ico_size="20dp" />
 
-                <TextView
-                    android:id="@+id/money"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1140"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="银两"
+                        android:textAppearance="@style/XXS.TextAppearance.Subheading.Bold.Light" />
+
+                    <TextView
+                        android:id="@+id/money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_sign"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/ll_money"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="290"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="cmd_pen"
-                app:ico_size="20dp" />
 
             <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1140"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:id="@+id/ll_sign"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/ll_money"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/sign"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_800"
-                    android:textSize="18sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="290"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="cmd_pen"
+                    app:ico_size="20dp" />
 
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1140"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/XXS.TextAppearance.Body.Light"
+                        android:layout_marginRight="8dp"/>
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_loginout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/ll_sign"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="290"
-                app:ico_color="@color/md_black_1000"
-                app:ico_icon="cmd_logout"
-                app:ico_size="20dp" />
 
             <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1140"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:id="@+id/ll_loginout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/ll_sign"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:text="注销"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="18sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="290"
+                    app:ico_color="@color/text_color_54_black"
+                    app:ico_icon="cmd_logout"
+                    app:ico_size="20dp" />
 
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1140"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="注销"
+                        android:textAppearance="@style/XXS.TextAppearance.Subheading.Bold.Light" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-</android.support.v4.widget.NestedScrollView>
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

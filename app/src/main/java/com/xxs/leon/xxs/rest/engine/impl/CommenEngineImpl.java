@@ -15,7 +15,9 @@ import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.ReadCountEntity;
 import com.xxs.leon.xxs.rest.bean.request.SendPostParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
+import com.xxs.leon.xxs.rest.bean.request.UpdateUserNameParams;
 import com.xxs.leon.xxs.rest.bean.request.UpdateUserPhotoParams;
+import com.xxs.leon.xxs.rest.bean.request.UpdateUserSignWordParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
@@ -273,6 +275,42 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         HomePostListEntity entity = client.getHomePostList(keys,where,limit,skip,order,include);
         L.w(L.TEST, "getTopPost :" + (entity == null));
         return entity != null && entity.getResults().size()>0 ? entity.getResults().get(0) : null;
+    }
+
+    @Override
+    public UpdateBean updateUserName(XSUser user, String username) {
+        UpdateUserNameParams params = new UpdateUserNameParams();
+        params.setSessionToken(user.getSessionToken());
+        params.setObjectId(user.getObjectId());
+        params.setUsername(username);
+        CloudRestEntity entity = client.updateUserName(params);
+        L.w(L.TEST, "updateUserName :" + (entity == null));
+        UpdateBean bean = null;
+        try {
+            L.i(L.TEST, "updateUserName:" + entity.getResult());
+            bean = objectMapper.readValue(entity.getResult(),UpdateBean.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
+    @Override
+    public UpdateBean updateUserSignWord(XSUser user, String signword) {
+        UpdateUserSignWordParams params = new UpdateUserSignWordParams();
+        params.setSessionToken(user.getSessionToken());
+        params.setObjectId(user.getObjectId());
+        params.setSignword(signword);
+        CloudRestEntity entity = client.updateUserSignWord(params);
+        L.w(L.TEST, "updateUserSignWord :" + (entity == null));
+        UpdateBean bean = null;
+        try {
+            L.i(L.TEST, "updateUserSignWord:" + entity.getResult());
+            bean = objectMapper.readValue(entity.getResult(),UpdateBean.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bean;
     }
 
     /**

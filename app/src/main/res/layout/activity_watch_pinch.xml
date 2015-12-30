@@ -25,5 +25,6 @@
         android:textAppearance="@style/XXS.TextAppearance.Body.Primary"
         android:layout_alignParentBottom="true"
         android:padding="10dp"
-        android:layout_toLeftOf="@id/tv_index"/>
+        android:layout_toLeftOf="@id/tv_index"
+        android:visibility="gone"/>
 </RelativeLayout>

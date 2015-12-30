@@ -19,8 +19,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:background="#4fc3f7">
+            android:paddingBottom="20dp">
 
             <LinearLayout
                 android:id="@+id/ll_user"
@@ -61,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textAppearance="@style/XXS.TextAppearance.Caption.White" />
+                        android:textAppearance="@style/XXS.TextAppearance.Caption" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -87,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:maxLines="2"
-                    android:textAppearance="@style/XXS.TextAppearance.Body.White" />
+                    android:textAppearance="@style/XXS.TextAppearance.Body.Light" />
             </LinearLayout>
         </RelativeLayout>
 

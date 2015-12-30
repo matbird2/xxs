@@ -12,50 +12,63 @@
     tools:showIn="@layout/activity_login">
 
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/account"
+    <RelativeLayout
+        android:id="@+id/rl_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="账号"
-        app:met_clearButton="true"
-        app:met_floatingLabel="highlight"
-        app:met_helperText="请输入账号" />
+        android:layout_centerInParent="true">
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/password"
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="账号"
+            app:met_clearButton="true"
+            app:met_floatingLabel="highlight"
+            app:met_helperText="请输入账号" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/account"
+            android:hint="密码"
+            android:inputType="textPassword"
+            app:met_clearButton="true"
+            app:met_floatingLabel="highlight"
+            app:met_helperText="请输入密码" />
+
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/login"
+            android:layout_width="220dip"
+            android:layout_height="60dip"
+            android:layout_below="@id/password"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorAccent"
+            android:text="登录" />
+
+        <com.gc.materialdesign.views.ButtonFlat
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login"
+            android:layout_centerHorizontal="true"
+            android:text="注册" />
+    </RelativeLayout>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/account"
-        android:hint="密码"
-        android:inputType="textPassword"
-        app:met_clearButton="true"
-        app:met_floatingLabel="highlight"
-        app:met_helperText="请输入密码" />
-
-
-    <com.gc.materialdesign.views.ButtonRectangle
-        android:id="@+id/login"
-        android:layout_width="220dip"
-        android:layout_height="60dip"
-        android:layout_below="@id/password"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorAccent"
-        android:text="登录" />
-
-    <com.gc.materialdesign.views.ButtonFlat
-        android:id="@+id/findpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login"
-        android:layout_centerHorizontal="true"
-        android:text="找回密码" />
-
+        android:layout_height="80dp"
+        android:layout_above="@id/rl_login"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginBottom="20dp"/>
 
     <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
         android:id="@+id/pb"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentRight="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </RelativeLayout>

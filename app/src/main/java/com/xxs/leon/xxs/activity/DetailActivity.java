@@ -67,6 +67,8 @@ public class DetailActivity extends AppCompatActivity{
     String albumId;
     @Extra
     String albumName;
+    @Extra
+    int enterType;
     @Bean
     CommenEngineImpl engine;
 
@@ -230,10 +232,25 @@ public class DetailActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
-            finish();
+            if(enterType == 0){
+                finish();
+            }else if(enterType == 1){
+                MainActivity_.intent(this).start();
+                finish();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(enterType == 0){
+            finish();
+        }else if(enterType == 1){
+            MainActivity_.intent(this).start();
+            finish();
+        }
     }
 
     @Override

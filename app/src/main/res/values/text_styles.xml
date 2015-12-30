@@ -88,6 +88,9 @@
     <style name="XXS.TextAppearance.Subheading.Bold" parent="XXS.TextAppearance.Subheading">
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="XXS.TextAppearance.Subheading.Bold.Light" parent="XXS.TextAppearance.Subheading.Light">
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="XXS.TextAppearance.Subheading.White.Bold" parent="XXS.TextAppearance.Subheading.White">
         <item name="android:textStyle">bold</item>
     </style>

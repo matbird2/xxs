@@ -16,6 +16,7 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -25,6 +26,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 /**
  * Created by maliang on 15/11/26.
@@ -46,10 +48,14 @@ public class RegisterActivity extends AppCompatActivity{
     protected Toolbar toolbar;
     @Bean
     CommenEngineImpl engine;
+    @Pref
+    XXSPref_ xxsPref;
 
     @AfterInject
     void init(){
-
+        if(xxsPref.isFirstOpen().get()){
+            xxsPref.isFirstOpen().put(false);
+        }
     }
 
     @AfterViews
@@ -121,6 +127,11 @@ public class RegisterActivity extends AppCompatActivity{
         else
             pb.setVisibility(View.VISIBLE);
 
+    }
+
+    @Click(R.id.gohome)
+    void clickGoHome(){
+        MainActivity_.intent(this).start();
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.activity.MainActivity_;
+import com.xxs.leon.xxs.activity.RegisterActivity_;
 import com.xxs.leon.xxs.ui.GuideViewItem;
 import com.xxs.leon.xxs.utils.XXSPref_;
 
@@ -32,14 +33,9 @@ public class GuideViewPagerAdapter extends PagerAdapter {
             R.drawable.guide2, R.drawable.guide3,R.drawable.guide4};
 
 
-    private void goHome() {
+    private void goRegister() {
         // 跳转
-        MainActivity_.intent(activity).start();
-        activity.finish();
-    }
-
-    private void setGuided() {
-        new XXSPref_(activity).isFirstOpen().put(false);
+        RegisterActivity_.intent(activity).start();
     }
 
     @Override
@@ -71,8 +67,7 @@ public class GuideViewPagerAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View v) {
                     // 设置已经引导
-                    setGuided();
-                    goHome();
+                    goRegister();
                 }
             });
         }

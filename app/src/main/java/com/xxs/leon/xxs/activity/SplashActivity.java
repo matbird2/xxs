@@ -3,18 +3,23 @@ package com.xxs.leon.xxs.activity;
 import android.app.Activity;
 import android.os.SystemClock;
 import android.view.KeyEvent;
+import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
+import com.xxs.leon.xxs.utils.Tools;
 import com.xxs.leon.xxs.utils.XXSPref_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
+import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
 
 /**
  * Created by leon on 15-12-26.
@@ -22,6 +27,8 @@ import cn.bmob.v3.Bmob;
 @EActivity(R.layout.activity_splash)
 public class SplashActivity extends Activity{
 
+    @ViewById
+    protected TextView version;
     @Pref
     XXSPref_ xxsPref;
     private long startTime;
@@ -29,10 +36,13 @@ public class SplashActivity extends Activity{
     @AfterInject
     void init(){
         Bmob.initialize(this, Constant.X_BMOB_APPLICATION_ID);
+        BmobInstallation.getCurrentInstallation(this).save();
+        BmobPush.startWork(this,Constant.X_BMOB_APPLICATION_ID);
     }
 
     @AfterViews
     void initViews(){
+        version.setText("版本："+Tools.getAppVersionName(this));
         startTime = System.currentTimeMillis();
         switchOpenView();
     }

@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.gc.materialdesign.widgets.Dialog;
+import com.gc.materialdesign.widgets.SnackBar;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
@@ -63,6 +64,7 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity{
     protected FrameLayout logo;
     @ViewById
     protected RelativeLayout content;
+    @Extra
+    int enterType;
 
     @Bean
     CommenEngineImpl engine;
@@ -213,12 +217,12 @@ public class MainActivity extends AppCompatActivity{
                 .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("首页").withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
-                        new PrimaryDrawerItem().withName("小书").withIcon(FontAwesome.Icon.faw_book).withBadge("22").withBadgeStyle(new BadgeStyle(Color.RED, Color.RED)).withIdentifier(2),
+                        new PrimaryDrawerItem().withName("小书").withIcon(FontAwesome.Icon.faw_book)/*.withBadge("22").withBadgeStyle(new BadgeStyle(Color.RED, Color.RED))*/.withIdentifier(2),
                         new PrimaryDrawerItem().withName("我的").withIcon(GoogleMaterial.Icon.gmd_account_circle).withIdentifier(3),
 
                         new SectionDrawerItem().withName("其他"),
                         new SecondaryDrawerItem().withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(4),
-                        new SecondaryDrawerItem().withName("联系").withIcon(GoogleMaterial.Icon.gmd_format_color_fill).withTag("Bullhorn")
+                        new SecondaryDrawerItem().withName("联系").withIcon(GoogleMaterial.Icon.gmd_format_color_fill).withIdentifier(5)
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -238,6 +242,8 @@ public class MainActivity extends AppCompatActivity{
                         }else if(drawerItem.getIdentifier() == 4){
 //                            BmobUpdateAgent.initAppVersion(MainActivity.this);
                             SettingsActivity_.intent(MainActivity.this).start();
+                        }else if(drawerItem.getIdentifier() == 5){
+                            ContractActivity_.intent(MainActivity.this).start();
                         }
                         return miniResult.onItemClick(drawerItem);
                     }
@@ -399,7 +405,18 @@ public class MainActivity extends AppCompatActivity{
         if (result != null && result.isDrawerOpen()) {
             result.closeDrawer();
         } else {
-            super.onBackPressed();
+            if (enterType == 0){
+                SnackBar snackBar = new SnackBar(this, "确定退出[小小书]?", "退出", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.finish();
+                        System.exit(0);
+                    }
+                });
+                snackBar.show();
+            }else if(enterType == 1){
+                finish();
+            }
         }
     }
 

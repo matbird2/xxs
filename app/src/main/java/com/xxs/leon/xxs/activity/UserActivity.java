@@ -9,8 +9,10 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -57,11 +59,13 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  * Created by maliang on 15/11/26.
  */
 @EActivity(R.layout.activity_user)
-public class UserActivity extends AppCompatActivity{
+public class UserActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final int REQUEST_CODE_ALBUM = 1;
     private static final int REQUEST_CODE_CAMERA = 2;
 
+    @ViewById
+    protected SwipeRefreshLayout swipeRefreshLayout;
     @ViewById
     protected ImageView backdrop;
     @ViewById
@@ -95,6 +99,14 @@ public class UserActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
+        swipeRefreshLayout.setColorSchemeColors(this.getResources().getColor(R.color.colorAccent));
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        // 这句话是为了，第一次进入页面的时候显示加载进度条
+        swipeRefreshLayout.setProgressViewOffset(true, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
+
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -116,6 +128,8 @@ public class UserActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderView(XSUser resultUser){
+        swipeRefreshLayout.setRefreshing(false);
+
         if(dialog != null)
             dialog.dismiss();
         name.setText(resultUser.getUsername());
@@ -143,8 +157,25 @@ public class UserActivity extends AppCompatActivity{
 
     @Click(R.id.ll_nick)
     void click1(){
-//        SnackBar snackBar = new SnackBar(this,"click","ok",null);
-//        snackBar.show();
+        UpdateUsernameActivity_.intent(this).start();
+    }
+
+    @Click(R.id.ll_sign)
+    void clickSignword(){
+        UpdateUserSignWordActivity_.intent(this).start();
+    }
+
+    @Click(R.id.ll_point)
+    void clickPoint(){
+        final Dialog dialog = new Dialog(this,"关于积分","积分越多等级越高哦~");
+        dialog.show();
+        dialog.getButtonAccept().setText("知道了");
+        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     @Click(R.id.photo)
@@ -327,4 +358,10 @@ public class UserActivity extends AppCompatActivity{
         MobclickAgent.onResume(this);
     }
 
+    @Override
+    public void onRefresh() {
+        if(currentUser != null){
+            doGetUserInfo(currentUser.getObjectId());
+        }
+    }
 }

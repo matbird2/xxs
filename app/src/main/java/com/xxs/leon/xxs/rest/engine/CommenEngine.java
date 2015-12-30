@@ -166,4 +166,20 @@ public interface CommenEngine {
      * @return
      */
     Post getTopPost();
+
+    /**
+     * 更新用户名
+     * @param user
+     * @param username
+     * @return
+     */
+    UpdateBean updateUserName(XSUser user,String username);
+
+    /**
+     * 更新用户签名
+     * @param user
+     * @param signword
+     * @return
+     */
+    UpdateBean updateUserSignWord(XSUser user,String signword);
 }
