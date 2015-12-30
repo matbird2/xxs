@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.activity.DetailActivity_;
 import com.xxs.leon.xxs.activity.MainActivity_;
+import com.xxs.leon.xxs.activity.PostDetailActivity_;
 import com.xxs.leon.xxs.utils.L;
 
 import java.io.IOException;
@@ -81,6 +82,11 @@ public class XXSPushMessageReceiver extends BroadcastReceiver {
                 break;
             }
             case 2: {
+                notificationIntent = new Intent(context, PostDetailActivity_.class);
+                notificationIntent.putExtra("postId",bean.getObjectId());
+                notificationIntent.putExtra("postTitle",bean.getTitle());
+                notificationIntent.putExtra("enterType",1);
+                notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 break;
             }
         }

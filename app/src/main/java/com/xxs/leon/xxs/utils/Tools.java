@@ -1,5 +1,6 @@
 package com.xxs.leon.xxs.utils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.List;
 
 /**
  * Created by maliang on 15/11/26.
@@ -168,8 +170,14 @@ public class Tools {
                 return "";
             }
         } catch (Exception e) {
-            L.e("VersionInfo", "Exception:"+e.getMessage());
+            L.e("VersionInfo", "Exception:" + e.getMessage());
         }
         return versionName;
+    }
+
+    public static int getActivityHeapSize(Context context){
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> runningTaskInfos = manager.getRunningTasks(1);
+        return runningTaskInfos != null ? runningTaskInfos.get(0).numActivities : 0;
     }
 }

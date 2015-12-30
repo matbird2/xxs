@@ -15,7 +15,9 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.richeditor.RichEditor;
+import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
+import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -52,6 +54,8 @@ public class PostDetailActivity extends AppCompatActivity{
     String postId;
     @Extra
     String postTitle;
+    @Extra
+    int enterType;
 
     @Bean
     CommenEngineImpl engine;
@@ -92,7 +96,7 @@ public class PostDetailActivity extends AppCompatActivity{
             editor.setHtml(post.getContent());
             username.setText(post.getUser().getUsername());
             timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
-            getPhotoThumbnail(post.getUser().getPhoto(),photo);
+            getPhotoThumbnail(post.getUser().getPhoto(), photo);
 
             if(post.getLinked_url() == null || "#".equals(post.getLinked_url())){
                 source.setVisibility(View.GONE);
@@ -128,9 +132,33 @@ public class PostDetailActivity extends AppCompatActivity{
     }
 
     @Override
+    public void onBackPressed() {
+        L.e(L.TEST, "activity size:" + Tools.getActivityHeapSize(this));
+        if(enterType == 0){
+            finish();
+        }else if(enterType == 1){
+            if(Tools.getActivityHeapSize(this) > 1){
+                finish();
+            }else{
+                MainActivity_.intent(this).start();
+                finish();
+            }
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
-            finish();
+            if(enterType == 0){
+                finish();
+            }else if(enterType == 1){
+                if(Tools.getActivityHeapSize(this) > 1){
+                    finish();
+                }else{
+                    MainActivity_.intent(this).start();
+                    finish();
+                }
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);

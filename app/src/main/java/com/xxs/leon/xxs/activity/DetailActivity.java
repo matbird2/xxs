@@ -21,6 +21,7 @@ import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.L;
+import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -235,8 +236,12 @@ public class DetailActivity extends AppCompatActivity{
             if(enterType == 0){
                 finish();
             }else if(enterType == 1){
-                MainActivity_.intent(this).start();
-                finish();
+                if(Tools.getActivityHeapSize(this) > 1){
+                    finish();
+                }else{
+                    MainActivity_.intent(this).start();
+                    finish();
+                }
             }
             return true;
         }
@@ -245,11 +250,16 @@ public class DetailActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
+        L.e(L.TEST,"activity size:"+ Tools.getActivityHeapSize(this));
         if(enterType == 0){
             finish();
         }else if(enterType == 1){
-            MainActivity_.intent(this).start();
-            finish();
+            if(Tools.getActivityHeapSize(this) > 1){
+                finish();
+            }else{
+                MainActivity_.intent(this).start();
+                finish();
+            }
         }
     }
 
