@@ -36,6 +36,8 @@ public class XXSPushMessageReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO Auto-generated method stub
          L.e(L.TEST, "客户端收到推送内容：" + intent.getStringExtra("msg"));
+        if(intent.getStringExtra("msg") == null)
+            return ;
          try {
              ObjectMapper objectMapper = new ObjectMapper();
              PushBean bean = objectMapper.readValue(intent.getStringExtra("msg"), PushBean.class);

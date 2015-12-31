@@ -57,6 +57,7 @@
 
     <com.gc.materialdesign.views.ButtonFlat
         android:id="@+id/gohome"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login"

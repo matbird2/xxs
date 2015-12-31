@@ -48,14 +48,9 @@ public class RegisterActivity extends AppCompatActivity{
     protected Toolbar toolbar;
     @Bean
     CommenEngineImpl engine;
-    @Pref
-    XXSPref_ xxsPref;
 
     @AfterInject
     void init(){
-        if(xxsPref.isFirstOpen().get()){
-            xxsPref.isFirstOpen().put(false);
-        }
     }
 
     @AfterViews
