@@ -17,6 +17,7 @@ import com.xxs.leon.xxs.adapter.TestRecyclerViewAdapter;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.ACache;
 import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
@@ -48,9 +49,11 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Bean
     CommenEngineImpl engine;
 
+    ACache aCache;
+
     @AfterInject
     void init() {
-
+        aCache = ACache.get(getActivity());
     }
 
     @AfterViews

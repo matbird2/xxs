@@ -48,6 +48,17 @@ public class ContractActivity extends AppCompatActivity{
         Bundle bundle = new Bundle();
         bundle.putString("url", "http://xiaoxiaoshu.bmob.cn");
         bundle.putString("html", "#");
+        bundle.putInt("type", 0);
+        Intent intent = new Intent(this,WebViewActivity_.class);
+        intent.putExtra("bundle", bundle);
+        startActivity(intent);
+    }
+
+    @Click(R.id.weibo)
+    void clickWeibo(){
+        Bundle bundle = new Bundle();
+        bundle.putString("url", "http://weibo.com/u/3822005793");
+        bundle.putString("html", "#");
         bundle.putInt("type",0);
         Intent intent = new Intent(this,WebViewActivity_.class);
         intent.putExtra("bundle",bundle);
