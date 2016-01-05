@@ -1,5 +1,7 @@
 package com.xxs.leon.xxs.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import com.xxs.leon.xxs.utils.Tools;
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -38,6 +41,17 @@ public class ContractActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    @Click(R.id.web)
+    void clickWeb(){
+        Bundle bundle = new Bundle();
+        bundle.putString("url", "http://xiaoxiaoshu.bmob.cn");
+        bundle.putString("html", "#");
+        bundle.putInt("type",0);
+        Intent intent = new Intent(this,WebViewActivity_.class);
+        intent.putExtra("bundle",bundle);
+        startActivity(intent);
     }
 
     @Override
