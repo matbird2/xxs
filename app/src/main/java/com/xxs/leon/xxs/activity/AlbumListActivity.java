@@ -19,6 +19,7 @@ import com.xxs.leon.xxs.adapter.HomeNewAlbumRecyclerViewAdapter;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
@@ -75,13 +76,8 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
 
     // 初始化跟listview相关的控件
     private void initListView(){
-        swipeRefreshLayout.setColorSchemeColors(this.getResources().getColor(R.color.colorAccent));
+        InitView.instance().initSwipeRefreshLayout(this,swipeRefreshLayout,true);
         swipeRefreshLayout.setOnRefreshListener(this);
-
-        // 这句话是为了，第一次进入页面的时候显示加载进度条
-        swipeRefreshLayout.setProgressViewOffset(true, 0, (int) TypedValue
-                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
-                        .getDisplayMetrics()));
 
         adapter = new AlbumListAdapter(this);
         gridLayoutManager = new GridLayoutManager(this,2);

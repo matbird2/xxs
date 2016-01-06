@@ -16,6 +16,7 @@ import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.HomePostListAdapter;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
@@ -65,13 +66,7 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     // 初始化跟listview相关的控件
     private void initListView(){
-        swipeRefreshLayout.setColorSchemeColors(this.getResources().getColor(R.color.colorAccent));
-        swipeRefreshLayout.setOnRefreshListener(this);
-
-        // 这句话是为了，第一次进入页面的时候显示加载进度条
-        swipeRefreshLayout.setProgressViewOffset(true, 0, (int) TypedValue
-                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
-                        .getDisplayMetrics()));
+        InitView.instance().initSwipeRefreshLayout(getActivity(), swipeRefreshLayout, true,this);
 
         adapter = new HomePostListAdapter(getActivity(),mContents);
 
