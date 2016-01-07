@@ -20,6 +20,7 @@ import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.Tools;
 
@@ -85,10 +86,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle(albumName+"");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        InitView.instance().initToolbar(toolbar, this, albumName+"");
         getAlbumDetail();
     }
 

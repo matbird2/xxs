@@ -34,14 +34,21 @@ public class InitView {
     }
 
     public void initToolbar(Toolbar toolbar,AppCompatActivity activity,String title,Drawable logoDrawable,String subTitle,Drawable naviDrawable){
-        toolbar.setLogo(logoDrawable);
+        if(logoDrawable != null)
+            toolbar.setLogo(logoDrawable);
         toolbar.setTitle(title);
-        toolbar.setSubtitle(subTitle);
+        if(subTitle != null)
+            toolbar.setSubtitle(subTitle);
 
         activity.setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(naviDrawable);
+        if(naviDrawable != null)
+            toolbar.setNavigationIcon(naviDrawable);
 
         activity.getSupportActionBar().setHomeButtonEnabled(true);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void initToolbar(Toolbar toolbar,AppCompatActivity activity,String title){
+        initToolbar(toolbar,activity,title,null,null,null);
     }
 }

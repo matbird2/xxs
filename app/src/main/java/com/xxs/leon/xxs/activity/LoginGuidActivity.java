@@ -10,6 +10,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -31,9 +32,7 @@ public class LoginGuidActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle("登录注册");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InitView.instance().initToolbar(toolbar, this, "登录注册");
     }
 
     @Click(R.id.login)

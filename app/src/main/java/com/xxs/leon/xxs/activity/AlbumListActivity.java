@@ -65,19 +65,15 @@ public class AlbumListActivity extends AppCompatActivity implements SwipeRefresh
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle(AlbumType.getType(type)+"");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InitView.instance().initToolbar(toolbar, this, AlbumType.getType(type)+"");
 
         initListView();
-
         loadAlbumList(pageIndex);
     }
 
     // 初始化跟listview相关的控件
     private void initListView(){
-        InitView.instance().initSwipeRefreshLayout(this,swipeRefreshLayout,true);
-        swipeRefreshLayout.setOnRefreshListener(this);
+        InitView.instance().initSwipeRefreshLayout(this, swipeRefreshLayout, true, this);
 
         adapter = new AlbumListAdapter(this);
         gridLayoutManager = new GridLayoutManager(this,2);

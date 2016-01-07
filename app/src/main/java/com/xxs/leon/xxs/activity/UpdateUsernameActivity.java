@@ -17,6 +17,7 @@ import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -50,10 +51,7 @@ public class UpdateUsernameActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle("修改用户名");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        InitView.instance().initToolbar(toolbar, this, "修改用户名");
         changeStatus(true);
     }
 

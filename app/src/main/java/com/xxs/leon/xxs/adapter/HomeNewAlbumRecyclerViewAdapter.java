@@ -100,17 +100,19 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
                 NoticeViewHolder noticeViewHolder = (NoticeViewHolder) holder;
                 if(contents.get(0) instanceof Post){
                     final Post post = (Post) contents.get(0);
-                    noticeViewHolder.username.setText(post.getUser().getUsername());
-                    noticeViewHolder.timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
-                    noticeViewHolder.title.setText(post.getTitle());
-                    noticeViewHolder.content.setText(post.getExcerpt());
-                    Glide.with(context).load(post.getUser().getPhoto()).crossFade(500).placeholder(R.drawable.glide_placeholder_bg).centerCrop().into(noticeViewHolder.photo);
-                    noticeViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            PostDetailActivity_.intent(context).postId(post.getObjectId()).postTitle(post.getTitle()).start();
-                        }
-                    });
+                    if(post != null){
+                        noticeViewHolder.username.setText(post.getUser().getUsername());
+                        noticeViewHolder.timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
+                        noticeViewHolder.title.setText(post.getTitle());
+                        noticeViewHolder.content.setText(post.getExcerpt());
+                        Glide.with(context).load(post.getUser().getPhoto()).crossFade(500).placeholder(R.drawable.glide_placeholder_bg).centerCrop().into(noticeViewHolder.photo);
+                        noticeViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                PostDetailActivity_.intent(context).postId(post.getObjectId()).postTitle(post.getTitle()).start();
+                            }
+                        });
+                    }
                 }
                 break;
             case TYPE_CELL:

@@ -24,6 +24,7 @@ import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
@@ -71,10 +72,7 @@ public class PayWebViewActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle("小小书充值");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        InitView.instance().initToolbar(toolbar,this,"小小书充值");
         configWebview();
     }
 

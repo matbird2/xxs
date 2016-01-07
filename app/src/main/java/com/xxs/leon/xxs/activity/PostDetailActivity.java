@@ -15,6 +15,7 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.richeditor.RichEditor;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
 import com.xxs.leon.xxs.utils.Tools;
@@ -69,9 +70,7 @@ public class PostDetailActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle(postTitle == null ? "" : postTitle);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InitView.instance().initToolbar(toolbar, this, postTitle+"");
 
         editor.setPadding(10, 10, 10, 10);
         editor.setEnabled(false);

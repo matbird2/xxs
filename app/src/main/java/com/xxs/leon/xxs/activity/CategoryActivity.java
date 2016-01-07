@@ -24,6 +24,7 @@ import com.transitionseverywhere.TransitionManager;
 import com.transitionseverywhere.TransitionSet;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterViews;
@@ -79,9 +80,7 @@ public class CategoryActivity extends AppCompatActivity{
     }
     @AfterViews
     void initView(){
-        toolbar.setTitle("分类");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InitView.instance().initToolbar(toolbar, this, "分类");
 
         mScene1 = new Scene(scene_root,scene_root.findViewById(R.id.container));
         mScene2 = Scene.getSceneForLayout(scene_root,R.layout.category_scene2,this);

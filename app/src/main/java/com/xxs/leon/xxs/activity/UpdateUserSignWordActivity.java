@@ -15,6 +15,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -48,10 +49,7 @@ public class UpdateUserSignWordActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle("修改签名文字");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        InitView.instance().initToolbar(toolbar, this, "发布新的签名");
         changeStatus(true);
     }
 

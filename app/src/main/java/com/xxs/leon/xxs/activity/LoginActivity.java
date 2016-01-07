@@ -16,6 +16,7 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -52,10 +53,7 @@ public class LoginActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle("登录");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        InitView.instance().initToolbar(toolbar,this,"登录");
         changeStatus(true);
     }
 

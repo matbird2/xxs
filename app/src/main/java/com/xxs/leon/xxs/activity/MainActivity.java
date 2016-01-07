@@ -54,9 +54,9 @@ import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.test.SecondActivity_;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
-import com.xxs.leon.xxs.utils.ToolbarUtil;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -170,11 +170,11 @@ public class MainActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderUserView(XSUser user){
-        if(defualtProfile != null)
+        if(defualtProfile != null && resultUser != null){
             headerResult.removeProfile(defualtProfile);
-        IProfile userProfile = new ProfileDrawerItem().withName(resultUser.getUsername()).withIcon(resultUser.getPhoto()).withIdentifier(6);
-        headerResult.addProfile(userProfile,0);
-
+            IProfile userProfile = new ProfileDrawerItem().withName(resultUser.getUsername()+"").withIcon(resultUser.getPhoto()+"").withIdentifier(6);
+            headerResult.addProfile(userProfile,0);
+        }
     }
 
     IProfile defualtProfile = null;
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity{
     private void initMaterialViewpager(){
         setTitle("");
         toolbar = mViewPager.getToolbar();
-        ToolbarUtil.initToolbar(this,toolbar);
+        InitView.instance().initToolbar(toolbar,this,"小小书");
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 

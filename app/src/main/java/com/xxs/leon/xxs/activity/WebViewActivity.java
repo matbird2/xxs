@@ -18,6 +18,7 @@ import com.gc.materialdesign.views.ProgressBarIndeterminateDeterminate;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
@@ -53,9 +54,7 @@ public class WebViewActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        toolbar.setTitle("小小书");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InitView.instance().initToolbar(toolbar, this, "小小书");
 
         configWebview();
     }

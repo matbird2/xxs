@@ -44,6 +44,7 @@ import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
 import com.xxs.leon.xxs.richeditor.RichEditor;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
 import com.xxs.leon.xxs.ui.CommonDialog;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.MatCacheUtils;
 import com.xxs.leon.xxs.utils.Tools;
@@ -103,15 +104,7 @@ public class CommentActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        initToolbar();
-//        exitTransition = ActivityTransition.with(getIntent()).to(fab).start(savedInstanceState);
-    }
-
-    private void initToolbar(){
-        toolbar.setTitle("发表文章");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        InitView.instance().initToolbar(toolbar, this, "发布帖子");
         initRicheditor();
     }
 

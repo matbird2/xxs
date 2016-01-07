@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
@@ -37,10 +38,8 @@ public class ContractActivity extends AppCompatActivity{
     @AfterViews
     void initViews(){
         version.setText(Tools.getAppVersionName(this));
-        toolbar.setTitle("联系");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        InitView.instance().initToolbar(toolbar,this,"联系");
     }
 
     @Click(R.id.web)
