@@ -104,7 +104,7 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
             doGetUserInfo(currentUser.getObjectId());
         }
 
-        Glide.with(this).load("http://tupian.qqjay.com/u/2013/1127/19_222949_4.jpg").into(backdrop);
+        Glide.with(this).load(Constant.DEFAULT_USER_CENTER_BACKGROUND_URL).into(backdrop);
 
     }
 

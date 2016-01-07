@@ -216,6 +216,7 @@ public class DetailActivity extends AppCompatActivity{
         Bundle bundle = new Bundle();
         bundle.putSerializable("albumList", album.getImgs());
         bundle.putString("baseurl", album.getFrom());
+        bundle.putString("albumId", album.getObjectId());
         Intent intent = new Intent(this,WatchActivity_.class);
         intent.putExtra("bundle", bundle);
         startActivity(intent);

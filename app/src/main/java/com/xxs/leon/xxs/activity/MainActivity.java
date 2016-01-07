@@ -46,6 +46,7 @@ import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.fragment.NewFragment_;
 import com.xxs.leon.xxs.fragment.PostFragment_;
 import com.xxs.leon.xxs.fragment.RecyclerViewFragment;
@@ -122,24 +123,6 @@ public class MainActivity extends AppCompatActivity{
     void initView(){
         BmobUpdateAgent.setUpdateOnlyWifi(false);
         BmobUpdateAgent.update(MainActivity.this);
-        /*BmobUpdateAgent.setUpdateListener(new BmobUpdateListener() {
-            @Override
-            public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
-                if (updateStatus == UpdateStatus.Yes) {//版本有更新
-
-                } else if (updateStatus == UpdateStatus.No) {
-                    Toast.makeText(MainActivity.this, "版本无更新", Toast.LENGTH_SHORT).show();
-                } else if (updateStatus == UpdateStatus.EmptyField) {//此提示只是提醒开发者关注那些必填项，测试成功后，无需对用户提示
-                    Toast.makeText(MainActivity.this, "请检查你AppVersion表的必填项，1、target_size（文件大小）是否填写；2、path或者android_url两者必填其中一项。", Toast.LENGTH_SHORT).show();
-                } else if (updateStatus == UpdateStatus.IGNORED) {
-                    Toast.makeText(MainActivity.this, "该版本已被忽略更新", Toast.LENGTH_SHORT).show();
-                } else if (updateStatus == UpdateStatus.ErrorSizeFormat) {
-                    Toast.makeText(MainActivity.this, "请检查target_size填写的格式，请使用file.length()方法获取apk大小。", Toast.LENGTH_SHORT).show();
-                } else if (updateStatus == UpdateStatus.TimeOut) {
-                    Toast.makeText(MainActivity.this, "查询出错或查询超时", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
 
         initMaterialViewpager();
         initDrawerView();
@@ -179,8 +162,7 @@ public class MainActivity extends AppCompatActivity{
 
     IProfile defualtProfile = null;
     private void initDrawerView(){
-//        defualtProfile = new ProfileDrawerItem().withName("").withIcon("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg").withIdentifier(6);
-        defualtProfile = new ProfileDrawerItem().withName("").withIcon("http://avatar.l99.com/200x222/22/MjAxMzA4MjcxMDM3NDhfMTQuMTA3LjIwLjEzN181Mjg1MjA=.jpg").withIdentifier(6);
+        defualtProfile = new ProfileDrawerItem().withName("").withIcon(Constant.DEFAULT_HEAD_PHOTO_URL).withIdentifier(6);
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
@@ -332,14 +314,12 @@ public class MainActivity extends AppCompatActivity{
                         logo.setVisibility(View.VISIBLE);
                         logo_in.setImageDrawable(signIcon);
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.colorPrimary,
-                                "http://tupian.qqjay.com/u/2013/1127/19_222949_14.jpg");
+                                R.color.colorPrimary,Constant.DEFAULT_HOME_FIRST_URL);
                     case 1:
                         logo.setVisibility(View.VISIBLE);
                         logo_in.setImageDrawable(penIcon);
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.blue,
-                                "http://tupian.qqjay.com/u/2013/1127/19_222949_3.jpg");
+                                R.color.blue,Constant.DEFAULT_HOME_SECOND_URL);
 //                    case 2:
 //                        logo.setVisibility(View.INVISIBLE);
 //                        return HeaderDesign.fromColorResAndUrl(

@@ -1,6 +1,8 @@
 package com.xxs.leon.xxs.activity;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -14,13 +16,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.WatchViewpagerAdapter;
 import com.xxs.leon.xxs.fragment.WatchFragment;
 import com.xxs.leon.xxs.fragment.WatchFragment_;
+import com.xxs.leon.xxs.utils.ACache;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.XXSPref_;
 import com.xxs.leon.xxs.wedget.curl.CurlPage;
@@ -57,17 +63,31 @@ public class WatchActivity extends AppCompatActivity{
     @Pref
     XXSPref_ xxsPref;
 
+    ACache aCache;
+
     private ArrayList<String> albumList;
     private String baseurl;
+    private String albumId;
+    private int currentPosition;
 
     private LinkedList<PinchImageView> viewCache;
+
+    private IconicsDrawable error_icon;
 
     @AfterInject
     void init(){
         Bundle bundle = this.getIntent().getBundleExtra("bundle");
         albumList = (ArrayList<String>) bundle.getSerializable("albumList");
         baseurl = bundle.getString("baseurl");
+        albumId = bundle.getString("albumId");
         viewCache = new LinkedList<PinchImageView>();
+
+        aCache = ACache.get(this,"WatchHistory");
+
+        error_icon = new IconicsDrawable(this)
+                .icon(GoogleMaterial.Icon.gmd_broken_image)
+                .color(Color.GRAY)
+                .sizeDp(160);
     }
 
     @AfterViews
@@ -94,6 +114,7 @@ public class WatchActivity extends AppCompatActivity{
                     piv.reset();
                 } else {
                     piv = new PinchImageView(WatchActivity.this);
+                    piv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 }
                 /*if (xxsPref.fitType().get() == 0) {
                     Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).error(R.drawable.glide_placeholder_bg).fitCenter().into(piv);
@@ -101,7 +122,8 @@ public class WatchActivity extends AppCompatActivity{
                     piv.setScaleType(ImageView.ScaleType.FIT_XY);
                     Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).error(R.drawable.glide_placeholder_bg).into(piv);
                 }*/
-                Picasso.with(WatchActivity.this).load(baseurl + albumList.get(position)).error(R.drawable.glide_placeholder_bg).fit().into(piv);
+//                Picasso.with(WatchActivity.this).load(baseurl + albumList.get(position)).placeholder(R.drawable.glide_placeholder_bg).error(error_icon).fit().into(piv);
+                Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).asBitmap().placeholder(R.drawable.glide_placeholder_bg).error(error_icon).into(new MyBitmapImageViewTarget(piv));
                 container.addView(piv);
                 return piv;
             }
@@ -127,6 +149,7 @@ public class WatchActivity extends AppCompatActivity{
 
             @Override
             public void onPageSelected(int position) {
+                currentPosition = position;
                 tv_index.setText((position + 1) + "/" + albumList.size());
             }
 
@@ -135,6 +158,10 @@ public class WatchActivity extends AppCompatActivity{
 
             }
         });
+
+        if(aCache.getAsString(albumId) != null){
+            pager.setCurrentItem(Integer.parseInt(aCache.getAsString(albumId)));
+        }
     }
 
     private void initFitType(){
@@ -159,6 +186,12 @@ public class WatchActivity extends AppCompatActivity{
     }
 
     @Override
+    public void onBackPressed() {
+        aCache.put(albumId,currentPosition+"");
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
@@ -168,5 +201,48 @@ public class WatchActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+    }
+
+    class MyBitmapImageViewTarget extends BitmapImageViewTarget{
+        public MyBitmapImageViewTarget(ImageView view) {
+            super(view);
+        }
+
+        @Override
+        public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
+            if (bitmap != null && view.getScaleType() != ImageView.ScaleType.FIT_XY) {
+                view.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+            super.onResourceReady(bitmap, anim);
+        }
+
+        @Override
+        protected void setResource(Bitmap resource) {
+            super.setResource(resource);
+        }
+
+        @Override
+        public void onLoadFailed(Exception e, Drawable errorDrawable) {
+            if (errorDrawable != null && view != null && view.getScaleType() != ImageView.ScaleType.CENTER_CROP) {
+                view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+            super.onLoadFailed(e, errorDrawable);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            if (placeholder != null && placeholder != null && view != null && view.getScaleType() != ImageView.ScaleType.CENTER_CROP) {
+                view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadCleared(Drawable placeholder) {
+            if (placeholder != null && placeholder != null && view != null && view.getScaleType() != ImageView.ScaleType.CENTER_CROP) {
+                view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+            super.onLoadCleared(placeholder);
+        }
     }
 }

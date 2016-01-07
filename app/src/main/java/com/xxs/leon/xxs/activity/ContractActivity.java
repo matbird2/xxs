@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.Tools;
@@ -45,7 +46,7 @@ public class ContractActivity extends AppCompatActivity{
     @Click(R.id.web)
     void clickWeb(){
         Bundle bundle = new Bundle();
-        bundle.putString("url", "http://xiaoxiaoshu.bmob.cn");
+        bundle.putString("url", Constant.XXS_WEB_URL);
         bundle.putString("html", "#");
         bundle.putInt("type", 0);
         Intent intent = new Intent(this,WebViewActivity_.class);
@@ -56,7 +57,7 @@ public class ContractActivity extends AppCompatActivity{
     @Click(R.id.weibo)
     void clickWeibo(){
         Bundle bundle = new Bundle();
-        bundle.putString("url", "http://weibo.com/u/3822005793");
+        bundle.putString("url", Constant.XXS_WEIBO_URL);
         bundle.putString("html", "#");
         bundle.putInt("type",0);
         Intent intent = new Intent(this,WebViewActivity_.class);
