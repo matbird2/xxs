@@ -182,4 +182,11 @@ public interface CommenEngine {
      * @return
      */
     UpdateBean updateUserSignWord(XSUser user,String signword);
+
+    /**
+     * 搜索
+     * @param keyword
+     * @return
+     */
+    List<Album> search(String keyword);
 }

@@ -313,6 +313,17 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         return bean;
     }
 
+    @Override
+    public List<Album> search(String keyword) {
+        String keys = "name";
+        String where = "{\"status\":1,\"name\":{\"$regex\":\".*"+keyword+".*\"}}";
+        int limit = 10;
+        String order = "-updatedAt";
+        AlbumListEntity results = client.search(keys, where, limit, order);
+        L.w(L.TEST,"search :"+(results == null));
+        return results != null ? results.getResults() : null;
+    }
+
     /**
      * 处理用户数据，以字符串的形式保存本地，返回XSUser
      * @param jsonString

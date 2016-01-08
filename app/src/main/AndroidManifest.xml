@@ -103,6 +103,9 @@
         <activity android:name=".activity.ContractActivity_"
             android:exported="false">
         </activity>
+        <activity android:name=".activity.SearchActivity_"
+            android:exported="false">
+        </activity>
 
         <!-- 友盟 -->
         <meta-data android:value="5680e2dbe0f55a49f50002a2" android:name="UMENG_APPKEY"></meta-data>

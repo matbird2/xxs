@@ -126,4 +126,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doCollectInstallation")
     CloudRestEntity collectInstallation(CollectInstallationParams params);
+
+    @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
+    AlbumListEntity search(String keys,String where,int limit,String order);
 }

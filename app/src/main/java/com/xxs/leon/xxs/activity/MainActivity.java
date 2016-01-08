@@ -5,13 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -269,7 +274,7 @@ public class MainActivity extends AppCompatActivity{
     private void initMaterialViewpager(){
         setTitle("");
         toolbar = mViewPager.getToolbar();
-        InitView.instance().initToolbar(toolbar,this,"小小书");
+        InitView.instance().initToolbar(toolbar, this, "小小书");
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
@@ -398,6 +403,22 @@ public class MainActivity extends AppCompatActivity{
                 finish();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.search){
+            SearchActivity_.intent(this).start();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

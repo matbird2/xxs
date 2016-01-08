@@ -54,7 +54,7 @@ public class WebViewActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        InitView.instance().initToolbar(toolbar, this, "xiao");
+        InitView.instance().initToolbar(toolbar, this, "小小书");
 
         configWebview();
     }
