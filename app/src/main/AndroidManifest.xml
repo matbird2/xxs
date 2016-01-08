@@ -24,7 +24,8 @@
         android:name=".XXSApplication_">
         <activity
             android:name=".activity.SplashActivity_"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,43 +33,55 @@
         </activity>
         <activity
             android:name=".activity.MainActivity_"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".test.SecondActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.CategoryActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.CommentActivity_"
             android:windowSoftInputMode="adjustResize"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.LoginGuidActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.LoginActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.RegisterActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.UserActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.DetailActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.AlbumListActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.WebViewActivity_"
             android:windowSoftInputMode="adjustResize"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.PayWebViewActivity_"
             android:windowSoftInputMode="adjustResize"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.WatchActivity_"
             android:screenOrientation="landscape"
@@ -79,32 +92,41 @@
         android:theme="@style/AppTheme.NoActionBar"
             android:exported="false"></activity>
         <activity android:name=".activity.PostDetailActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.RechargeActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.ShowWebImageActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.GuideActivity_"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.SettingsActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.UpdateUsernameActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.UpdateUserSignWordActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.ContractActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activity.SearchActivity_"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <!-- 友盟 -->
