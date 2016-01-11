@@ -1,5 +1,6 @@
 package com.xxs.leon.xxs.rest.engine.impl;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.xxs.leon.xxs.constant.Constant;
@@ -38,6 +39,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import cn.bmob.v3.BmobInstallation;
+
 /**
  * Created by leon on 15-11-24.
  */
@@ -54,7 +57,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         int limit = 10;
         String order = "-updatedAt";
         AlbumListEntity results = client.getHomeNewAlbums(keys, where, limit, order);
-        L.w(L.TEST,"getHomeAlbums :"+(results == null));
+        L.w(L.TEST, "getHomeAlbums :" + (results == null));
         return results != null ? results.getResults() : null;
     }
 
@@ -80,7 +83,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             return null;
         }else{
             jsonString = Tools.decode_decrypt(jsonString);
-            L.i(L.TEST,jsonString);
+            L.i(L.TEST, jsonString);
             return processUserJsonString(jsonString,true);
         }
     }
@@ -99,7 +102,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
 
     @Override
     public UploadEntity uploadFile(String remoteFileName, String filePath) {
-        client.setHeader("Content-Type","image/jpeg");
+        client.setHeader("Content-Type", "image/jpeg");
         File file = new File(filePath);
         byte[] fileBytes = Tools.file2BetyArray(file);
 //        L.i(L.TEST,"fileBytes length = "+fileBytes.length+"   file length = "+file.length());
@@ -169,7 +172,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         String order = "-createdAt";
         int limit = 10;
         String include = "user[username|photo]";
-        HomePostListEntity entity = client.getHomePostList(keys,where,limit,skip,order,include);
+        HomePostListEntity entity = client.getHomePostList(keys, where, limit, skip, order, include);
         L.w(L.TEST, "getHomePostList :" + (entity == null));
         return entity != null ? entity.getResults() : null;
     }
@@ -236,7 +239,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         String where = "{\"user\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+userId+"\"},\"albumId\":\""+albumId+"\"}";
         int count = 1;
         int limit = 0;
-        ReadCountEntity entity = client.getReadLogCount(where,limit,count);
+        ReadCountEntity entity = client.getReadLogCount(where, limit, count);
         L.w(L.TEST,"hasUserReadAlbumById :"+(entity == null));
         if(entity == null)
             return false;
@@ -255,10 +258,13 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String addReadLog(XSUser user, String albumId) {
+    public String addReadLog(Context context,XSUser user, String albumId) {
         AddReadLogParams params = new AddReadLogParams();
         params.setObjectId(user.getObjectId());
         params.setAlbumId(albumId);
+        if(BmobInstallation.getCurrentInstallation(context) != null){
+            params.setInsId(BmobInstallation.getInstallationId(context));
+        }
         CloudRestEntity entity = client.addReadLog(params);
         L.w(L.TEST, "addReadLog :" + (entity == null));
         return entity != null ? entity.getResult() : null;
@@ -272,7 +278,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         int limit = 1;
         int skip = 0;
         String include = "user[username|photo]";
-        HomePostListEntity entity = client.getHomePostList(keys,where,limit,skip,order,include);
+        HomePostListEntity entity = client.getHomePostList(keys, where, limit, skip, order, include);
         L.w(L.TEST, "getTopPost :" + (entity == null));
         return entity != null && entity.getResults().size()>0 ? entity.getResults().get(0) : null;
     }

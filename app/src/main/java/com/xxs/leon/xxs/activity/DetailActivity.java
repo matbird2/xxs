@@ -226,7 +226,7 @@ public class DetailActivity extends AppCompatActivity{
     @Background
     void validateAndAddReadLog(){
         if(!hasUserRead && currentUser != null && album != null){
-            String result = engine.addReadLog(currentUser,album.getObjectId());
+            String result = engine.addReadLog(this,currentUser,album.getObjectId());
         }
     }
 

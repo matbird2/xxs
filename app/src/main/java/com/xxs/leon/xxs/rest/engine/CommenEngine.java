@@ -1,6 +1,9 @@
 package com.xxs.leon.xxs.rest.engine;
 
+import android.content.Context;
+
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.BaseBean;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
@@ -159,7 +162,7 @@ public interface CommenEngine {
      * @param albumId
      * @return
      */
-    String addReadLog(XSUser user,String albumId);
+    String addReadLog(Context context,XSUser user,String albumId);
 
     /**
      * 获取首页头条公告
@@ -189,4 +192,5 @@ public interface CommenEngine {
      * @return
      */
     List<Album> search(String keyword);
+
 }

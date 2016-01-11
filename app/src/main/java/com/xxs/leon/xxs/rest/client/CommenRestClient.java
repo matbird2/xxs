@@ -1,6 +1,7 @@
 package com.xxs.leon.xxs.rest.client;
 
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.BaseBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
@@ -29,6 +30,7 @@ import com.xxs.leon.xxs.rest.requestfactory.MyRequestFactory;
 import org.androidannotations.annotations.rest.Accept;
 import org.androidannotations.annotations.rest.Get;
 import org.androidannotations.annotations.rest.Post;
+import org.androidannotations.annotations.rest.Put;
 import org.androidannotations.annotations.rest.RequiresHeader;
 import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.MediaType;

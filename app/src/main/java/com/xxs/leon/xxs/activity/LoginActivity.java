@@ -14,9 +14,11 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.rest.bean.XXSBmobInstallation;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
+import com.xxs.leon.xxs.utils.L;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -26,6 +28,13 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
+
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by maliang on 15/11/25.
@@ -53,7 +62,7 @@ public class LoginActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        InitView.instance().initToolbar(toolbar,this,"登录");
+        InitView.instance().initToolbar(toolbar, this, "登录");
         changeStatus(true);
     }
 
@@ -88,10 +97,49 @@ public class LoginActivity extends AppCompatActivity{
 //        SnackBar snackBar = new SnackBar(this,user.getCode()+"","ok",null);
 //        snackBar.show();
         if(user.getCode() == 0){
-            finish();
+            updateInstallationWithUid();
         }else{
             SnackBar snackBar = new SnackBar(this,user.getError()+"","ok",null);
             snackBar.show();
+        }
+    }
+
+    private void updateInstallationWithUid(){
+        if(engine.getCurrentUser() != null){
+            BmobQuery<XXSBmobInstallation> query = new BmobQuery<>();
+            query.addWhereEqualTo("installationId", BmobInstallation.getInstallationId(this));
+            query.findObjects(this, new FindListener<XXSBmobInstallation>() {
+                @Override
+                public void onSuccess(List<XXSBmobInstallation> list) {
+                    if (list != null && list.size() > 0) {
+                        XXSBmobInstallation xxsBmobInstallation = list.get(0);
+                        xxsBmobInstallation.setUid(engine.getCurrentUser().getObjectId());
+                        xxsBmobInstallation.update(LoginActivity.this, new UpdateListener() {
+
+                            @Override
+                            public void onSuccess() {
+                               LoginActivity.this.finish();
+                            }
+
+                            @Override
+                            public void onFailure(int code, String msg) {
+                                L.w(L.TEST, "设备信息更新失败:" + msg);
+                                LoginActivity.this.finish();
+                            }
+                        });
+                    }else{
+                        LoginActivity.this.finish();
+                    }
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    L.w(L.TEST, "失败:" + s);
+                    LoginActivity.this.finish();
+                }
+            });
+        }else{
+            LoginActivity.this.finish();
         }
     }
 
