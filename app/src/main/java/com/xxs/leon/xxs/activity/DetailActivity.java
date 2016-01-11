@@ -5,6 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,10 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.gc.materialdesign.views.ButtonFlat;
 import com.gc.materialdesign.widgets.Dialog;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.adapter.RecommendListAdapter;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.XSUser;
@@ -66,6 +73,8 @@ public class DetailActivity extends AppCompatActivity{
     protected TextView type;
     @ViewById
     protected TextView price;
+    @ViewById
+    protected RecyclerView recyclerView;
     @InstanceState
     protected Bundle savedInstanceState;
     @Extra
@@ -78,6 +87,7 @@ public class DetailActivity extends AppCompatActivity{
     CommenEngineImpl engine;
 
     XSUser currentUser;
+    RecommendListAdapter adapter;
 
     private  Album album;
     private boolean hasUserRead = false;
@@ -91,7 +101,19 @@ public class DetailActivity extends AppCompatActivity{
     @AfterViews
     void initViews(){
         InitView.instance().initToolbar(toolbar, this, albumName+"");
+        initRecyclerView();
         getAlbumDetail();
+        getRecommendAlbumList();
+    }
+
+    private void initRecyclerView(){
+        adapter = new RecommendListAdapter(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        gridLayoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
     }
 
     @Background
@@ -113,12 +135,38 @@ public class DetailActivity extends AppCompatActivity{
         size.setText("大小："+album.getLength()+"M");
         type.setText("类型："+ AlbumType.getType(album.getType()));
         price.setText(album.getPrice() == 0 ? "免费阅读" : "花费：" + album.getPrice() + "银两");
-//        Glide.with(this).load(Uri.decode("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")).error(R.drawable.glide_placeholder_bg).into(backdrop);
         Glide.with(this).load(album.getCover()).into(backdrop);
-//        Picasso.with(this).load("http://lhh.a8z8.com/data/attachment/forum/day_100921/1009212215583d83df596a2516.jpg")
-//                .centerCrop().fit().into(backdrop);
     }
 
+    @Background
+    void getRecommendAlbumList(){
+        if(albumName != null){
+            String[] keys = Tools.getRecommendKeywordPair(albumName);
+            List<Album> results = engine.getRecommendAlbumList(keys[0], keys[1],album == null ? 0 :album.getType());
+            L.i(L.TEST,"size:"+results.size()+" key1 => "+keys[0]+" key2 => "+keys[1]);
+            if(results != null && results.size() > 0){
+                renderAfterGetRecommendList(results);
+            }
+        }
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderAfterGetRecommendList(List<Album> results){
+        adapter.appenList(results);
+    }
+
+    @Click(R.id.find_same)
+    void clickFind(){
+        if(album == null)
+            return ;
+        Bundle bundle = new Bundle();
+        bundle.putInt("type",album.getType());
+        Intent intent = new Intent(DetailActivity.this,AlbumListActivity_.class);
+        intent.putExtra("bundle", bundle);
+        startActivity(intent);
+    }
+
+    //----------------------------begin ablout read and cost------------------
     @Click(R.id.read)
     void clickRead(){
         if(album == null)
@@ -242,6 +290,8 @@ public class DetailActivity extends AppCompatActivity{
             String result = engine.addReadLog(this,currentUser,album.getObjectId());
         }
     }
+
+    //----------------------------end ablout read and cost------------------
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

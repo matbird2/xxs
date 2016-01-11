@@ -21,10 +21,19 @@
         android:id="@+id/tv_fittype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/tv_index"
+        android:padding="10dp"
         android:text="全屏"
         android:textAppearance="@style/XXS.TextAppearance.Body.Primary"
+        android:visibility="gone" />
+
+    <com.gc.materialdesign.views.ButtonFlat
+        android:id="@+id/go_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:padding="10dp"
-        android:layout_toLeftOf="@id/tv_index"
-        android:visibility="gone"/>
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:text="第一页" />
 </RelativeLayout>

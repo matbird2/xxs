@@ -199,4 +199,11 @@ public interface CommenEngine {
      */
     List<Album> search(String keyword);
 
+    /**
+     * 获取推荐相册
+     * @param key1
+     * @param key2
+     * @return
+     */
+    List<Album> getRecommendAlbumList(String key1,String key2,int type);
 }

@@ -63,6 +63,7 @@ import com.xxs.leon.xxs.test.SecondActivity_;
 import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
+import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -343,7 +344,7 @@ public class MainActivity extends AppCompatActivity{
 
     @Click(R.id.logo)
     void onClickLogo(){
-        mViewPager.notifyHeaderChanged();
+        /*mViewPager.notifyHeaderChanged();
         if(engine.getCurrentUser() == null){
             LoginActivity_.intent(this).start();
         }else{
@@ -356,9 +357,8 @@ public class MainActivity extends AppCompatActivity{
                 final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
                 startActivity(intent);
             }
-        }
-
-//        L.i(L.TEST,"生成时间标签:"+ TimeUtil.generTimeShowWord("2015-12-16 15:23:03"));
+        }*/
+        L.w(L.TEST,"1 => "+ Tools.getRecommendKeywordPair("乔老爷上轿")[0]+" 2 => "+Tools.getRecommendKeywordPair("乔老爷上轿")[1]);
     }
 
     @Background

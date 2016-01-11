@@ -175,6 +175,32 @@ public class Tools {
         return versionName;
     }
 
+    /**
+     * 分解字符串，用于获取推荐的字符串
+     * @param source
+     * @return
+     */
+    public static String[] getRecommendKeywordPair(String source){
+        String[] array = new String[2];
+        if (source.trim().length() < 2){
+            array[0] = "";
+            array[1] = "";
+            return array;
+        }
+
+        if(source.contains("（") ){
+            array[0] = source.substring(source.lastIndexOf("（")+1).substring(0, 2);
+            array[1] = source.substring(0,2);
+        }else if(source.contains("(")){
+            array[0] = source.substring(source.lastIndexOf("(")+1).substring(0, 2);
+            array[1] = source.substring(0,2);
+        }else{
+            array[0] = source.substring(0,2);
+            array[1] = source.substring(source.length()-2,source.length());
+        }
+        return array;
+    }
+
     public static int getActivityHeapSize(Context context){
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> runningTaskInfos = manager.getRunningTasks(1);

@@ -131,4 +131,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
     AlbumListEntity search(String keys,String where,int limit,String order);
+
+    @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
+    AlbumListEntity getRecommendAlbumList(String keys,String where,int limit,String order);
 }

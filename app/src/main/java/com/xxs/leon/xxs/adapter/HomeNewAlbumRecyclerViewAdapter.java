@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gc.materialdesign.views.ButtonFlat;
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -27,6 +28,7 @@ import com.xxs.leon.xxs.activity.WebViewActivity_;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Post;
+import com.xxs.leon.xxs.utils.ACache;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
 
@@ -35,6 +37,8 @@ import org.androidannotations.annotations.RootContext;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by florentchampigny on 24/04/15.
@@ -48,10 +52,12 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
     private IconicsDrawable error_icon;
+    ACache aCache;
 
     public HomeNewAlbumRecyclerViewAdapter(Context context,List<Object> contents){
         this.context = context;
         this.contents = contents;
+        aCache = ACache.get(context,"WatchHistory");
         error_icon = new IconicsDrawable(context)
                 .icon(GoogleMaterial.Icon.gmd_broken_image)
                 .color(Color.GRAY)
@@ -97,19 +103,27 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         switch (getItemViewType(position)) {
             case TYPE_HEADER:
-                NoticeViewHolder noticeViewHolder = (NoticeViewHolder) holder;
+                final NoticeViewHolder noticeViewHolder = (NoticeViewHolder) holder;
                 if(contents.get(0) instanceof Post){
                     final Post post = (Post) contents.get(0);
                     if(post != null){
-                        noticeViewHolder.username.setText(post.getUser().getUsername());
-                        noticeViewHolder.timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
                         noticeViewHolder.title.setText(post.getTitle());
                         noticeViewHolder.content.setText(post.getExcerpt());
-                        Glide.with(context).load(post.getUser().getPhoto()).crossFade(500).placeholder(R.drawable.glide_placeholder_bg).centerCrop().into(noticeViewHolder.photo);
                         noticeViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 PostDetailActivity_.intent(context).postId(post.getObjectId()).postTitle(post.getTitle()).start();
+                            }
+                        });
+
+                        final String lastAlbumId = aCache.getAsString("lastAlbum");
+                        noticeViewHolder.read_his.setVisibility(lastAlbumId == null ? View.GONE : View.VISIBLE);
+                        noticeViewHolder.read_his.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(lastAlbumId != null)
+                                    DetailActivity_.intent(context).albumId(lastAlbumId).albumName("").start();
+                                noticeViewHolder.read_his.setVisibility(View.GONE);
                             }
                         });
                     }
@@ -161,20 +175,16 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
     class NoticeViewHolder extends RecyclerView.ViewHolder {
 
         CardView card_view;
-        ImageView photo;
-        TextView username;
-        TextView timetag;
         TextView title;
         TextView content;
+        ButtonFlat read_his;
 
         public NoticeViewHolder(View view) {
             super(view);
             card_view = (CardView) view.findViewById(R.id.card_view);
-            photo = (ImageView) view.findViewById(R.id.photo);
-            username = (TextView) view.findViewById(R.id.username);
-            timetag = (TextView) view.findViewById(R.id.timetag);
             title = (TextView) view.findViewById(R.id.title);
             content = (TextView) view.findViewById(R.id.content);
+            read_his = (ButtonFlat) view.findViewById(R.id.read_his);
         }
     }
 }

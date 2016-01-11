@@ -185,9 +185,16 @@ public class WatchActivity extends AppCompatActivity{
         }
     }
 
+    @Click(R.id.go_first)
+    void clickGofirstPage(){
+        if(currentPosition != 0 && pager != null)
+            pager.setCurrentItem(0);
+    }
+
     @Override
     public void onBackPressed() {
         aCache.put(albumId,currentPosition+"");
+        aCache.put("lastAlbum",albumId);
         super.onBackPressed();
     }
 

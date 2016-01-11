@@ -344,6 +344,17 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         return results != null ? results.getResults() : null;
     }
 
+    @Override
+    public List<Album> getRecommendAlbumList(String key1, String key2,int type) {
+        String keys = "name,cover";
+        String where = "{\"status\":1,\"$or\":[{\"name\":{\"$regex\":\".*"+key1+".*\"}},{\"name\":{\"$regex\":\".*"+key2+".*\"}},{\"type\":"+type+"}]}";
+        int limit = 10;
+        String order = "-updatedAt";
+        AlbumListEntity results = client.search(keys, where, limit, order);
+        L.w(L.TEST,"getRecommendAlbumList :"+(results == null));
+        return results != null ? results.getResults() : null;
+    }
+
     /**
      * 处理用户数据，以字符串的形式保存本地，返回XSUser
      * @param jsonString
