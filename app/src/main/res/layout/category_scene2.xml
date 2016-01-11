@@ -20,7 +20,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_purple"
                 android:gravity="center"
                 android:text="经典"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -37,7 +37,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_pink"
                 android:gravity="center"
                 android:text="评书"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -54,7 +54,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_red"
                 android:gravity="center"
                 android:text="神话"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -79,7 +79,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_indigo"
                 android:gravity="center"
                 android:text="民间"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -96,7 +96,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_blue"
                 android:gravity="center"
                 android:text="革命"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -113,7 +113,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_cyan"
                 android:gravity="center"
                 android:text="武侠"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -138,7 +138,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_teal"
                 android:gravity="center"
                 android:text="外国"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -155,7 +155,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_green"
                 android:text="侦探"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -172,7 +172,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_lime"
                 android:gravity="center"
                 android:text="人物"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -197,7 +197,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_amber"
                 android:gravity="center"
                 android:text="儿童"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -214,7 +214,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_dorange"
                 android:gravity="center"
                 android:text="现代"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -231,7 +231,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/category_item_bg"
+                android:background="@drawable/category_item_bg_brown"
                 android:gravity="center"
                 android:text="其他"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />

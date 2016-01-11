@@ -235,12 +235,24 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public boolean hasUserReadAlbumById(String userId, String albumId) {
+    public boolean hasUserReadAlbumByUserId(String userId, String albumId) {
         String where = "{\"user\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+userId+"\"},\"albumId\":\""+albumId+"\"}";
         int count = 1;
         int limit = 0;
         ReadCountEntity entity = client.getReadLogCount(where, limit, count);
-        L.w(L.TEST,"hasUserReadAlbumById :"+(entity == null));
+        L.w(L.TEST,"hasUserReadAlbumByUserId :"+(entity == null));
+        if(entity == null)
+            return false;
+        return entity.getCount() > 0 ? true : false;
+    }
+
+    @Override
+    public boolean hasUserReadAlbumByInstallationId(String installationId, String albumId) {
+        String where = "{\"installationId\":\""+installationId+"\",\"albumId\":\""+albumId+"\"}";
+        int count = 1;
+        int limit = 0;
+        ReadCountEntity entity = client.getReadLogCount(where, limit, count);
+        L.w(L.TEST,"hasUserReadAlbumByInstallationId :"+(entity == null));
         if(entity == null)
             return false;
         return entity.getCount() > 0 ? true : false;
@@ -260,7 +272,9 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     @Override
     public String addReadLog(Context context,XSUser user, String albumId) {
         AddReadLogParams params = new AddReadLogParams();
-        params.setObjectId(user.getObjectId());
+        if(user != null){
+            params.setObjectId(user.getObjectId());
+        }
         params.setAlbumId(albumId);
         if(BmobInstallation.getCurrentInstallation(context) != null){
             params.setInsId(BmobInstallation.getInstallationId(context));

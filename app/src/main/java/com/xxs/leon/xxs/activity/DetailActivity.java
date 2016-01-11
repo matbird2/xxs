@@ -42,6 +42,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobInstallation;
+
 /**
  * Created by maliang on 15/12/3.
  */
@@ -79,6 +81,7 @@ public class DetailActivity extends AppCompatActivity{
 
     private  Album album;
     private boolean hasUserRead = false;
+//    private boolean hasDeviceRead = false;
 
     @AfterInject
     void init(){
@@ -120,6 +123,8 @@ public class DetailActivity extends AppCompatActivity{
     void clickRead(){
         if(album == null)
             return ;
+        checkDeviceHasRead(BmobInstallation.getInstallationId(this),albumId);
+
         if(album.getPrice() == 0){
             gotoWatch();
         }else{
@@ -134,8 +139,16 @@ public class DetailActivity extends AppCompatActivity{
 
     @Background
     void checkHasRead(String userId, String albumId){
-        hasUserRead = engine.hasUserReadAlbumById(userId,albumId);
+        hasUserRead = engine.hasUserReadAlbumByUserId(userId, albumId);
         afterCheckHasRead(hasUserRead);
+    }
+
+    @Background
+    void checkDeviceHasRead(String installationId,String albumId){
+        boolean hasDeviceRead = engine.hasUserReadAlbumByInstallationId(installationId,albumId);
+        if(!hasDeviceRead && album != null){
+            engine.addReadLog(this,currentUser,album.getObjectId());
+        }
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)

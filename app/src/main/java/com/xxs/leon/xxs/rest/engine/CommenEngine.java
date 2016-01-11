@@ -146,7 +146,13 @@ public interface CommenEngine {
      * 判断用户是否阅读过该相册
      * @return
      */
-    boolean hasUserReadAlbumById(String userId,String albumId);
+    boolean hasUserReadAlbumByUserId(String userId,String albumId);
+
+    /**
+     * 判断设备是否阅读过该相册
+     * @return
+     */
+    boolean hasUserReadAlbumByInstallationId(String installationId,String albumId);
 
     /**
      * 扣除银两
