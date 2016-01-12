@@ -49,7 +49,6 @@ public class SplashActivity extends Activity{
         Bmob.initialize(this, Constant.X_BMOB_APPLICATION_ID);
         BmobInstallation.getCurrentInstallation(this).save();
         BmobPush.startWork(this, Constant.X_BMOB_APPLICATION_ID);
-        updateInstallationWithUid();
     }
 
     @AfterViews
@@ -57,39 +56,6 @@ public class SplashActivity extends Activity{
         version.setText("版本：" + Tools.getAppVersionName(this));
         startTime = System.currentTimeMillis();
         switchOpenView();
-    }
-
-    private void updateInstallationWithUid(){
-        if(engine.getCurrentUser() != null){
-            BmobQuery<XXSBmobInstallation> query = new BmobQuery<>();
-            query.addWhereEqualTo("installationId",BmobInstallation.getInstallationId(this));
-            query.findObjects(this, new FindListener<XXSBmobInstallation>() {
-                @Override
-                public void onSuccess(List<XXSBmobInstallation> list) {
-                    if(list != null && list.size() > 0){
-                        XXSBmobInstallation xxsBmobInstallation = list.get(0);
-                        xxsBmobInstallation.setUid(engine.getCurrentUser().getObjectId());
-                        xxsBmobInstallation.update(SplashActivity.this,new UpdateListener() {
-
-                            @Override
-                            public void onSuccess() {
-                                L.w(L.TEST,"设备信息更新成功");
-                            }
-
-                            @Override
-                            public void onFailure(int code, String msg) {
-                                L.w(L.TEST, "设备信息更新失败:"+msg);
-                            }
-                        });
-                    }
-                }
-
-                @Override
-                public void onError(int i, String s) {
-                    L.w(L.TEST, "失败:"+s);
-                }
-            });
-        }
     }
 
     void switchOpenView(){

@@ -100,7 +100,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @AfterViews
     void initViews(){
-        InitView.instance().initToolbar(toolbar, this, albumName+"");
+        InitView.instance().initToolbar(toolbar, this, albumName + "");
         initRecyclerView();
         getAlbumDetail();
         getRecommendAlbumList();
@@ -171,36 +171,56 @@ public class DetailActivity extends AppCompatActivity{
     void clickRead(){
         if(album == null)
             return ;
-        checkDeviceHasRead(BmobInstallation.getInstallationId(this),albumId);
 
+        currentUser = engine.getCurrentUser();
         if(album.getPrice() == 0){
-            gotoWatch();
+            if(currentUser == null){
+                L.w(L.TEST,"not login and free.");
+                checkDeviceHasRead(BmobInstallation.getInstallationId(this),album.getObjectId());
+                gotoWatch();
+            }else{
+                L.w(L.TEST,"login and free.");
+                checkUserHasRead(currentUser.getObjectId(), album.getObjectId());
+                gotoWatch();
+            }
         }else{
-            currentUser = engine.getCurrentUser();
             if(currentUser == null){
                 LoginActivity_.intent(this).start();
-            }else{
-                checkHasRead(currentUser.getObjectId(), album.getObjectId());
+            } else {
+                L.w(L.TEST,"login and not free.");
+                checkUserHasReadAndCost(currentUser.getObjectId(),album.getObjectId());
             }
         }
     }
 
     @Background
-    void checkHasRead(String userId, String albumId){
+    void checkUserHasRead(String userId, String albumId){
+        L.w(L.TEST,"checkUserHasRead");
+        hasUserRead = engine.hasUserReadAlbumByUserId(userId, albumId);
+        if(!hasUserRead){
+            engine.addReadLog(this, currentUser, album.getObjectId());
+        }
+    }
+
+    @Background
+    void checkUserHasReadAndCost(String userId, String albumId){
+        L.w(L.TEST,"checkUserHasReadAndCost");
         hasUserRead = engine.hasUserReadAlbumByUserId(userId, albumId);
         afterCheckHasRead(hasUserRead);
     }
 
     @Background
     void checkDeviceHasRead(String installationId,String albumId){
+        L.w(L.TEST,"checkDeviceHasRead");
         boolean hasDeviceRead = engine.hasUserReadAlbumByInstallationId(installationId,albumId);
         if(!hasDeviceRead && album != null){
-            engine.addReadLog(this,currentUser,album.getObjectId());
+            engine.addReadLog(this, currentUser, album.getObjectId());
         }
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void afterCheckHasRead(boolean hasUserRead){
+        L.w(L.TEST,"afterCheckHasRead");
         if(hasUserRead){
             gotoWatch();
         }else{
@@ -210,6 +230,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @Background
     void getUserInfoAndCheckEnoughMoney(){
+        L.w(L.TEST,"getUserInfoAndCheckEnoughMoney");
         if(currentUser == null || album == null)
             return ;
         XSUser userInfo = engine.getUserInfo(currentUser.getObjectId());
@@ -224,6 +245,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void showCostMoneyDialog(){
+        L.w(L.TEST,"showCostMoneyDialog");
         final Dialog dialog = new Dialog(this,"花费银两","阅读该连环画需要花费 "+album.getPrice()+" 银两");
         dialog.show();
         dialog.getButtonAccept().setText("去阅读");
@@ -238,12 +260,14 @@ public class DetailActivity extends AppCompatActivity{
 
     @Background
     void doCostMoney(){
+        L.w(L.TEST,"doCostMoney");
         if(album == null || currentUser == null)
             return ;
         String result = engine.costMoney(currentUser, album.getPrice());
         if (result == null)
             return ;
         if("success".equals(result)){
+            checkUserHasRead(currentUser.getObjectId(), album.getObjectId());
             gotoWatch();
         }else{
             showCostBackDialog(result);
@@ -252,6 +276,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void showCostBackDialog(String result){
+        L.w(L.TEST,"showCostBackDialog");
         final Dialog dialog = new Dialog(this,"",result);
         dialog.addCancelButton("知道了");
         dialog.show();
@@ -260,6 +285,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void showNoEnoughMoneyDialog(XSUser userInfo){
+        L.w(L.TEST,"showNoEnoughMoneyDialog");
         final Dialog dialog = new Dialog(this,"银两不足","您目前只有"+userInfo.getMoney()+"银两，还不能阅读该连环画哦.");
         dialog.addCancelButton("知道了");
         dialog.show();
@@ -272,9 +298,9 @@ public class DetailActivity extends AppCompatActivity{
         });
     }
 
-    private void gotoWatch(){
-        validateAndAddReadLog();
 
+    private void gotoWatch(){
+        L.w(L.TEST,"gotoWatch");
         Bundle bundle = new Bundle();
         bundle.putSerializable("albumList", album.getImgs());
         bundle.putString("baseurl", album.getFrom());
@@ -282,13 +308,6 @@ public class DetailActivity extends AppCompatActivity{
         Intent intent = new Intent(this,WatchActivity_.class);
         intent.putExtra("bundle", bundle);
         startActivity(intent);
-    }
-
-    @Background
-    void validateAndAddReadLog(){
-        if(!hasUserRead && currentUser != null && album != null){
-            String result = engine.addReadLog(this,currentUser,album.getObjectId());
-        }
     }
 
     //----------------------------end ablout read and cost------------------

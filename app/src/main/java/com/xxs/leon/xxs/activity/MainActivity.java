@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity{
 
     @Click(R.id.logo)
     void onClickLogo(){
-        /*mViewPager.notifyHeaderChanged();
+        mViewPager.notifyHeaderChanged();
         if(engine.getCurrentUser() == null){
             LoginActivity_.intent(this).start();
         }else{
@@ -357,8 +357,7 @@ public class MainActivity extends AppCompatActivity{
                 final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
                 startActivity(intent);
             }
-        }*/
-        L.w(L.TEST,"1 => "+ Tools.getRecommendKeywordPair("乔老爷上轿")[0]+" 2 => "+Tools.getRecommendKeywordPair("乔老爷上轿")[1]);
+        }
     }
 
     @Background
