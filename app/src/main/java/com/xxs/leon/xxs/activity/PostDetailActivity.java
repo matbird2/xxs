@@ -113,7 +113,7 @@ public class PostDetailActivity extends AppCompatActivity{
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderPhoto(String thumbnailUrl,ImageView iv){
-        Glide.with(this).load(thumbnailUrl).crossFade(500).centerCrop().into(iv);
+        Glide.with(this).load(thumbnailUrl).crossFade(500).placeholder(R.drawable.default_head_photo).error(R.drawable.default_head_photo).centerCrop().into(iv);
     }
 
     @Click(R.id.source)

@@ -135,7 +135,7 @@ public class DetailActivity extends AppCompatActivity{
         size.setText("大小："+album.getLength()+"M");
         type.setText("类型："+ AlbumType.getType(album.getType()));
         price.setText(album.getPrice() == 0 ? "免费阅读" : "花费：" + album.getPrice() + "银两");
-        Glide.with(this).load(album.getCover()).into(backdrop);
+        Glide.with(this).load(album.getCover()).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).into(backdrop);
     }
 
     @Background

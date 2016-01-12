@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.xxs.leon.xxs.R;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class WatchViewpagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         container.addView(imageViews.get(position),position);
-        Glide.with(context).load(baseurl+albumList.get(position)).into(imageViews.get(position));
+        Glide.with(context).load(baseurl+albumList.get(position)).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).into(imageViews.get(position));
         return imageViews.get(position);
     }
 

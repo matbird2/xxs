@@ -31,6 +31,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 /**
@@ -85,12 +86,12 @@ public class CategoryActivity extends AppCompatActivity{
         mScene1 = new Scene(scene_root,scene_root.findViewById(R.id.container));
         mScene2 = Scene.getSceneForLayout(scene_root,R.layout.category_scene2,this);
 
+        route();
         doAnim();
-        rote();
     }
 
-    private void rote(){
-        mScene2.getSceneRoot().findViewById(R.id.tv1).setOnClickListener(new View.OnClickListener() {
+    private void route(){
+        mScene1.getSceneRoot().findViewById(R.id.tv1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToAlbumListActivity(0);
@@ -172,7 +173,8 @@ public class CategoryActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private void doAnim(){
+    @UiThread(delay = 300)
+    void doAnim(){
         TransitionSet set = new TransitionSet();
         Slide slide = new Slide(Gravity.LEFT);
         set.addTransition(slide);
@@ -182,16 +184,6 @@ public class CategoryActivity extends AppCompatActivity{
         set.setDuration(500);
         TransitionManager.go(mScene2, set);
     }
-
-    /*@Click(R.id.tv12)
-    void clickQT(){
-        L.i(L.TEST,"click");
-        Bundle bundle = new Bundle();
-        bundle.putInt("type",11);
-        Intent intent = new Intent(this,AlbumListActivity_.class);
-        intent.putExtra("bundle",bundle);
-        startActivity(intent);
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

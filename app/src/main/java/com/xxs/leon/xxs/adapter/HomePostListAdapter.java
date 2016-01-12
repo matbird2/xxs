@@ -101,10 +101,7 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             itemViewHolder.timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
             itemViewHolder.title.setText(post.getTitle());
             itemViewHolder.content.setText(post.getExcerpt());
-            if(post.getUser().getPhoto() != null){
-//                L.i(L.TEST,"photo:"+post.getUser().getPhoto());
-                listener.getAndDisplay(post.getUser().getPhoto(),itemViewHolder.photo);
-            }
+            listener.getAndDisplay(post.getUser().getPhoto()+"",itemViewHolder.photo);
 
             itemViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -133,7 +133,7 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
                 HomeAlbumViewHolder homeAlbumViewHolder = (HomeAlbumViewHolder) holder;
                 if(contents.get(position) instanceof Album){
                     final Album album = (Album) contents.get(position);
-                    Glide.with(context).load(album.getCover()).error(error_icon).crossFade(500).centerCrop().into(homeAlbumViewHolder.cover);
+                    Glide.with(context).load(album.getCover()).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).crossFade(500).centerCrop().into(homeAlbumViewHolder.cover);
                     homeAlbumViewHolder.title.setText(album.getName());
                     homeAlbumViewHolder.desc.setText(album.getDescri());
                     homeAlbumViewHolder.type.setText(AlbumType.getType(album.getType()));

@@ -123,7 +123,7 @@ public class WatchActivity extends AppCompatActivity{
                     Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).error(R.drawable.glide_placeholder_bg).into(piv);
                 }*/
 //                Picasso.with(WatchActivity.this).load(baseurl + albumList.get(position)).placeholder(R.drawable.glide_placeholder_bg).error(error_icon).fit().into(piv);
-                Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).asBitmap().placeholder(R.drawable.glide_placeholder_bg).error(error_icon).into(new MyBitmapImageViewTarget(piv));
+                Glide.with(WatchActivity.this).load(baseurl + albumList.get(position)).asBitmap().placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).into(new MyBitmapImageViewTarget(piv));
                 container.addView(piv);
                 return piv;
             }

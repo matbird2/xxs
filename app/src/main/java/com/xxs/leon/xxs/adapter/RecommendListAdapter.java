@@ -64,7 +64,7 @@ public class RecommendListAdapter extends RecyclerView.Adapter<RecommendListAdap
     @Override
     public void onBindViewHolder(ItemViewHolder itemViewHolder, int position) {
         final Album album = contents.get(position);
-        Glide.with(context).load(album.getCover()).error(error_icon).crossFade(500).centerCrop().into(itemViewHolder.cover);
+        Glide.with(context).load(album.getCover()).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).crossFade(500).centerCrop().into(itemViewHolder.cover);
         itemViewHolder.title.setText(album.getName());
         itemViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override

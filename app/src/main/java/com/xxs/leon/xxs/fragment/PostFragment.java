@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.ImageView;
 
@@ -114,14 +115,18 @@ public class PostFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Background
     void getPhotoThumbnail(String image,ImageView iv){
-        String thumbnailUrl = engine.getThumbnail(image,100,75);
-//        L.i(L.TEST,"thumbnailUrl:"+thumbnailUrl);
+        String thumbnailUrl = null;
+        if(!TextUtils.isEmpty(image)){
+            thumbnailUrl = engine.getThumbnail(image,100,75);
+        }else{
+            thumbnailUrl = image;
+        }
         renderPhoto(thumbnailUrl, iv);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
     void renderPhoto(String thumbnailUrl,ImageView iv){
-        Glide.with(getActivity()).load(thumbnailUrl).crossFade(500).placeholder(R.drawable.glide_placeholder_bg).centerCrop().into(iv);
+        Glide.with(getActivity()).load(thumbnailUrl).crossFade(500).placeholder(R.drawable.default_head_photo).error(R.drawable.default_head_photo).centerCrop().into(iv);
     }
 
     @Background
