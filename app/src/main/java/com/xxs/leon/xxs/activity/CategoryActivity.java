@@ -86,7 +86,7 @@ public class CategoryActivity extends AppCompatActivity{
         mScene1 = new Scene(scene_root,scene_root.findViewById(R.id.container));
         mScene2 = Scene.getSceneForLayout(scene_root,R.layout.category_scene2,this);
 
-        route();
+//        route();
         doAnim();
     }
 
@@ -183,6 +183,8 @@ public class CategoryActivity extends AppCompatActivity{
         set.setOrdering(TransitionSet.ORDERING_TOGETHER);
         set.setDuration(500);
         TransitionManager.go(mScene2, set);
+
+        route();
     }
 
     @Override

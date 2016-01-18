@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -22,4 +23,21 @@
 
     <include layout="@layout/content_post_detail" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_anchor="@id/root_container"
+        app:layout_anchorGravity="bottom|center"
+        android:background="#9990a4ae">
+
+        <TextView
+            android:id="@+id/send_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="评论"
+            android:textAppearance="@style/XXS.TextAppearance.Body.Light"
+            android:gravity="center"/>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

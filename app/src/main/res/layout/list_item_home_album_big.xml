@@ -28,16 +28,36 @@
                 android:layout_marginRight="8dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/category_item_bg_blue"
-                    android:padding="8dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="头条"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textAppearance="@style/XXS.TextAppearance.Title.White" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/category_item_bg_blue"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="头条"
+                        android:textAppearance="@style/XXS.TextAppearance.Title.White" />
+
+                    <TextView
+                        android:id="@+id/tv_seek"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/category_item_bg_amber"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="求书"
+                        android:textAppearance="@style/XXS.TextAppearance.Title.White" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/title"

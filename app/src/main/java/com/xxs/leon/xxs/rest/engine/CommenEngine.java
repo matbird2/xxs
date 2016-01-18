@@ -8,6 +8,7 @@ import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
+import com.xxs.leon.xxs.rest.bean.request.CommentParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
 import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
@@ -206,4 +207,34 @@ public interface CommenEngine {
      * @return
      */
     List<Album> getRecommendAlbumList(String key1,String key2,int type);
+
+    /**
+     * 意见反馈
+     * @param content
+     * @param user
+     * @return
+     */
+    String feedBack(String content,XSUser user);
+
+    /**
+     * 求书
+     * @param content
+     * @param user
+     * @return
+     */
+    String seekBook(String content,XSUser user);
+
+    /**
+     * 纠错
+     * @param content
+     * @param user
+     * @return
+     */
+    String correct(String content,String albumId,XSUser user);
+
+    /**
+     * 纠错
+     * @return
+     */
+    String sendComment(String content,String albumId,String postId,String parentId,XSUser user);
 }

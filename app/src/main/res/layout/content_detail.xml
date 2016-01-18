@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:text="找相同类型连环画..." />
+                        android:text="找更多..." />
                 </LinearLayout>
 
                 <TextView

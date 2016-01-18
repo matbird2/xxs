@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -128,6 +129,12 @@ public class PostDetailActivity extends AppCompatActivity{
         intent.putExtra("bundle",bundle);
         startActivity(intent);
 
+    }
+
+    @Click(R.id.send_comment)
+    void clickSendComment(){
+        if(postId != null && !TextUtils.isEmpty(postId));
+            CommentDialogActivity_.intent(this).commentType(0).postId(postId).start();
     }
 
     @Override

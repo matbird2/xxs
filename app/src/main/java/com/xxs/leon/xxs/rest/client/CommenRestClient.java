@@ -6,6 +6,7 @@ import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.CollectInstallationParams;
+import com.xxs.leon.xxs.rest.bean.request.CommentParams;
 import com.xxs.leon.xxs.rest.bean.request.CostMoneyParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
@@ -134,4 +135,16 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Get("/classes/Album/?keys={keys}&where={where}&limit={limit}&order={order}")
     AlbumListEntity getRecommendAlbumList(String keys,String where,int limit,String order);
+
+    @Post("/functions/doFeedBack")
+    CloudRestEntity sendFeedBack(CommentParams params);
+
+    @Post("/functions/doSeekBook")
+    CloudRestEntity sendSeekBook(CommentParams params);
+
+    @Post("/functions/doCorrect")
+    CloudRestEntity sendCorrect(CommentParams params);
+
+    @Post("/functions/doComment")
+    CloudRestEntity sendComment(CommentParams params);
 }

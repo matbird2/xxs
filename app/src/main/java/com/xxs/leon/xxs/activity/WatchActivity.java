@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -189,6 +190,14 @@ public class WatchActivity extends AppCompatActivity{
     void clickGofirstPage(){
         if(currentPosition != 0 && pager != null)
             pager.setCurrentItem(0);
+    }
+
+    @Click(R.id.btn_correct)
+    void clickCorrect(){
+        if(albumId == null || TextUtils.isEmpty(albumId)){
+            return ;
+        }
+        CommentDialogActivity_.intent(this).commentType(2).albumId(albumId).correctPosition(currentPosition).start();
     }
 
     @Override

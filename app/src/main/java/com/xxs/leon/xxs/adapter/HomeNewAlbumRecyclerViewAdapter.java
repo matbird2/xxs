@@ -21,6 +21,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.activity.AlbumListActivity_;
 import com.xxs.leon.xxs.activity.CommentActivity_;
+import com.xxs.leon.xxs.activity.CommentDialogActivity_;
 import com.xxs.leon.xxs.activity.DetailActivity_;
 import com.xxs.leon.xxs.activity.PostDetailActivity_;
 import com.xxs.leon.xxs.activity.WebViewActivity;
@@ -121,9 +122,15 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
                         noticeViewHolder.read_his.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(lastAlbumId != null)
+                                if (lastAlbumId != null)
                                     DetailActivity_.intent(context).albumId(lastAlbumId).albumName("").start();
                                 noticeViewHolder.read_his.setVisibility(View.GONE);
+                            }
+                        });
+                        noticeViewHolder.seek.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                CommentDialogActivity_.intent(context).commentType(1).start();
                             }
                         });
                     }
@@ -177,6 +184,7 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
         CardView card_view;
         TextView title;
         TextView content;
+        TextView seek;
         ButtonFlat read_his;
 
         public NoticeViewHolder(View view) {
@@ -184,6 +192,7 @@ public class HomeNewAlbumRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
             card_view = (CardView) view.findViewById(R.id.card_view);
             title = (TextView) view.findViewById(R.id.title);
             content = (TextView) view.findViewById(R.id.content);
+            seek = (TextView) view.findViewById(R.id.tv_seek);
             read_his = (ButtonFlat) view.findViewById(R.id.read_his);
         }
     }

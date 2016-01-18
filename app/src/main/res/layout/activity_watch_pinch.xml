@@ -36,4 +36,12 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
         android:text="第一页" />
+
+    <com.gc.materialdesign.views.ButtonFlat
+        android:id="@+id/btn_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/go_first"
+        android:text="纠错" />
 </RelativeLayout>

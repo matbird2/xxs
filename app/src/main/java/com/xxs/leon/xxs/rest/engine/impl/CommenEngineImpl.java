@@ -10,6 +10,7 @@ import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
+import com.xxs.leon.xxs.rest.bean.request.CommentParams;
 import com.xxs.leon.xxs.rest.bean.request.CostMoneyParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
@@ -166,7 +167,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
 
     @Override
     public List<Post> getHomePostList(int skip) {
-        String keys = "excerpt,title,imgs,user";
+        String keys = "excerpt,title,imgs,user,comment_count";
         int status = 0;
         String where = "{\"status\":"+status+" }";
         String order = "-createdAt";
@@ -353,6 +354,57 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         AlbumListEntity results = client.search(keys, where, limit, order);
         L.w(L.TEST,"getRecommendAlbumList :"+(results == null));
         return results != null ? results.getResults() : null;
+    }
+
+    @Override
+    public String feedBack(String content, XSUser user) {
+        CommentParams params = new CommentParams();
+        params.setContent(content);
+        if(user != null)
+            params.setUserId(user.getObjectId());
+        CloudRestEntity entity = client.sendFeedBack(params);
+        L.w(L.TEST, "feedBack :" + (entity == null));
+        return entity != null  ? entity.getResult() : "error";
+    }
+
+    @Override
+    public String seekBook(String content, XSUser user) {
+        CommentParams params = new CommentParams();
+        params.setContent(content);
+        if(user != null)
+            params.setUserId(user.getObjectId());
+        CloudRestEntity entity = client.sendSeekBook(params);
+        L.w(L.TEST, "seekBook :" + (entity == null));
+        return entity != null  ? entity.getResult() : "error";
+    }
+
+    @Override
+    public String correct(String content, String albumId, XSUser user) {
+        CommentParams params = new CommentParams();
+        params.setContent(content);
+        if(user != null)
+            params.setUserId(user.getObjectId());
+        params.setAlbumId(albumId);
+        CloudRestEntity entity = client.sendCorrect(params);
+        L.w(L.TEST, "correct :" + (entity == null));
+        return entity != null  ? entity.getResult() : "error";
+    }
+
+    @Override
+    public String sendComment(String content,String albumId,String postId,String parentId,XSUser user) {
+        CommentParams params = new CommentParams();
+        params.setContent(content);
+        if(user != null)
+            params.setUserId(user.getObjectId());
+        if(albumId != null)
+            params.setAlbumId(albumId);
+        if(parentId != null)
+            params.setParentId(parentId);
+        if(postId != null)
+            params.setPostId(postId);
+        CloudRestEntity entity = client.sendCorrect(params);
+        L.w(L.TEST, "sendComment :" + (entity == null));
+        return entity != null  ? entity.getResult() : "error";
     }
 
     /**

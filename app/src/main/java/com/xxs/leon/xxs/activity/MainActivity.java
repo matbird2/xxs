@@ -353,7 +353,6 @@ public class MainActivity extends AppCompatActivity{
                 logo.setEnabled(false);
                 doSendSignPost();
             }else if(currentItem == 1){
-//                ActivityTransitionLauncher.with(MainActivity.this).from(logo).launch(intent);
                 final Intent intent = new Intent(MainActivity.this, CommentActivity_.class);
                 startActivity(intent);
             }

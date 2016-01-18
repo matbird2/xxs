@@ -61,6 +61,11 @@ public class SettingsActivity extends AppCompatActivity{
         });
     }
 
+    @Click(R.id.ll_feedback)
+    void clickFeedBack(){
+        CommentDialogActivity_.intent(this).commentType(3).start();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){

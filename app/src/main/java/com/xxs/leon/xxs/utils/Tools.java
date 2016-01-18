@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 
 import com.xxs.leon.xxs.constant.Constant;
 
@@ -17,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.List;
+
+import cn.bmob.v3.BmobInstallation;
 
 /**
  * Created by maliang on 15/11/26.
@@ -201,9 +204,35 @@ public class Tools {
         return array;
     }
 
+    /**
+     * 获取activity栈长度
+     * @param context
+     * @return
+     */
     public static int getActivityHeapSize(Context context){
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> runningTaskInfos = manager.getRunningTasks(1);
         return runningTaskInfos != null ? runningTaskInfos.get(0).numActivities : 0;
+    }
+
+    public static String getDeviceInfo(Context context){
+        StringBuilder sb = new StringBuilder();
+        Build buid = new Build();
+        sb.append("设备型号："+buid.MODEL);
+        sb.append("\n");
+        sb.append("系统版本："+Build.VERSION.SDK_INT);
+        sb.append("\n");
+        try {
+            String version = context.getPackageManager().getPackageInfo(context.getPackageName(),0).versionName;
+            sb.append("应用版本："+version);
+            sb.append("\n");
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String installationId = BmobInstallation.getInstallationId(context);
+        sb.append("设备uid："+installationId);
+        sb.append("\n");
+        return sb.toString();
     }
 }

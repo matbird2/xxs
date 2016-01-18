@@ -43,7 +43,7 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     Context context;
     List<Post> contents;
 
-    private IconicsDrawable error_icon;
+    private IconicsDrawable error_icon,comment_icon;
 
     public HomePostListAdapter(Context context,List<Post> contents) {
         this.context = context;
@@ -52,6 +52,10 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 .icon(GoogleMaterial.Icon.gmd_broken_image)
                 .color(Color.GRAY)
                 .sizeDp(60);
+        comment_icon = new IconicsDrawable(context)
+                .icon(GoogleMaterial.Icon.gmd_comment_alt_text)
+                .color(Color.GRAY)
+                .sizeDp(16);
     }
 
     /*public void appenList(List<Post> list) {
@@ -101,6 +105,8 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             itemViewHolder.timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
             itemViewHolder.title.setText(post.getTitle());
             itemViewHolder.content.setText(post.getExcerpt());
+            itemViewHolder.iv_comment.setImageDrawable(comment_icon);
+            itemViewHolder.comment_count.setText(post.getComment_count() == 0 ? "评论" : post.getComment_count()+"");
             listener.getAndDisplay(post.getUser().getPhoto()+"",itemViewHolder.photo);
 
             itemViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
@@ -147,18 +153,22 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         CardView card_view;
         ImageView photo;
+        ImageView iv_comment;
         TextView username;
         TextView timetag;
         TextView title;
         TextView content;
+        TextView comment_count;
 
         public ItemViewHolder(View view) {
             super(view);
             card_view = (CardView) view.findViewById(R.id.card_view);
             photo = (ImageView) view.findViewById(R.id.photo);
+            iv_comment = (ImageView) view.findViewById(R.id.iv_comment);
             username = (TextView) view.findViewById(R.id.username);
             timetag = (TextView) view.findViewById(R.id.timetag);
             title = (TextView) view.findViewById(R.id.title);
+            comment_count = (TextView) view.findViewById(R.id.comment_count);
             content = (TextView) view.findViewById(R.id.content);
         }
     }
