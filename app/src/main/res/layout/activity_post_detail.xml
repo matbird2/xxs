@@ -29,7 +29,7 @@
         android:orientation="horizontal"
         app:layout_anchor="@id/root_container"
         app:layout_anchorGravity="bottom|center"
-        android:background="#9990a4ae">
+        android:background="#aa00bcd4">
 
         <TextView
             android:id="@+id/send_comment"
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             android:text="评论"
-            android:textAppearance="@style/XXS.TextAppearance.Body.Light"
+            android:textAppearance="@style/XXS.TextAppearance.Body.White"
             android:gravity="center"/>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

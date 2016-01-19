@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="70dp"
+        android:paddingBottom="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_detail">
 
@@ -160,8 +160,8 @@
             android:layout_marginBottom="@dimen/cardMarginVertical"
             android:layout_marginLeft="@dimen/cardMarginHorizontal"
             android:layout_marginRight="@dimen/cardMarginHorizontal"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -181,6 +181,37 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@id/ll_tj"
+            android:paddingTop="10dip"/>
+
+        <LinearLayout
+            android:id="@+id/ll_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerView"
+            android:layout_marginBottom="@dimen/cardMarginVertical"
+            android:layout_marginLeft="@dimen/cardMarginHorizontal"
+            android:layout_marginRight="@dimen/cardMarginHorizontal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="评论"
+                android:textAppearance="@style/XXS.TextAppearance.Body.Light" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_400" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/comment_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_below="@id/ll_comment"
             android:paddingTop="10dip" />
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

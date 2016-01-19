@@ -3,6 +3,11 @@ package com.xxs.leon.xxs.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -11,8 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.adapter.AlbumListAdapter;
+import com.xxs.leon.xxs.adapter.CommentListAdapter;
+import com.xxs.leon.xxs.adapter.HomePostListAdapter;
+import com.xxs.leon.xxs.adapter.RecommendListAdapter;
+import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.richeditor.RichEditor;
@@ -30,6 +41,9 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by maliang on 15/12/21.
@@ -51,6 +65,8 @@ public class PostDetailActivity extends AppCompatActivity{
     protected TextView username;
     @ViewById
     protected TextView timetag;
+    @ViewById
+    protected TextView all_comment;
 
     @Extra
     String postId;
@@ -80,7 +96,6 @@ public class PostDetailActivity extends AppCompatActivity{
         doGetPostDetail();
     }
 
-
     @Background
     void doGetPostDetail(){
         if(postId != null){
@@ -96,6 +111,7 @@ public class PostDetailActivity extends AppCompatActivity{
             editor.setHtml(post.getContent());
             username.setText(post.getUser().getUsername());
             timetag.setText(TimeUtil.generTimeShowWord(post.getCreatedAt()));
+            all_comment.setText("全部评论("+post.getComment_count()+")");
             getPhotoThumbnail(post.getUser().getPhoto(), photo);
 
             if(post.getLinked_url() == null || "#".equals(post.getLinked_url())){
@@ -133,6 +149,7 @@ public class PostDetailActivity extends AppCompatActivity{
 
     @Click(R.id.send_comment)
     void clickSendComment(){
+        L.i(L.TEST, "postId => " + postId);
         if(postId != null && !TextUtils.isEmpty(postId));
             CommentDialogActivity_.intent(this).commentType(0).postId(postId).start();
     }
@@ -150,6 +167,12 @@ public class PostDetailActivity extends AppCompatActivity{
                 finish();
             }
         }
+    }
+
+    @Click(R.id.all_comment)
+    void clickAllComment(){
+        if(postId != null && !TextUtils.isEmpty(postId));
+        ShowAllCommentActivity_.intent(this).postId(postId).start();
     }
 
     @Override

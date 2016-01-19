@@ -118,6 +118,13 @@
         <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:typeface">sans</item>
     </style>
+    <style name="XXS.TextAppearance.Caption.Accent" parent="XXS.TextAppearance">
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textColor">@color/text_color_87_accent</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="android:typeface">sans</item>
+    </style>
     <style name="XXS.TextAppearance.Caption.White" parent="XXS.TextAppearance">
         <item name="android:textSize">@dimen/text_size_caption</item>
         <item name="android:textColor">@color/text_color_87_white</item>

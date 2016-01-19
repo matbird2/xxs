@@ -50,12 +50,25 @@
         android:id="@+id/read"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="阅读"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:textSize="18sp"
+        android:text="阅读"
         android:textColor="@color/md_white_1000"
+        android:textSize="18sp"
         app:layout_anchor="@id/root_container"
-        app:layout_anchorGravity="bottom|center"/>
+        app:layout_anchorGravity="bottom|center" />
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/category_item_bg_blue"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="评论"
+        android:textAppearance="@style/XXS.TextAppearance.Title.White" />
 
 </android.support.design.widget.CoordinatorLayout>

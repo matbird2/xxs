@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
@@ -23,6 +24,7 @@ import com.xxs.leon.xxs.rest.bean.request.UpdateUserSignWordParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
+import com.xxs.leon.xxs.rest.bean.response.CommentListEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomePostListEntity;
 import com.xxs.leon.xxs.rest.bean.response.PayEntity;
 import com.xxs.leon.xxs.rest.bean.response.ThumbnailEntity;
@@ -209,7 +211,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
 
     @Override
     public Post getPostDetial(String objectId) {
-        String keys = "excerpt,title,imgs,linked_url,content,status,classic,user";
+        String keys = "excerpt,title,imgs,linked_url,content,status,classic,user,comment_count";
         String include = "user[username|photo]";
         Post post = client.getPostDetailById(objectId, keys, include);
         L.w(L.TEST, "getPostDetial :" + (post == null));
@@ -402,9 +404,26 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             params.setParentId(parentId);
         if(postId != null)
             params.setPostId(postId);
-        CloudRestEntity entity = client.sendCorrect(params);
+        CloudRestEntity entity = client.sendComment(params);
         L.w(L.TEST, "sendComment :" + (entity == null));
         return entity != null  ? entity.getResult() : "error";
+    }
+
+    @Override
+    public List<Comment> getCommentList(int skip, String albumId, String postId) {
+        String where ;
+        if(albumId == null && postId != null){
+            where = "{\"status\":1,\"type\":0,\"post\":{\"__type\":\"Pointer\",\"className\":\"Post\",\"objectId\":\""+postId+"\"}}";
+        }else{
+            where = "{\"status\":1,\"type\":0,\"album\":{\"__type\":\"Pointer\",\"className\":\"Album\",\"objectId\":\""+albumId+"\"}}";
+        }
+        String keys = "content,user,parent";
+        String order = "-createdAt";
+        int limit = 10;
+        String include = "user[username|photo],parent[content].user[username]";
+        CommentListEntity entity = client.getCommentList(keys, where, limit, skip, order, include);
+        L.w(L.TEST, "getCommentList :" + (entity == null));
+        return entity != null ? entity.getResults() : null;
     }
 
     /**

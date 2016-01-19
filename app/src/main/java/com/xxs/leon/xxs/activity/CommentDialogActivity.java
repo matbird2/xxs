@@ -10,6 +10,7 @@ import com.gc.materialdesign.widgets.SnackBar;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
+import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
@@ -47,7 +48,7 @@ public class CommentDialogActivity extends Activity{
 
     @AfterInject
     void init(){
-
+        L.i(L.TEST, "CommentDialogActivity postId => " + postId);
     }
 
     @AfterViews
@@ -117,7 +118,7 @@ public class CommentDialogActivity extends Activity{
 
     @Background
     void doComment(String content){
-        String result = engine.sendComment(content, null, postId, parentId, engine.getCurrentUser());
+        String result = engine.sendComment(content, albumId, postId, parentId, engine.getCurrentUser());
         afterComment(result);
     }
 

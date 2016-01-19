@@ -7,10 +7,12 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,9 +25,12 @@ import com.gc.materialdesign.widgets.Dialog;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.adapter.AlbumListAdapter;
+import com.xxs.leon.xxs.adapter.CommentListAdapter;
 import com.xxs.leon.xxs.adapter.RecommendListAdapter;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
+import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
@@ -40,6 +45,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.InstanceState;
+import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.w3c.dom.Text;
@@ -56,6 +62,8 @@ import cn.bmob.v3.BmobInstallation;
  */
 @EActivity(R.layout.activity_detail)
 public class DetailActivity extends AppCompatActivity{
+
+    public static final int REQUEST_REPLY_COMMENT = 1;
 
     @ViewById
     protected ImageView backdrop;
@@ -75,6 +83,8 @@ public class DetailActivity extends AppCompatActivity{
     protected TextView price;
     @ViewById
     protected RecyclerView recyclerView;
+    @ViewById
+    protected RecyclerView comment_recyclerView;
     @InstanceState
     protected Bundle savedInstanceState;
     @Extra
@@ -91,7 +101,6 @@ public class DetailActivity extends AppCompatActivity{
 
     private  Album album;
     private boolean hasUserRead = false;
-//    private boolean hasDeviceRead = false;
 
     @AfterInject
     void init(){
@@ -102,10 +111,15 @@ public class DetailActivity extends AppCompatActivity{
     void initViews(){
         InitView.instance().initToolbar(toolbar, this, albumName + "");
         initRecyclerView();
+        initCommentRecyclerView();
+
         getAlbumDetail();
         getRecommendAlbumList();
+        //相册详情加载完毕之后再请求评论
+        loadCommentList(pageIndex);
     }
 
+    //-----------------------begine recommend list---------------------
     private void initRecyclerView(){
         adapter = new RecommendListAdapter(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
@@ -114,28 +128,6 @@ public class DetailActivity extends AppCompatActivity{
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-    }
-
-    @Background
-    void getAlbumDetail(){
-        if(albumId != null){
-            album = engine.getAlbumById(albumId);
-            if(album != null){
-                renderViewAfterRequest(album);
-            }
-        }
-    }
-
-    @UiThread(propagation = UiThread.Propagation.REUSE)
-    void renderViewAfterRequest(Album album){
-        L.i(L.TEST, "cover:" + album.getCover());
-        toolbar.setTitle(album.getName());
-        descriview.setText(album.getDescri());
-        pagenum.setText("页数：" + album.getImgs().size() + "页");
-        size.setText("大小："+album.getLength()+"M");
-        type.setText("类型："+ AlbumType.getType(album.getType()));
-        price.setText(album.getPrice() == 0 ? "免费阅读" : "花费：" + album.getPrice() + "银两");
-        Glide.with(this).load(album.getCover()).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).into(backdrop);
     }
 
     @Background
@@ -154,6 +146,133 @@ public class DetailActivity extends AppCompatActivity{
     void renderAfterGetRecommendList(List<Album> results){
         adapter.appenList(results);
     }
+
+    //-----------------------end recommend list---------------------
+
+    //--------------------begine about comment list---------------
+    private LinearLayoutManager linearLayoutManager;
+    private List<Comment> mContents = new ArrayList<>();
+    private CommentListAdapter commentAdapter;
+    private int lastVisibleItem = 0;
+    private int pageIndex = 0;
+    private static int PAGE_SIZE = 10;
+    private boolean hasMore = true;
+
+    private void initCommentRecyclerView(){
+        commentAdapter = new CommentListAdapter(this,mContents,null,albumId);
+
+        linearLayoutManager = new LinearLayoutManager(this);
+        comment_recyclerView.setLayoutManager(linearLayoutManager);
+        comment_recyclerView.setHasFixedSize(true);
+        comment_recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        comment_recyclerView.setAdapter(commentAdapter);
+        comment_recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView,
+                                             int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem + 1 == commentAdapter.getItemCount()) {
+                    if (hasMore) {
+                        pageIndex += 1;
+                        loadCommentList(pageIndex);
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+            }
+
+        });
+
+        commentAdapter.setOnGetThumbnailAndDisplayImageViewListener(new CommentListAdapter.OnGetThumbnailAndDisplayImageViewListener() {
+            @Override
+            public void getAndDisplay(String image, ImageView iv) {
+                getPhotoThumbnail(image, iv);
+            }
+        });
+
+    }
+
+    @Background
+    void loadCommentList(int page){
+        if(albumId == null || TextUtils.isEmpty(albumId))
+            return;
+        List<Comment> result = engine.getCommentList(page * PAGE_SIZE, albumId, null);
+        L.w(L.TEST, "comment size:" + result.size());
+        renderViewAfterLoadData(result);
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderViewAfterLoadData(List<Comment> result){
+        if(result != null ){
+            mContents.addAll(result);
+            commentAdapter.notifyDataSetChanged();
+            if(result.size() < PAGE_SIZE){
+                hasMore = false;
+                commentAdapter.setFooterViewState(AlbumListAdapter.NO_MORE_DATA);
+            }else{
+                commentAdapter.setFooterViewState(AlbumListAdapter.LOADING);
+            }
+        }else{
+            commentAdapter.setFooterViewState(AlbumListAdapter.LOAD_FAILED);
+        }
+    }
+
+    @Background
+    void getPhotoThumbnail(String image,ImageView iv){
+        String thumbnailUrl = engine.getThumbnail(image, 100, 75);
+        renderPhoto(thumbnailUrl, iv);
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderPhoto(String thumbnailUrl,ImageView iv){
+        Glide.with(this).load(thumbnailUrl).crossFade(500).placeholder(R.drawable.default_head_photo).error(R.drawable.default_head_photo).centerCrop().into(iv);
+    }
+
+    @OnActivityResult(REQUEST_REPLY_COMMENT)
+    void onResultFromReply(int resultCode,Intent data){
+        pageIndex = 0;
+        mContents.clear();
+        loadCommentList(pageIndex);
+    }
+
+    @Click(R.id.tv_comment)
+    void clickSendCommentt(){
+        if(albumId != null && !TextUtils.isEmpty(albumId));
+            CommentDialogActivity_.intent(this).commentType(0).albumId(albumId).startForResult(REQUEST_REPLY_COMMENT);
+    }
+
+    //--------------------end about comment list---------------
+
+    @Background
+    void getAlbumDetail(){
+        if(albumId != null){
+            album = engine.getAlbumById(albumId);
+            if(album != null){
+                renderViewAfterRequest(album);
+            }
+        }
+
+    }
+
+    @UiThread(propagation = UiThread.Propagation.REUSE)
+    void renderViewAfterRequest(Album album){
+        L.i(L.TEST, "cover:" + album.getCover());
+        toolbar.setTitle(album.getName());
+        descriview.setText(album.getDescri());
+        pagenum.setText("页数：" + album.getImgs().size() + "页");
+        size.setText("大小："+album.getLength()+"M");
+        type.setText("类型："+ AlbumType.getType(album.getType()));
+        price.setText(album.getPrice() == 0 ? "免费阅读" : "花费：" + album.getPrice() + "银两");
+        Glide.with(this).load(album.getCover()).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).into(backdrop);
+    }
+
 
     @Click(R.id.find_same)
     void clickFind(){

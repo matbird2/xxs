@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.BaseBean;
+import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.bean.XSUser;
@@ -237,4 +238,14 @@ public interface CommenEngine {
      * @return
      */
     String sendComment(String content,String albumId,String postId,String parentId,XSUser user);
+
+
+    /**
+     * 获取评论列表
+     * @param skip
+     * @param albumId
+     * @param postId
+     * @return
+     */
+    List<Comment> getCommentList(int skip,String albumId,String postId);
 }

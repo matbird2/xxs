@@ -20,6 +20,7 @@ import com.xxs.leon.xxs.rest.bean.request.UpdateUserSignWordParams;
 import com.xxs.leon.xxs.rest.bean.request.UserSessionParams;
 import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
 import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
+import com.xxs.leon.xxs.rest.bean.response.CommentListEntity;
 import com.xxs.leon.xxs.rest.bean.response.HomePostListEntity;
 import com.xxs.leon.xxs.rest.bean.response.PayEntity;
 import com.xxs.leon.xxs.rest.bean.response.TestEntity;
@@ -147,4 +148,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
 
     @Post("/functions/doComment")
     CloudRestEntity sendComment(CommentParams params);
+
+    @Get("/classes/Comment/?keys={keys}&where={where}&limit={limit}&skip={skip}&order={order}&include={include}")
+    CommentListEntity getCommentList(String keys,String where,int limit,int skip,String order,String include);
 }
