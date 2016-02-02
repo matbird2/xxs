@@ -13,7 +13,7 @@ import com.gc.materialdesign.widgets.SnackBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
-import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
@@ -28,6 +28,8 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import cn.bmob.im.BmobUserManager;
 
 /**
  * Created by maliang on 15/11/26.
@@ -93,16 +95,18 @@ public class RegisterActivity extends AppCompatActivity{
     @Background
     void doRegister(LoginParams params){
         SystemClock.sleep(2000);
-        XSUser user = engine.register(params);
+        XSBmobChatUser user = engine.register(params);
         afterRegister(user);
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
-    void afterRegister(XSUser user){
+    void afterRegister(XSBmobChatUser user){
         changeStatus(true);
-        if(user.getCode() == 0){
+        if(user != null){
+            BmobUserManager.getInstance(this).bindInstallationForRegister(user.getUsername());
             SnackBar snackBar = new SnackBar(this,"恭喜你注册成功~","ok",null);
             snackBar.show();
+            LoginActivity_.intent(this).start();
             finish();
         }else{
             SnackBar snackBar = new SnackBar(this,user.getError()+"","ok",null);

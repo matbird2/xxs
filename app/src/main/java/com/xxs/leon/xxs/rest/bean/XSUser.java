@@ -1,8 +1,13 @@
+/*
 package com.xxs.leon.xxs.rest.bean;
 
+import cn.bmob.v3.datatype.BmobRelation;
+
+*/
 /**
  * Created by maliang on 15/11/25.
- */
+ *//*
+
 public class XSUser extends BaseBean{
     private String username;
     private String password;
@@ -17,6 +22,43 @@ public class XSUser extends BaseBean{
     private Boolean emailVerified;
     private String email;
     private String sessionToken;
+
+    private BmobRelation contacts;//好友联系人
+    private String installId;//设备Id
+    private String deviceType;//设备类型
+    private BmobRelation blacklist;//黑名单
+
+    public BmobRelation getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(BmobRelation contacts) {
+        this.contacts = contacts;
+    }
+
+    public String getInstallId() {
+        return installId;
+    }
+
+    public void setInstallId(String installId) {
+        this.installId = installId;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public BmobRelation getBlacklist() {
+        return blacklist;
+    }
+
+    public void setBlacklist(BmobRelation blacklist) {
+        this.blacklist = blacklist;
+    }
 
     public String getUsername() {
         return username;
@@ -122,3 +164,4 @@ public class XSUser extends BaseBean{
         this.email = email;
     }
 }
+*/

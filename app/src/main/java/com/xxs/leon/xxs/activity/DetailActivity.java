@@ -28,10 +28,10 @@ import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.adapter.AlbumListAdapter;
 import com.xxs.leon.xxs.adapter.CommentListAdapter;
 import com.xxs.leon.xxs.adapter.RecommendListAdapter;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.constant.AlbumType;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Comment;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
 import com.xxs.leon.xxs.utils.L;
@@ -55,6 +55,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.BmobInstallation;
 
 /**
@@ -96,7 +98,7 @@ public class DetailActivity extends AppCompatActivity{
     @Bean
     CommenEngineImpl engine;
 
-    XSUser currentUser;
+    BmobChatUser currentUser;
     RecommendListAdapter adapter;
 
     private  Album album;
@@ -104,7 +106,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @AfterInject
     void init(){
-        currentUser = engine.getCurrentUser();
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
     }
 
     @AfterViews
@@ -291,7 +293,7 @@ public class DetailActivity extends AppCompatActivity{
         if(album == null)
             return ;
 
-        currentUser = engine.getCurrentUser();
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
         if(album.getPrice() == 0){
             if(currentUser == null){
                 L.w(L.TEST,"not login and free.");
@@ -352,7 +354,7 @@ public class DetailActivity extends AppCompatActivity{
         L.w(L.TEST,"getUserInfoAndCheckEnoughMoney");
         if(currentUser == null || album == null)
             return ;
-        XSUser userInfo = engine.getUserInfo(currentUser.getObjectId());
+        XSBmobChatUser userInfo = engine.getUserInfo(currentUser.getObjectId());
         if(userInfo == null)
             return ;
         if(userInfo.getMoney() > album.getPrice()){
@@ -403,7 +405,7 @@ public class DetailActivity extends AppCompatActivity{
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
-    void showNoEnoughMoneyDialog(XSUser userInfo){
+    void showNoEnoughMoneyDialog(XSBmobChatUser userInfo){
         L.w(L.TEST,"showNoEnoughMoneyDialog");
         final Dialog dialog = new Dialog(this,"银两不足","您目前只有"+userInfo.getMoney()+"银两，还不能阅读该连环画哦.");
         dialog.addCancelButton("知道了");

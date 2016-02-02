@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
 
@@ -54,11 +53,11 @@ public class LoginGuidActivity extends AppCompatActivity{
 
     @Background
     void testUpdateUserPhoto(){
-        XSUser user = engine.getCurrentUser();
+        /*XSUser user = engine.getCurrentUser();
         if(user == null)
             return ;
         String imgUrl = "xixixi";
-        engine.updateUserPhoto(user, imgUrl);
+        engine.updateUserPhoto(user, imgUrl);*/
     }
 
     @Override

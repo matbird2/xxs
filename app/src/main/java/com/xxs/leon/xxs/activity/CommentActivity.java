@@ -10,11 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -23,29 +21,17 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.gc.materialdesign.widgets.Dialog;
 import com.gc.materialdesign.widgets.SnackBar;
-import com.kogitune.activity_transition.ActivityTransition;
-import com.kogitune.activity_transition.ExitActivityTransition;
-import com.mikepenz.community_material_typeface_library.CommunityMaterial;
-import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Post;
-import com.xxs.leon.xxs.rest.bean.UpdateBean;
-import com.xxs.leon.xxs.rest.bean.XSUser;
-import com.xxs.leon.xxs.rest.bean.request.TestParams;
-import com.xxs.leon.xxs.rest.bean.response.AlbumListEntity;
-import com.xxs.leon.xxs.rest.bean.response.TestEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
-import com.xxs.leon.xxs.rest.client.CommenRestClient;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
-import com.xxs.leon.xxs.rest.handler.CommenRestErrorHandler;
 import com.xxs.leon.xxs.richeditor.RichEditor;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
-import com.xxs.leon.xxs.ui.CommonDialog;
 import com.xxs.leon.xxs.utils.InitView;
-import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.MatCacheUtils;
 import com.xxs.leon.xxs.utils.Tools;
 
@@ -65,6 +51,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
@@ -91,7 +79,7 @@ public class CommentActivity extends AppCompatActivity{
     ChooseImageDialog chooseImageDialog;
     String dateTime;
     String targeturl = null;
-    XSUser currentUser;
+    BmobChatUser currentUser;
     Dialog sendingDialog;
 
     @Bean
@@ -99,7 +87,7 @@ public class CommentActivity extends AppCompatActivity{
 
     @AfterInject
     void init(){
-        currentUser = engine.getCurrentUser();
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
     }
 
     @AfterViews

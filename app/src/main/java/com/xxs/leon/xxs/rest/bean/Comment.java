@@ -1,5 +1,7 @@
 package com.xxs.leon.xxs.rest.bean;
 
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
+
 /**
  * Created by maliang on 16/1/18.
  */
@@ -12,7 +14,7 @@ public class Comment extends BaseBean{
     3、反馈      ：不需要Pointer(如果有user就加)*/
     private int type;
     private String content;
-    private XSUser user;
+    private XSBmobChatUser user;
     private Post post;
     private Album album;
     private Comment parent;
@@ -41,11 +43,11 @@ public class Comment extends BaseBean{
         this.content = content;
     }
 
-    public XSUser getUser() {
+    public XSBmobChatUser getUser() {
         return user;
     }
 
-    public void setUser(XSUser user) {
+    public void setUser(XSBmobChatUser user) {
         this.user = user;
     }
 

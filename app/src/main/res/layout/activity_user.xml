@@ -49,8 +49,41 @@
         android:id="@+id/photo"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        tools:background="@color/colorAccent"
         app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|center"/>
+        app:layout_anchorGravity="bottom|center"
+        tools:background="@color/colorAccent" />
 
+    <LinearLayout
+        android:id="@+id/ll_im"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_im_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/im_btn_bg"
+            android:gravity="center"
+            android:text="加为好友"
+            android:visibility="gone"
+            android:layout_marginRight="10dp"
+            android:textAppearance="@style/XXS.TextAppearance.Body.White" />
+
+        <TextView
+            android:id="@+id/tv_im_contract"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/im_btn_bg"
+            android:gravity="center"
+            android:text="和TA聊天"
+            android:textAppearance="@style/XXS.TextAppearance.Body.White" />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -1,11 +1,13 @@
 package com.xxs.leon.xxs.rest.bean;
 
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
+
 /**
  * Created by maliang on 15/12/24.
  */
 public class ReadLog extends BaseBean{
     private String albumId;
-    private XSUser user;
+    private XSBmobChatUser user;
 
     public String getAlbumId() {
         return albumId;
@@ -15,11 +17,11 @@ public class ReadLog extends BaseBean{
         this.albumId = albumId;
     }
 
-    public XSUser getUser() {
+    public XSBmobChatUser getUser() {
         return user;
     }
 
-    public void setUser(XSUser user) {
+    public void setUser(XSBmobChatUser user) {
         this.user = user;
     }
 }

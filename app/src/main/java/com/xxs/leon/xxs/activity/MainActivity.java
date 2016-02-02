@@ -29,6 +29,7 @@ import com.gc.materialdesign.widgets.SnackBar;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -51,19 +52,12 @@ import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.fragment.NewFragment_;
 import com.xxs.leon.xxs.fragment.PostFragment_;
-import com.xxs.leon.xxs.fragment.RecyclerViewFragment;
-import com.xxs.leon.xxs.rest.bean.XSUser;
-import com.xxs.leon.xxs.rest.bean.request.PayParams;
-import com.xxs.leon.xxs.rest.engine.CommenEngine;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
-import com.xxs.leon.xxs.test.SecondActivity_;
 import com.xxs.leon.xxs.utils.InitView;
-import com.xxs.leon.xxs.utils.L;
-import com.xxs.leon.xxs.utils.TimeUtil;
-import com.xxs.leon.xxs.utils.Tools;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -80,6 +74,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.listener.BmobUpdateListener;
 import cn.bmob.v3.update.BmobUpdateAgent;
 import cn.bmob.v3.update.UpdateResponse;
@@ -116,13 +112,15 @@ public class MainActivity extends AppCompatActivity{
     IconicsDrawable penIcon;
     IconicsDrawable peopleDrawable;
 
-    XSUser resultUser;
+    XSBmobChatUser resultUser;
 //    private IProfile profile;
+    BmobChatUser currentUser;
 
     @AfterInject
     void init(){
         initIconRes();
         loadUserInfo();
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
     }
 
     @AfterViews
@@ -151,14 +149,14 @@ public class MainActivity extends AppCompatActivity{
 
     @Background
     void loadUserInfo(){
-        if(engine.getCurrentUser() != null){
-            resultUser = engine.getUserInfo(engine.getCurrentUser().getObjectId());
+        if(currentUser != null){
+            resultUser = engine.getUserInfo(currentUser.getObjectId());
             renderUserView(resultUser);
         }
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
-    void renderUserView(XSUser user){
+    void renderUserView(XSBmobChatUser user){
         if(defualtProfile != null && resultUser != null){
             headerResult.removeProfile(defualtProfile);
             IProfile userProfile = new ProfileDrawerItem().withName(resultUser.getUsername()+"").withIcon(resultUser.getPhoto()+"").withIdentifier(6);
@@ -179,10 +177,10 @@ public class MainActivity extends AppCompatActivity{
                         //IMPORTANT! notify the MiniDrawer about the profile click
                         miniResult.onProfileClick();
                         if (profile.getIdentifier() == 6) {
-                            if(engine.getCurrentUser() == null){
+                            if(currentUser == null){
                                 LoginActivity_.intent(MainActivity.this).start();
                             }else{
-                                UserActivity_.intent(MainActivity.this).start();
+                                UserActivity_.intent(MainActivity.this).userId(currentUser.getObjectId()).start();
                             }
                         }
                         //false if you have not consumed the event and it should close the drawer
@@ -206,6 +204,7 @@ public class MainActivity extends AppCompatActivity{
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("首页").withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
                         new PrimaryDrawerItem().withName("小书").withIcon(FontAwesome.Icon.faw_book)/*.withBadge("22").withBadgeStyle(new BadgeStyle(Color.RED, Color.RED))*/.withIdentifier(2),
+                        new PrimaryDrawerItem().withName("消息").withIcon(CommunityMaterial.Icon.cmd_message_text).withIdentifier(6),
                         new PrimaryDrawerItem().withName("我的").withIcon(GoogleMaterial.Icon.gmd_account_circle).withIdentifier(3),
 
                         new SectionDrawerItem().withName("其他"),
@@ -221,9 +220,8 @@ public class MainActivity extends AppCompatActivity{
 //                            ActivityTransitionLauncher.with(MainActivity.this).from(v.findViewById(R.id.material_drawer_icon)).launch(intent);
                             MainActivity.this.startActivity(intent);
                         }else if(drawerItem.getIdentifier() == 3){
-                            if(engine.getCurrentUser() != null){
-                                final Intent intent = new Intent(MainActivity.this, UserActivity_.class);
-                                MainActivity.this.startActivity(intent);
+                            if(currentUser!= null){
+                                UserActivity_.intent(MainActivity.this).userId(currentUser.getObjectId()).start();
                             }else{
                                 LoginActivity_.intent(MainActivity.this).start();
                             }
@@ -232,6 +230,8 @@ public class MainActivity extends AppCompatActivity{
                             SettingsActivity_.intent(MainActivity.this).start();
                         }else if(drawerItem.getIdentifier() == 5){
                             ContractActivity_.intent(MainActivity.this).start();
+                        }else if(drawerItem.getIdentifier() == 6){
+                            MessageListActivity_.intent(MainActivity.this).start();
                         }
                         return miniResult.onItemClick(drawerItem);
                     }
@@ -345,7 +345,8 @@ public class MainActivity extends AppCompatActivity{
     @Click(R.id.logo)
     void onClickLogo(){
         mViewPager.notifyHeaderChanged();
-        if(engine.getCurrentUser() == null){
+
+        if(currentUser == null){
             LoginActivity_.intent(this).start();
         }else{
             int currentItem = mViewPager.getViewPager().getCurrentItem();
@@ -361,7 +362,7 @@ public class MainActivity extends AppCompatActivity{
 
     @Background
     void doSendSignPost(){
-        String result = engine.sendSignPost(engine.getCurrentUser());
+        String result = engine.sendSignPost(currentUser);
         renderAfterSendSign(result);
     }
 

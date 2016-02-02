@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.Tools;
@@ -22,6 +23,9 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 
 /**
  * Created by maliang on 16/1/18.
@@ -45,10 +49,12 @@ public class CommentDialogActivity extends Activity{
     String albumId;
     @Bean
     CommenEngineImpl engine;
+    BmobChatUser currentUser;
 
     @AfterInject
     void init(){
         L.i(L.TEST, "CommentDialogActivity postId => " + postId);
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
     }
 
     @AfterViews
@@ -98,7 +104,7 @@ public class CommentDialogActivity extends Activity{
                 doCorrect(content);
                 break;
             case 1:
-                if(engine.getCurrentUser() == null){
+                if(currentUser == null){
                     Toast.makeText(this,"登录之后才能求书哦",Toast.LENGTH_SHORT).show();
                     LoginActivity_.intent(this).start();
                 }else{
@@ -106,7 +112,7 @@ public class CommentDialogActivity extends Activity{
                 }
 
             case 0:
-                if(engine.getCurrentUser() == null){
+                if(currentUser == null){
                     Toast.makeText(this,"登录之后才能评论哦",Toast.LENGTH_SHORT).show();
                     LoginActivity_.intent(this).start();
                 }else{
@@ -118,7 +124,7 @@ public class CommentDialogActivity extends Activity{
 
     @Background
     void doComment(String content){
-        String result = engine.sendComment(content, albumId, postId, parentId, engine.getCurrentUser());
+        String result = engine.sendComment(content, albumId, postId, parentId, currentUser);
         afterComment(result);
     }
 
@@ -134,7 +140,7 @@ public class CommentDialogActivity extends Activity{
 
     @Background
     void doCorrect(String content){
-        String result = engine.correct(content, albumId, engine.getCurrentUser());
+        String result = engine.correct(content, albumId, currentUser);
         afterCorrect(result);
     }
 
@@ -150,7 +156,7 @@ public class CommentDialogActivity extends Activity{
 
     @Background
     void doSeekBook(String content){
-        String result = engine.seekBook(content, engine.getCurrentUser());
+        String result = engine.seekBook(content, currentUser);
         afterSeekBook(result);
     }
 
@@ -166,7 +172,7 @@ public class CommentDialogActivity extends Activity{
 
     @Background
     void doFeedBack(String content){
-        String result = engine.feedBack(content, engine.getCurrentUser());
+        String result = engine.feedBack(content, currentUser);
         afterFeedBack(result);
     }
 

@@ -39,7 +39,7 @@ public class MatCacheUtils {
         }
         if (appCacheDir == null) {
             String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
-            Log.w("Can't define system cache directory! '%s' will be used.", cacheDirPath);
+            Log.w("TEST", "cacheDirPath ==> "+cacheDirPath);
             appCacheDir = new File(cacheDirPath);
         }
         return appCacheDir;

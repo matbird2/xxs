@@ -17,11 +17,15 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.activity.CommentDialogActivity_;
+import com.xxs.leon.xxs.activity.LoginActivity_;
 import com.xxs.leon.xxs.activity.ShowAllCommentActivity;
+import com.xxs.leon.xxs.activity.UserActivity_;
 import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.utils.TimeUtil;
 
 import java.util.List;
+
+import cn.bmob.im.BmobUserManager;
 
 /**
  * Created by maliang on 16/1/19.
@@ -92,12 +96,32 @@ public class CommentListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemViewHolder.username.setText(comment.getUser().getUsername());
             itemViewHolder.timetag.setText(TimeUtil.generTimeShowWord(comment.getCreatedAt()));
             itemViewHolder.content.setText(comment.getContent());
-            listener.getAndDisplay(comment.getUser().getPhoto()+"",itemViewHolder.photo);
+            listener.getAndDisplay(comment.getUser().getPhoto() + "", itemViewHolder.photo);
 
             itemViewHolder.container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     CommentDialogActivity_.intent(context).commentType(0).parentId(comment.getObjectId()).postId(postId).albumId(albumId).startForResult(ShowAllCommentActivity.REQUEST_REPLY_COMMENT);
+                }
+            });
+            itemViewHolder.photo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(BmobUserManager.getInstance(context).getCurrentUser() == null){
+                        LoginActivity_.intent(context).start();
+                    }else{
+                        UserActivity_.intent(context).userId(comment.getUser().getObjectId()).start();
+                    }
+                }
+            });
+            itemViewHolder.username.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(BmobUserManager.getInstance(context).getCurrentUser() == null){
+                        LoginActivity_.intent(context).start();
+                    }else{
+                        UserActivity_.intent(context).userId(comment.getUser().getObjectId()).start();
+                    }
                 }
             });
 
@@ -153,6 +177,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView content;
         TextView parent_content;
         LinearLayout ll_parent;
+        LinearLayout ll_user;
 
         public ItemViewHolder(View view) {
             super(view);
@@ -164,6 +189,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             content = (TextView) view.findViewById(R.id.content);
             parent_content = (TextView) view.findViewById(R.id.parent_content);
             ll_parent = (LinearLayout) view.findViewById(R.id.ll_parent);
+            ll_user = (LinearLayout) view.findViewById(R.id.ll_user);
         }
     }
 

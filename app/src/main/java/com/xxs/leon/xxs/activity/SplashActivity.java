@@ -8,9 +8,7 @@ import android.widget.TextView;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
 import com.xxs.leon.xxs.constant.Constant;
-import com.xxs.leon.xxs.rest.bean.XXSBmobInstallation;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
-import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.Tools;
 import com.xxs.leon.xxs.utils.XXSPref_;
 
@@ -21,14 +19,10 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
-import java.util.List;
 
-import cn.bmob.push.BmobPush;
+import cn.bmob.im.BmobChat;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by leon on 15-12-26.
@@ -48,7 +42,10 @@ public class SplashActivity extends Activity{
     void init(){
         Bmob.initialize(this, Constant.X_BMOB_APPLICATION_ID);
         BmobInstallation.getCurrentInstallation(this).save();
-        BmobPush.startWork(this, Constant.X_BMOB_APPLICATION_ID);
+        //可设置调试模式，当为true的时候，会在logcat的BmobChat下输出一些日志，包括推送服务是否正常运行，如果服务端返回错误，也会一并打印出来。方便开发者调试，正式发布应注释此句。
+        BmobChat.DEBUG_MODE = true;
+        //BmobIM SDK初始化--只需要这一段代码即可完成初始化
+        BmobChat.getInstance(this).init(Constant.X_BMOB_APPLICATION_ID);
     }
 
     @AfterViews
@@ -72,6 +69,7 @@ public class SplashActivity extends Activity{
                 if(!isFirstOpen){
                     goHome();
                 }else{
+                    engine.logout();
                     goGuide();
                 }
             }

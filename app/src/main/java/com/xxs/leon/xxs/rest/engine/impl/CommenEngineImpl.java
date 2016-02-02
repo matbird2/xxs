@@ -3,12 +3,12 @@ package com.xxs.leon.xxs.rest.engine.impl;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.CommentParams;
@@ -42,6 +42,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.BmobInstallation;
 
 /**
@@ -64,21 +66,22 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
         return results != null ? results.getResults() : null;
     }
 
-    @Override
-    public XSUser login(LoginParams loginParams) {
-        CloudRestEntity entity = client.login(loginParams);
-        String jsonString = entity.getResult();
-        L.i(L.TEST, jsonString);
-        return processUserJsonString(jsonString, false);
-    }
+//    @Override
+//    public XSUser login(LoginParams loginParams) {
+//        CloudRestEntity entity = client.login(loginParams);
+//        String jsonString = entity.getResult();
+//        L.i(L.TEST, jsonString);
+//        return processUserJsonString(jsonString, false);
+//    }
 
 
     @Override
     public void logout() {
         xxsPref.userInfo().put("");
+        BmobUserManager.getInstance(context).logout();
     }
 
-    @Override
+    /*@Override
     public XSUser getCurrentUser() {
         String jsonString = xxsPref.userInfo().get();
         L.i(L.TEST, "current string:" + jsonString);
@@ -89,18 +92,24 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             L.i(L.TEST, jsonString);
             return processUserJsonString(jsonString,true);
         }
+    }*/
+
+    @Override
+    public XSBmobChatUser getUserInfo(String objectId) {
+        return client.getUserInfo(objectId);
     }
 
     @Override
-    public XSUser register(LoginParams registerParams) {
+    public XSBmobChatUser register(LoginParams registerParams) {
         CloudRestEntity entity = client.register(registerParams);
         String jsonString = entity.getResult();
-        return processUserJsonString(jsonString, false);
-    }
-
-    @Override
-    public XSUser getUserInfo(String objectId) {
-        return client.getUserInfo(objectId);
+        try {
+            XSBmobChatUser user = objectMapper.readValue(jsonString, XSBmobChatUser.class);
+            return user;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -119,7 +128,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public UpdateBean updateUserPhoto(XSUser user,String imgUrl) {
+    public UpdateBean updateUserPhoto(BmobChatUser user,String imgUrl) {
         UpdateUserPhotoParams params = new UpdateUserPhotoParams();
         params.setSessionToken(user.getSessionToken());
         params.setObjectId(user.getObjectId());
@@ -142,7 +151,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String sendSignPost(XSUser user) {
+    public String sendSignPost(BmobChatUser user) {
         UserSessionParams params = new UserSessionParams();
         params.setObjectId(user.getObjectId());
         params.setSessionToken(user.getSessionToken());
@@ -193,7 +202,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String sendPost(XSUser user, Post post) {
+    public String sendPost(BmobChatUser user, Post post) {
         SendPostParams params = new SendPostParams();
         params.setObjectId(user.getObjectId());
         params.setSessionToken(user.getSessionToken());
@@ -262,7 +271,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String costMoney(XSUser user, int cost) {
+    public String costMoney(BmobChatUser user, int cost) {
         CostMoneyParams params = new CostMoneyParams();
         params.setObjectId(user.getObjectId());
         params.setSessionToken(user.getSessionToken());
@@ -273,7 +282,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String addReadLog(Context context,XSUser user, String albumId) {
+    public String addReadLog(Context context,BmobChatUser user, String albumId) {
         AddReadLogParams params = new AddReadLogParams();
         if(user != null){
             params.setObjectId(user.getObjectId());
@@ -301,7 +310,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public UpdateBean updateUserName(XSUser user, String username) {
+    public UpdateBean updateUserName(BmobChatUser user, String username) {
         UpdateUserNameParams params = new UpdateUserNameParams();
         params.setSessionToken(user.getSessionToken());
         params.setObjectId(user.getObjectId());
@@ -319,7 +328,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public UpdateBean updateUserSignWord(XSUser user, String signword) {
+    public UpdateBean updateUserSignWord(BmobChatUser user, String signword) {
         UpdateUserSignWordParams params = new UpdateUserSignWordParams();
         params.setSessionToken(user.getSessionToken());
         params.setObjectId(user.getObjectId());
@@ -359,7 +368,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String feedBack(String content, XSUser user) {
+    public String feedBack(String content, BmobChatUser user) {
         CommentParams params = new CommentParams();
         params.setContent(content);
         if(user != null)
@@ -370,7 +379,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String seekBook(String content, XSUser user) {
+    public String seekBook(String content, BmobChatUser user) {
         CommentParams params = new CommentParams();
         params.setContent(content);
         if(user != null)
@@ -381,7 +390,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String correct(String content, String albumId, XSUser user) {
+    public String correct(String content, String albumId, BmobChatUser user) {
         CommentParams params = new CommentParams();
         params.setContent(content);
         if(user != null)
@@ -393,7 +402,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
     }
 
     @Override
-    public String sendComment(String content,String albumId,String postId,String parentId,XSUser user) {
+    public String sendComment(String content,String albumId,String postId,String parentId,BmobChatUser user) {
         CommentParams params = new CommentParams();
         params.setContent(content);
         if(user != null)
@@ -432,7 +441,7 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
      * @param isLocal 是否是本地数据，如果是，就不需要再次保存到本地
      * @return
      */
-    private XSUser processUserJsonString(String jsonString,boolean isLocal){
+    /*private XSUser processUserJsonString(String jsonString,boolean isLocal){
         try {
             XSUser user = objectMapper.readValue(jsonString, XSUser.class);
             if (!isLocal && user.getCode() == 0){
@@ -444,6 +453,6 @@ public class CommenEngineImpl extends BaseEngine implements CommenEngine{
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 
 }

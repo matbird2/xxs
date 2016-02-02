@@ -15,14 +15,20 @@ import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.activity.CommentDialogActivity_;
 import com.xxs.leon.xxs.activity.DetailActivity_;
+import com.xxs.leon.xxs.activity.LoginActivity_;
 import com.xxs.leon.xxs.activity.PostDetailActivity_;
+import com.xxs.leon.xxs.activity.ShowAllCommentActivity;
+import com.xxs.leon.xxs.activity.UserActivity_;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.utils.L;
 import com.xxs.leon.xxs.utils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.im.BmobUserManager;
 
 /**
  * Created by maliang on 15/12/16.
@@ -106,13 +112,34 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             itemViewHolder.title.setText(post.getTitle());
             itemViewHolder.content.setText(post.getExcerpt());
             itemViewHolder.iv_comment.setImageDrawable(comment_icon);
-            itemViewHolder.comment_count.setText(post.getComment_count() == 0 ? "评论" : post.getComment_count()+"");
-            listener.getAndDisplay(post.getUser().getPhoto()+"",itemViewHolder.photo);
+            itemViewHolder.comment_count.setText(post.getComment_count() == 0 ? "评论" : post.getComment_count() + "");
+            listener.getAndDisplay(post.getUser().getPhoto() + "", itemViewHolder.photo);
 
             itemViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     PostDetailActivity_.intent(context).postId(post.getObjectId()).postTitle(post.getTitle()).start();
+                }
+            });
+
+            itemViewHolder.photo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(BmobUserManager.getInstance(context).getCurrentUser() == null){
+                        LoginActivity_.intent(context).start();
+                    }else{
+                        UserActivity_.intent(context).userId(post.getUser().getObjectId()).start();
+                    }
+                }
+            });
+            itemViewHolder.username.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(BmobUserManager.getInstance(context).getCurrentUser() == null){
+                        LoginActivity_.intent(context).start();
+                    }else{
+                        UserActivity_.intent(context).userId(post.getUser().getObjectId()).start();
+                    }
                 }
             });
 
@@ -159,6 +186,7 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView title;
         TextView content;
         TextView comment_count;
+        LinearLayout ll_user;
 
         public ItemViewHolder(View view) {
             super(view);
@@ -170,6 +198,7 @@ public class HomePostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             title = (TextView) view.findViewById(R.id.title);
             comment_count = (TextView) view.findViewById(R.id.comment_count);
             content = (TextView) view.findViewById(R.id.content);
+            ll_user = (LinearLayout) view.findViewById(R.id.ll_user);
         }
     }
 

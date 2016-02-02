@@ -20,8 +20,8 @@ import com.gc.materialdesign.widgets.Dialog;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.constant.Constant;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
@@ -34,6 +34,9 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 
 /**
  * Created by maliang on 15/12/17.
@@ -57,7 +60,7 @@ public class PayWebViewActivity extends AppCompatActivity{
     @Bean
     CommenEngineImpl engine;
 
-    XSUser currentUser;
+    BmobChatUser currentUser;
 
     @AfterInject
     void init(){
@@ -67,7 +70,7 @@ public class PayWebViewActivity extends AppCompatActivity{
         type = bundle.getInt("type", 0);
         income = bundle.getString("income", "0");
 
-        currentUser = engine.getCurrentUser();
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
     }
 
     @AfterViews

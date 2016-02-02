@@ -45,6 +45,8 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.im.BmobUserManager;
+
 /**
  * Created by maliang on 15/12/21.
  */
@@ -173,6 +175,15 @@ public class PostDetailActivity extends AppCompatActivity{
     void clickAllComment(){
         if(postId != null && !TextUtils.isEmpty(postId));
         ShowAllCommentActivity_.intent(this).postId(postId).start();
+    }
+
+    @Click(R.id.ll_user)
+    void clickUser(){
+        if(BmobUserManager.getInstance(this).getCurrentUser() == null){
+            LoginActivity_.intent(this).start();
+        }else{
+            UserActivity_.intent(this).userId(post.getUser().getObjectId()).start();
+        }
     }
 
     @Override

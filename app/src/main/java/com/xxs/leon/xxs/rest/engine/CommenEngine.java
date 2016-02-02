@@ -2,22 +2,19 @@ package com.xxs.leon.xxs.rest.engine;
 
 import android.content.Context;
 
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.rest.bean.Album;
-import com.xxs.leon.xxs.rest.bean.BaseBean;
 import com.xxs.leon.xxs.rest.bean.Comment;
 import com.xxs.leon.xxs.rest.bean.Post;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
-import com.xxs.leon.xxs.rest.bean.request.CommentParams;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.bean.request.PayParams;
-import com.xxs.leon.xxs.rest.bean.request.ThumbnailParams;
-import com.xxs.leon.xxs.rest.bean.response.CloudRestEntity;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
-import com.xxs.leon.xxs.rest.engine.callback.DataEngineCallback;
 
 import java.util.List;
+
+import cn.bmob.im.bean.BmobChatUser;
 
 /**
  * Created by leon on 15-11-24.
@@ -35,7 +32,7 @@ public interface CommenEngine {
      * @param loginParams  登录参数：包括用户名和密码
      * @return
      */
-    XSUser login(LoginParams loginParams);
+//    XSUser login(LoginParams loginParams);
 
     /**
      * No need background.
@@ -48,21 +45,21 @@ public interface CommenEngine {
      * 获取本地user对象
      * @return
      */
-    XSUser getCurrentUser();
+//    XSUser getCurrentUser();
 
     /**
      * 注册
      * @param registerParams 参数和登陆使用的参数一致
      * @return
      */
-    XSUser register(LoginParams registerParams);
+    XSBmobChatUser register(LoginParams registerParams);
 
     /**
      * 从服务端获取用户信息,不包含sessionToken
      * @param objectId
      * @return
      */
-    XSUser getUserInfo(String objectId);
+    XSBmobChatUser getUserInfo(String objectId);
 
     /**
      * 上传文件
@@ -78,7 +75,7 @@ public interface CommenEngine {
      * @param user  必须是 getLocalUser 的user对象
      * @return
      */
-    UpdateBean updateUserPhoto(XSUser user,String imgUrl);
+    UpdateBean updateUserPhoto(BmobChatUser user,String imgUrl);
 
     /**
      * 查询相册详情信息
@@ -92,7 +89,7 @@ public interface CommenEngine {
      * @param user
      * @return
      */
-    String sendSignPost(XSUser user);
+    String sendSignPost(BmobChatUser user);
 
     /**
      * 根据类别获取相册列表
@@ -121,7 +118,7 @@ public interface CommenEngine {
      * @param post
      * @return
      */
-    String sendPost(XSUser user,Post post);
+    String sendPost(BmobChatUser user,Post post);
 
     /**
      * 获取文章详情
@@ -162,7 +159,7 @@ public interface CommenEngine {
      * @param cost
      * @return
      */
-    String costMoney(XSUser user,int cost);
+    String costMoney(BmobChatUser user,int cost);
 
     /**
      * 添加阅读记录
@@ -170,7 +167,7 @@ public interface CommenEngine {
      * @param albumId
      * @return
      */
-    String addReadLog(Context context,XSUser user,String albumId);
+    String addReadLog(Context context,BmobChatUser user,String albumId);
 
     /**
      * 获取首页头条公告
@@ -184,7 +181,7 @@ public interface CommenEngine {
      * @param username
      * @return
      */
-    UpdateBean updateUserName(XSUser user,String username);
+    UpdateBean updateUserName(BmobChatUser user,String username);
 
     /**
      * 更新用户签名
@@ -192,7 +189,7 @@ public interface CommenEngine {
      * @param signword
      * @return
      */
-    UpdateBean updateUserSignWord(XSUser user,String signword);
+    UpdateBean updateUserSignWord(BmobChatUser user,String signword);
 
     /**
      * 搜索
@@ -215,7 +212,7 @@ public interface CommenEngine {
      * @param user
      * @return
      */
-    String feedBack(String content,XSUser user);
+    String feedBack(String content,BmobChatUser user);
 
     /**
      * 求书
@@ -223,7 +220,7 @@ public interface CommenEngine {
      * @param user
      * @return
      */
-    String seekBook(String content,XSUser user);
+    String seekBook(String content,BmobChatUser user);
 
     /**
      * 纠错
@@ -231,13 +228,13 @@ public interface CommenEngine {
      * @param user
      * @return
      */
-    String correct(String content,String albumId,XSUser user);
+    String correct(String content,String albumId,BmobChatUser user);
 
     /**
      * 纠错
      * @return
      */
-    String sendComment(String content,String albumId,String postId,String parentId,XSUser user);
+    String sendComment(String content,String albumId,String postId,String parentId,BmobChatUser user);
 
 
     /**

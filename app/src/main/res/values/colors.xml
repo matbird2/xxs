@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#0097a7</color>
     <color name="colorAccent">#ffab40</color>
 
+    <color name="base_color_text_black">#3e3e39</color>
+    <color name="msg_emote_divider">#ffa1a1a1</color>
+    <color name="base_bg">#f4f6f6</color>
 </resources>

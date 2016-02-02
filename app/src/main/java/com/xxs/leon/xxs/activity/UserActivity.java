@@ -11,10 +11,13 @@ import android.provider.MediaStore;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gc.materialdesign.widgets.Dialog;
@@ -26,9 +29,9 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.constant.Constant;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.response.UploadEntity;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.ui.ChooseImageDialog;
@@ -43,6 +46,7 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
@@ -50,7 +54,11 @@ import org.androidannotations.annotations.ViewById;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
+import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
+import cn.bmob.v3.listener.FindListener;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
@@ -78,21 +86,28 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
     protected TextView sign;
     @ViewById
     protected Toolbar toolbar;
+    @ViewById
+    protected LinearLayout ll_loginout;
+    @ViewById
+    protected LinearLayout ll_im;
+    @Extra
+    String userId;
 
     @Bean
     CommenEngineImpl engine;
 
     IconicsDrawable account_icon,right_icon,head_icon;
     ChooseImageDialog dialog;
-    XSUser currentUser;
-    XSUser resultUser;
+    XSBmobChatUser resultUser;
+    BmobChatUser currentUser;
     String dateTime;
     String targeturl = null;
+    boolean isMyCenter = false;
 
     @AfterInject
     void init(){
         initIconRes();
-        currentUser = engine.getCurrentUser();
+        currentUser = BmobUserManager.getInstance(this).getCurrentUser();
     }
 
     @AfterViews
@@ -100,8 +115,18 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
         InitView.instance().initToolbar(toolbar,this,"");
         InitView.instance().initSwipeRefreshLayout(this, swipeRefreshLayout, true,this);
 
-        if(currentUser != null){
-            doGetUserInfo(currentUser.getObjectId());
+        if(!TextUtils.isEmpty(userId) && userId.equals(currentUser.getObjectId())){
+            isMyCenter = true;
+            ll_loginout.setVisibility(View.VISIBLE);
+            ll_im.setVisibility(View.GONE);
+        }else{
+            isMyCenter = false;
+            ll_loginout.setVisibility(View.INVISIBLE);
+            ll_im.setVisibility(View.VISIBLE);
+        }
+
+        if(!TextUtils.isEmpty(userId)){
+            doGetUserInfo(userId);
         }
 
         Glide.with(this).load(Constant.DEFAULT_USER_CENTER_BACKGROUND_URL).placeholder(R.drawable.default_image_loading).error(R.drawable.default_loading_error).into(backdrop);
@@ -115,7 +140,7 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     @UiThread(propagation = UiThread.Propagation.REUSE)
-    void renderView(XSUser resultUser){
+    void renderView(XSBmobChatUser resultUser){
         swipeRefreshLayout.setRefreshing(false);
 
         if(dialog != null)
@@ -143,31 +168,64 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .sizeDp(20);
     }
 
-    @Click(R.id.ll_nick)
-    void click1(){
-        UpdateUsernameActivity_.intent(this).start();
-    }
-
-    @Click(R.id.ll_sign)
-    void clickSignword(){
-        UpdateUserSignWordActivity_.intent(this).start();
-    }
-
-    @Click(R.id.ll_point)
-    void clickPoint(){
-        final Dialog dialog = new Dialog(this,"关于积分","积分越多等级越高哦~");
-        dialog.show();
-        dialog.getButtonAccept().setText("知道了");
-        dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+    @Click(R.id.tv_im_contract)
+    void clickContract(){
+        BmobUserManager.getInstance(this).queryUser(resultUser.getUsername(), new FindListener<XSBmobChatUser>() {
             @Override
-            public void onClick(View view) {
-                dialog.dismiss();
+            public void onSuccess(List<XSBmobChatUser> list) {
+                if (list != null && list.size() > 0) {
+                    XSBmobChatUser user = list.get(0);
+                    ChatActivity_.intent(UserActivity.this).targetUser(user).start();
+                } else {
+//                    ShowLog("onSuccess 查无此人");
+                    Toast.makeText(UserActivity.this, "error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                Toast.makeText(UserActivity.this, "请稍候", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    @Click(R.id.ll_nick)
+    void click1(){
+        if(isMyCenter)
+            UpdateUsernameActivity_.intent(this).start();
+    }
+
+    @Click(R.id.ll_sign)
+    void clickSignword(){
+        if(isMyCenter)
+            UpdateUserSignWordActivity_.intent(this).start();
+    }
+
+    @Click(R.id.ll_point)
+    void clickPoint(){
+        if(isMyCenter){
+            final Dialog dialog = new Dialog(this,"关于积分","积分越多等级越高哦~");
+            dialog.show();
+            dialog.getButtonAccept().setText("知道了");
+            dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+        }
+    }
+
     @Click(R.id.photo)
     void clickPhoto(){
+        if(!isMyCenter)
+            return ;
         dialog = new ChooseImageDialog(this,"选择头像");
         dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
             @Override
@@ -218,18 +276,18 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Background
     void doUploadAndUpdateUserPhoto(){
-        if (targeturl != null && currentUser != null) {
-            UploadEntity uploadEntity = engine.uploadFile("head_photo_" + currentUser.getObjectId() + "_" + dateTime + ".jpg", targeturl);
-            if (uploadEntity != null && uploadEntity.getCode() == 0 && currentUser != null) {
+        if (targeturl != null && userId != null) {
+            UploadEntity uploadEntity = engine.uploadFile("head_photo_" + userId + "_" + dateTime + ".jpg", targeturl);
+            if (uploadEntity != null && uploadEntity.getCode() == 0 && userId != null) {
                 UpdateBean updateBean = engine.updateUserPhoto(currentUser, Constant.BASE_IMAGE_FILE_URL + uploadEntity.getUrl());
                 if(updateBean.getCode() == 0){
-                    doGetUserInfo(currentUser.getObjectId());
+                    doGetUserInfo(userId);
                 }else{
                     SnackBar snackBar = new SnackBar(this,updateBean.getError()+"","ok",null);
                     snackBar.show();
                 }
             }else {
-                SnackBar snackBar = new SnackBar(this,uploadEntity.getError()+"","ok",null);
+                SnackBar snackBar = new SnackBar(this,"更新头像失败","ok",null);
                 snackBar.show();
             }
         }
@@ -237,6 +295,8 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Click(R.id.ll_money)
     void clickMoney(){
+        if(!isMyCenter)
+            return ;
         final Dialog dialog = new Dialog(this,"关于银两","银两可用于应用内消费");
         dialog.addCancelButton("知道了");
         dialog.show();
@@ -348,8 +408,8 @@ public class UserActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
-        if(currentUser != null){
-            doGetUserInfo(currentUser.getObjectId());
+        if(!TextUtils.isEmpty(userId)){
+            doGetUserInfo(userId);
         }
     }
 }

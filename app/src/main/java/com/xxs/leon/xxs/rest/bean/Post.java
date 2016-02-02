@@ -1,5 +1,7 @@
 package com.xxs.leon.xxs.rest.bean;
 
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
+
 import java.util.List;
 
 /**
@@ -14,7 +16,7 @@ public class Post extends BaseBean{
     private String linked_url;
     private List<String> imgs;
     private String excerpt;
-    private XSUser user;
+    private XSBmobChatUser user;
 
     public String getContent() {
         return content;
@@ -32,11 +34,11 @@ public class Post extends BaseBean{
         this.title = title;
     }
 
-    public XSUser getUser() {
+    public XSBmobChatUser getUser() {
         return user;
     }
 
-    public void setUser(XSUser user) {
+    public void setUser(XSBmobChatUser user) {
         this.user = user;
     }
 

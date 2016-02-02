@@ -1,8 +1,8 @@
 package com.xxs.leon.xxs.rest.client;
 
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.rest.bean.Album;
 import com.xxs.leon.xxs.rest.bean.BaseBean;
-import com.xxs.leon.xxs.rest.bean.XSUser;
 import com.xxs.leon.xxs.rest.bean.request.AddReadLogParams;
 import com.xxs.leon.xxs.rest.bean.request.AddRechargeLogParams;
 import com.xxs.leon.xxs.rest.bean.request.CollectInstallationParams;
@@ -77,7 +77,7 @@ public interface CommenRestClient extends RestClientHeaders, RestClientErrorHand
      * @return
      */
     @Get("/users/{objectId}")
-    XSUser getUserInfo(String objectId);
+    XSBmobChatUser getUserInfo(String objectId);
 
     @Post("/files/{remotefilename}")
     @RequiresHeader({"X-Bmob-Application-Id", "X-Bmob-REST-API-Key","Content-Type"})

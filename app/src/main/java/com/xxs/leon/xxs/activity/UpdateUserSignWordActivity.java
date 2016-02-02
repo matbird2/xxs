@@ -13,6 +13,7 @@ import com.gc.materialdesign.widgets.SnackBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.rest.bean.UpdateBean;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
 import com.xxs.leon.xxs.utils.InitView;
@@ -25,6 +26,8 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+
+import cn.bmob.im.BmobUserManager;
 
 /**
  * Created by maliang on 15/12/30.
@@ -70,7 +73,7 @@ public class UpdateUserSignWordActivity extends AppCompatActivity{
     void doUpdateUserSignword(String signword){
         SystemClock.sleep(1000);
 
-        UpdateBean bean = engine.updateUserSignWord(engine.getCurrentUser(), signword);
+        UpdateBean bean = engine.updateUserSignWord(BmobUserManager.getInstance(this).getCurrentUser(), signword);
         if(bean != null)
             afterUpdateUserSignword(bean);
     }

@@ -7,4 +7,7 @@
     <integer name="anim_duration_very_long">1500</integer>
     <integer name="anim_duration_long">500</integer>
     <integer name="anim_duration_medium">300</integer>
+
+    <dimen name="base_scrollview_top_height">50.0dip</dimen>
+    <dimen name="margin_chat_top">5.0dip</dimen>
 </resources>

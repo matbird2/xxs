@@ -14,7 +14,7 @@ import com.gc.materialdesign.widgets.SnackBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.umeng.analytics.MobclickAgent;
 import com.xxs.leon.xxs.R;
-import com.xxs.leon.xxs.rest.bean.XSUser;
+import com.xxs.leon.xxs.bean.XSBmobChatUser;
 import com.xxs.leon.xxs.rest.bean.XXSBmobInstallation;
 import com.xxs.leon.xxs.rest.bean.request.LoginParams;
 import com.xxs.leon.xxs.rest.engine.impl.CommenEngineImpl;
@@ -32,9 +32,11 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
+import cn.bmob.im.BmobUserManager;
 import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
@@ -69,7 +71,7 @@ public class LoginActivity extends AppCompatActivity{
 
     @Click(R.id.login)
     void clickLogin(){
-        String usernameString = account.getText().toString();
+        final String usernameString = account.getText().toString();
         String passwordString = password.getText().toString();
         if(TextUtils.isEmpty(usernameString) || TextUtils.isEmpty(passwordString)){
             SnackBar snackBar = new SnackBar(this,"username or password is null.","ok",null);
@@ -78,13 +80,33 @@ public class LoginActivity extends AppCompatActivity{
         }
 
         changeStatus(false);
-        LoginParams params = new LoginParams();
-        params.setUsername(usernameString);
-        params.setPassword(passwordString);
-        doLogin(params);
+//        LoginParams params = new LoginParams();
+//        params.setUsername(usernameString);
+//        params.setPassword(passwordString);
+//        doLogin(params);
+
+        // 为了加入聊天功能
+        XSBmobChatUser user = new XSBmobChatUser();
+        user.setUsername(usernameString);
+        user.setPassword(passwordString);
+        BmobUserManager.getInstance(this).login(user, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                changeStatus(true);
+                BmobUserManager.getInstance(LoginActivity.this).bindInstallationForRegister(usernameString);
+                finish();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                changeStatus(true);
+                SnackBar snackBar = new SnackBar(LoginActivity.this,s,"ok",null);
+                snackBar.show();
+            }
+        });
     }
 
-    @Background
+    /*@Background
     void doLogin(LoginParams params){
         SystemClock.sleep(2000);
         XSUser user = engine.login(params);
@@ -98,51 +120,14 @@ public class LoginActivity extends AppCompatActivity{
 //        SnackBar snackBar = new SnackBar(this,user.getCode()+"","ok",null);
 //        snackBar.show();
         if(user.getCode() == 0){
-            updateInstallationWithUid();
+//            updateInstallationWithUid();
+            BmobUserManager.getInstance(this).bindInstallationForRegister(user.getUsername());
+            finish();
         }else{
             SnackBar snackBar = new SnackBar(this,user.getError()+"","ok",null);
             snackBar.show();
         }
-    }
-
-    private void updateInstallationWithUid(){
-        if(engine.getCurrentUser() != null){
-            BmobQuery<XXSBmobInstallation> query = new BmobQuery<>();
-            query.addWhereEqualTo("installationId", BmobInstallation.getInstallationId(this));
-            query.findObjects(this, new FindListener<XXSBmobInstallation>() {
-                @Override
-                public void onSuccess(List<XXSBmobInstallation> list) {
-                    if (list != null && list.size() > 0) {
-                        XXSBmobInstallation xxsBmobInstallation = list.get(0);
-                        xxsBmobInstallation.setUid(engine.getCurrentUser().getObjectId());
-                        xxsBmobInstallation.update(LoginActivity.this, new UpdateListener() {
-
-                            @Override
-                            public void onSuccess() {
-                               LoginActivity.this.finish();
-                            }
-
-                            @Override
-                            public void onFailure(int code, String msg) {
-                                L.w(L.TEST, "设备信息更新失败:" + msg);
-                                LoginActivity.this.finish();
-                            }
-                        });
-                    }else{
-                        LoginActivity.this.finish();
-                    }
-                }
-
-                @Override
-                public void onError(int i, String s) {
-                    L.w(L.TEST, "失败:" + s);
-                    LoginActivity.this.finish();
-                }
-            });
-        }else{
-            LoginActivity.this.finish();
-        }
-    }
+    }*/
 
     void changeStatus(boolean isEnable){
         account.setEnabled(isEnable);
