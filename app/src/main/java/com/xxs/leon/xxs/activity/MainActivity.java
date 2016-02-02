@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity{
                         //IMPORTANT! notify the MiniDrawer about the profile click
                         miniResult.onProfileClick();
                         if (profile.getIdentifier() == 6) {
+                            currentUser = BmobUserManager.getInstance(MainActivity.this).getCurrentUser();
                             if(currentUser == null){
                                 LoginActivity_.intent(MainActivity.this).start();
                             }else{
@@ -220,6 +221,7 @@ public class MainActivity extends AppCompatActivity{
 //                            ActivityTransitionLauncher.with(MainActivity.this).from(v.findViewById(R.id.material_drawer_icon)).launch(intent);
                             MainActivity.this.startActivity(intent);
                         }else if(drawerItem.getIdentifier() == 3){
+                            currentUser = BmobUserManager.getInstance(MainActivity.this).getCurrentUser();
                             if(currentUser!= null){
                                 UserActivity_.intent(MainActivity.this).userId(currentUser.getObjectId()).start();
                             }else{
@@ -346,6 +348,7 @@ public class MainActivity extends AppCompatActivity{
     void onClickLogo(){
         mViewPager.notifyHeaderChanged();
 
+        currentUser = BmobUserManager.getInstance(MainActivity.this).getCurrentUser();
         if(currentUser == null){
             LoginActivity_.intent(this).start();
         }else{
